@@ -220,4 +220,29 @@
             return false;
         }
     }
+    
+    function cogeMusica($numero){ //Esta funcion sirve para coger la musica de la base de datos (La coge a raiz del numero aleatorio que haya salido).
+        global $conexion;
+        $query = $conexion->prepare("SELECT musica FROM canciones WHERE id=?");
+        $query->execute([$numero]);
+    
+        if ($query->rowCount() > 0) {
+            $record = $query->fetch(PDO::FETCH_ASSOC);
+            return $record['musica'];
+        } else {
+            return false;
+        }
+    }
+
+    function respuestaMusica($respuesta,$numero){ //Esta funcion sirve para saber si la respuesta introducida por el usuario es correcta (Compara su respuesta con el titulo relacionado a la cancion)
+        global $conexion;
+        $sql = $conexion->prepare("SELECT * FROM peliculascanciones WHERE SOUNDEX(LOWER(NombrePelicula)) = SOUNDEX(LOWER(?)) AND idmusica = ?"); //El soundex sirve para comparar el valor introducido con el mas cercano. Asi que, en un principio, nos serviria para las tildes.
+        $sql->execute(array($respuesta, $numero));
+
+        if($sql->rowCount() > 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
 ?>
