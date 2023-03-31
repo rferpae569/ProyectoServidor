@@ -16,6 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `canciones`
+--
+
+DROP TABLE IF EXISTS `canciones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `canciones` (
+  `id` int(11) NOT NULL,
+  `musica` varchar(50) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `compositor` varchar(50) NOT NULL,
+  `mclave` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `canciones`
+--
+
+LOCK TABLES `canciones` WRITE;
+/*!40000 ALTER TABLE `canciones` DISABLE KEYS */;
+INSERT INTO `canciones` VALUES (1,'AlwaysACatchBatman2.mp3','','',''),(2,'AVirusMatrix.mp3','','',''),(3,'BeautifulLieBatmanSuperman.mp3','','',''),(4,'E.T..mp3','','',''),(5,'ElTangodeRoxanneMoulin.mp3','','',''),(6,'EntryOfNoblesCid.mp3','','',''),(7,'Fairytaleshrek.mp3','','',''),(8,'FuneralMarchofQueenMaryMecanica.mp3','','',''),(9,'IceDanceEduardo.mp3','','',''),(10,'LongTimeTimeAgoFauno.mp3','','',''),(11,'MainTitleAddams.mp3','','',''),(12,'MainTitlesAttacks.mp3','','',''),(13,'MainTitlesspiderman.mp3','','',''),(14,'MistyMountainsHobbit.mp3','','',''),(15,'MolossusBatman.mp3','','',''),(16,'MumiaAttackMomia.mp3','','',''),(17,'MyFriendsSweeney.mp3','','',''),(18,'NoahVistsBosque.mp3','','',''),(19,'NoEscapeSimios.mp3','','',''),(20,'PortalsEngame.mp3','','',''),(21,'SafeReturnBallena.mp3','','',''),(22,'SandrasThemeBig.mp3','','',''),(23,'TheBeastisontheMoveMultiple.mp3','','',''),(24,'TheGreatJediPurgeStarWars3.mp3','','',''),(25,'TheMagnificentSeven.mp3','','',''),(26,'Themechucky1.mp3','','',''),(27,'ThemeFuturo.mp3','','',''),(28,'TheQuidditchWorldCupHarry4.mp3','','',''),(29,'TheTamingofSmeagolAnillos2.mp3','','',''),(30,'VitoAndAbbandandoPadrino2.mp3','','',''),(31,'WhatsThisPesadillas.mp3','','','');
+/*!40000 ALTER TABLE `canciones` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `correos`
 --
 
@@ -90,8 +117,35 @@ CREATE TABLE `peliculas` (
 
 LOCK TABLES `peliculas` WRITE;
 /*!40000 ALTER TABLE `peliculas` DISABLE KEYS */;
-INSERT INTO `peliculas` VALUES ('Batman Begins','Christopher Nolan',2005,'Legendary Pictures','Warner Bros. Pictures','150 millones','374 millones'),('Batman vs Superman: El amanecer de la justicia','Zack Snyder',2016,'DC Entertainment','Warner Bros. Pictures','250 millones','872 millones'),('Big Fish','Tim Burton',2003,'Tim Burton Productions','Columbia Pictures','70 millones','122 millones'),('E.T., el extraterrestre','Steven Spielberg',1982,'Amblin Entertainment','Universal Pictures','10 millones','793 millones'),('Eduardo Manostijeras','Tim Burton',1990,'20th Century Studios','20th Century Fox','20 millones','86 millones'),('El bosque','M. Night Shyamalan',2004,'Touchstone Pictures','Buena Vista Pictures','60 millones','256 millones'),('El caballero oscuro','Christopher Nolan',2008,'Legendary Pictures','Warner Bros. Pictures','185 millones','1 billón'),('El cid','Anthony Mann',1982,'Monogram Pictures','Monogram Pictures','7 millones','27 millones'),('El hobbit: Un viaje Inesperado','Peter Jackson',2012,'New Line Cinema','Warner Bros. Pictures','315 millones','1 billón'),('El laberinto del fauno','Guillermo del Toro',2006,'Esperanto Filmoj','Warner Bros. Pictures','13 millones','87 millones'),('El padrino 2','Francis Ford Coppola',1974,'Paramount Pictures','Paramount Pictures','13 millones','93 millones'),('El planeta de los simios','Franklin J. Schaffner',1968,'APJAC Productions','20th Century Fox','5 millones','33 millones'),('El señor de los Anillos: Las dos torres','Peter Jackson',2002,'WingNut Films','New Line Cinema','94 millones','925 millones'),('Harry Potter y el cáliz de fuego','Mike Newell',2005,'Heyday Films','Warner Bros. Pictures','150 millones','900 millones'),('La ballena','Darren Aronofsky',2022,'Protozoa Pictures','A24','3 millones','20 millones'),('La familia addams','Barry Sonnenfeld',1991,'Orion Pictures','Paramount Pictures','30 millones','191 millones'),('La momia','Stephen Sommers',1999,'Alphaville','Universal Pictures','80 millones','415 millones'),('La naranja mecánica','Stanley Kubrick',1971,'Hawk Films','Warner Bros.','2 millones','26 millones'),('Los siete magníficos','Antoine Fuqua',2016,'Village Roadshow Pictures','Columbia Pictures','90 millones','160 millones'),('Mars Attacks!','Tim Burton',1996,'Warner Bros.','Warner Bros. Pictures','70 millones','101 millones'),('Matrix','Lilly y Lana Wachowski',1999,'Village Roadshow Pictures','Warner Bros. Pictures','363 millones','1 billón 632 millones'),('Moulin Rouge','Baz Luhrmann',2001,'Angel Studios','20th Century Fox','52 millones','179 millones'),('Múltiple','M. Night Shyamalan',2016,'Blumhouse Productions','Universal Pictures','9 millones','278 millones'),('Muñeco diabólico','Tom Holland',1988,'United Artists','Metro-Goldwyn-Mayer','9 millones','44.2 millones'),('Pesadillas Antes de Navidad','Henry Selick',1993,'Walt Disney Pictures','Walt Disney Studios','18 millones','91 millones'),('Regreso al futuro','Robert Zemeckis',1985,'Universal Pictures','Universal Pictures','19 millones','389 millones'),('Shrek','Andrew Adamson y Vicky Jenson',2001,'DreamWorks Pictures','DreamWorks Animation','60 millones','488 millones'),('Spider-Man','Sam Raimi',2002,'Columbia Pictures','Sony Pictures Releasing','139 millones','825 millones'),('Star Wars: Episodio III - La venganza de los Sith','George Lucas',2005,'Lucasfilm','20th Century Fox','113 millones','848 millones'),('Sweeney Todd','Tim Burton',2007,'DreamWorks Pictures','Warner Bros. Pictures','50 millones','152 millones'),('Vengadores: EndGame','Anthony y Joe Russo',2019,'Marvel Studios','Walt Disney Studios','356 millones','2800 millones');
+INSERT INTO `peliculas` VALUES ('Batman Begins','Christopher Nolan',2005,'Legendary Pictures','Warner Bros. Pictures','150 millones','374 millones'),('Batman vs Superman: El amanecer de la justicia','Zack Snyder',2016,'DC Entertainment','Warner Bros. Pictures','250 millones','872 millones'),('Big Fish','Tim Burton',2003,'Tim Burton Productions','Columbia Pictures','70 millones','122 millones'),('E.T., el extraterrestre','Steven Spielberg',1982,'Amblin Entertainment','Universal Pictures','10 millones','793 millones'),('Eduardo Manostijeras','Tim Burton',1990,'20th Century Studios','20th Century Fox','20 millones','86 millones'),('El bosque','M. Night Shyamalan',2004,'Touchstone Pictures','Buena Vista Pictures','60 millones','256 millones'),('El caballero oscuro','Christopher Nolan',2008,'Legendary Pictures','Warner Bros. Pictures','185 millones','1 billón'),('El cid','Anthony Mann',1982,'Monogram Pictures','Monogram Pictures','7 millones','27 millones'),('El hobbit: Un viaje Inesperado','Peter Jackson',2012,'New Line Cinema','Warner Bros. Pictures','315 millones','1 billón'),('El laberinto del fauno','Guillermo del Toro',2006,'Esperanto Filmoj','Warner Bros. Pictures','13 millones','87 millones'),('El padrino 2','Francis Ford Coppola',1974,'Paramount Pictures','Paramount Pictures','13 millones','93 millones'),('El planeta de los simios','Franklin J. Schaffner',1968,'APJAC Productions','20th Century Fox','5 millones','33 millones'),('El señor de los Anillos: Las dos torres','Peter Jackson',2002,'WingNut Films','New Line Cinema','94 millones','925 millones'),('Harry Potter y el cáliz de fuego','Mike Newell',2005,'Heyday Films','Warner Bros. Pictures','150 millones','900 millones'),('La ballena','Darren Aronofsky',2022,'Protozoa Pictures','A24','3 millones','20 millones'),('La familia addams','Barry Sonnenfeld',1991,'Orion Pictures','Paramount Pictures','30 millones','191 millones'),('La momia','Stephen Sommers',1999,'Alphaville','Universal Pictures','80 millones','415 millones'),('La naranja mecánica','Stanley Kubrick',1971,'Hawk Films','Warner Bros.','2 millones','26 millones'),('Los siete magníficos','Antoine Fuqua',2016,'Village Roadshow Pictures','Columbia Pictures','90 millones','160 millones'),('Mars Attacks!','Tim Burton',1996,'Warner Bros.','Warner Bros. Pictures','70 millones','101 millones'),('Matrix','Lilly y Lana Wachowski',1999,'Village Roadshow Pictures','Warner Bros. Pictures','363 millones','1 billón 632 millones'),('Moulin Rouge!','Baz Luhrmann',2001,'Angel Studios','20th Century Fox','52 millones','179 millones'),('Múltiple','M. Night Shyamalan',2016,'Blumhouse Productions','Universal Pictures','9 millones','278 millones'),('Muñeco diabólico','Tom Holland',1988,'United Artists','Metro-Goldwyn-Mayer','9 millones','44.2 millones'),('Pesadillas Antes de Navidad','Henry Selick',1993,'Walt Disney Pictures','Walt Disney Studios','18 millones','91 millones'),('Regreso al futuro','Robert Zemeckis',1985,'Universal Pictures','Universal Pictures','19 millones','389 millones'),('Shrek','Andrew Adamson y Vicky Jenson',2001,'DreamWorks Pictures','DreamWorks Animation','60 millones','488 millones'),('Spider-Man','Sam Raimi',2002,'Columbia Pictures','Sony Pictures Releasing','139 millones','825 millones'),('Star Wars: Episodio III - La venganza de los Sith','George Lucas',2005,'Lucasfilm','20th Century Fox','113 millones','848 millones'),('Sweeney Todd','Tim Burton',2007,'DreamWorks Pictures','Warner Bros. Pictures','50 millones','152 millones'),('Vengadores: EndGame','Anthony y Joe Russo',2019,'Marvel Studios','Walt Disney Studios','356 millones','2800 millones');
 /*!40000 ALTER TABLE `peliculas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `peliculascanciones`
+--
+
+DROP TABLE IF EXISTS `peliculascanciones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `peliculascanciones` (
+  `NombrePelicula` varchar(50) NOT NULL,
+  `idmusica` int(11) NOT NULL,
+  PRIMARY KEY (`NombrePelicula`,`idmusica`),
+  KEY `idmusica` (`idmusica`),
+  CONSTRAINT `peliculascanciones_ibfk_1` FOREIGN KEY (`idmusica`) REFERENCES `canciones` (`id`),
+  CONSTRAINT `peliculascanciones_ibfk_2` FOREIGN KEY (`NombrePelicula`) REFERENCES `peliculas` (`Nombre`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `peliculascanciones`
+--
+
+LOCK TABLES `peliculascanciones` WRITE;
+/*!40000 ALTER TABLE `peliculascanciones` DISABLE KEYS */;
+INSERT INTO `peliculascanciones` VALUES ('Batman Begins',15),('Batman vs Superman: El amanecer de la justicia',3),('Big Fish',22),('E.T., el extraterrestre',4),('Eduardo Manostijeras',9),('El bosque',18),('El caballero oscuro',1),('El cid',6),('El hobbit: Un viaje Inesperado',14),('El laberinto del fauno',10),('El padrino 2',30),('El planeta de los simios',19),('El señor de los Anillos: Las dos torres',29),('Harry Potter y el cáliz de fuego',28),('La ballena',21),('La familia addams',11),('La momia',16),('La naranja mecánica',8),('Los siete magníficos',25),('Mars Attacks!',12),('Matrix',2),('Moulin Rouge!',5),('Múltiple',23),('Muñeco diabólico',26),('Pesadillas Antes de Navidad',31),('Regreso al futuro',27),('Shrek',7),('Spider-Man',13),('Star Wars: Episodio III - La venganza de los Sith',24),('Sweeney Todd',17),('Vengadores: EndGame',20);
+/*!40000 ALTER TABLE `peliculascanciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -117,7 +171,7 @@ CREATE TABLE `peliculasimagenes` (
 
 LOCK TABLES `peliculasimagenes` WRITE;
 /*!40000 ALTER TABLE `peliculasimagenes` DISABLE KEYS */;
-INSERT INTO `peliculasimagenes` VALUES ('Batman Begins',30),('Batman vs Superman: El amanecer de la justicia',4),('Big Fish',5),('E.T., el extraterrestre',29),('Eduardo Manostijeras',8),('El bosque',9),('El caballero oscuro',31),('El cid',7),('El hobbit: Un viaje Inesperado',12),('El laberinto del fauno',24),('El padrino 2',15),('El planeta de los simios',21),('El señor de los Anillos: Las dos torres',2),('Harry Potter y el cáliz de fuego',11),('La ballena',3),('La familia addams',22),('La momia',25),('La naranja mecánica',13),('Los siete magníficos',1),('Mars Attacks!',26),('Matrix',28),('Moulin Rouge',17),('Múltiple',14),('Muñeco diabólico',6),('Pesadillas Antes de Navidad',16),('Regreso al futuro',23),('Shrek',27),('Spider-Man',18),('Star Wars: Episodio III - La venganza de los Sith',19),('Sweeney Todd',20),('Vengadores: EndGame',10);
+INSERT INTO `peliculasimagenes` VALUES ('Batman Begins',30),('Batman vs Superman: El amanecer de la justicia',4),('Big Fish',5),('E.T., el extraterrestre',29),('Eduardo Manostijeras',8),('El bosque',9),('El caballero oscuro',31),('El cid',7),('El hobbit: Un viaje Inesperado',12),('El laberinto del fauno',24),('El padrino 2',15),('El planeta de los simios',21),('El señor de los Anillos: Las dos torres',2),('Harry Potter y el cáliz de fuego',11),('La ballena',3),('La familia addams',22),('La momia',25),('La naranja mecánica',13),('Los siete magníficos',1),('Mars Attacks!',26),('Matrix',28),('Moulin Rouge!',17),('Múltiple',14),('Muñeco diabólico',6),('Pesadillas Antes de Navidad',16),('Regreso al futuro',23),('Shrek',27),('Spider-Man',18),('Star Wars: Episodio III - La venganza de los Sith',19),('Sweeney Todd',20),('Vengadores: EndGame',10);
 /*!40000 ALTER TABLE `peliculasimagenes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,7 +199,7 @@ CREATE TABLE `peliculaspreguntas` (
 
 LOCK TABLES `peliculaspreguntas` WRITE;
 /*!40000 ALTER TABLE `peliculaspreguntas` DISABLE KEYS */;
-INSERT INTO `peliculaspreguntas` VALUES ('Batman Begins',30,'Legendary Pictures'),('Batman vs Superman: El amanecer de la justicia',1,'Zack Snyder'),('Big Fish',2,'Tim Burton'),('E.T., el extraterrestre',28,'Steven Spielberg'),('Eduardo Manostijeras',3,'20th Century Fox'),('El bosque',4,'2004'),('El caballero oscuro',31,'El caballero oscuro'),('El cid',5,'El cid'),('El hobbit: Un viaje Inesperado',6,'Peter Jackson'),('El laberinto del fauno',24,'Guillermo del Toro'),('El padrino 2',7,'Paramount Pictures'),('El planeta de los simios',25,'1968'),('El señor de los Anillos: Las dos torres',8,'925 millones'),('Harry Potter y el cáliz de fuego',9,'Warner Bros Pictures'),('La ballena',10,'La ballena'),('La familia addams',22,'La familia addams'),('La momia',21,'La momia'),('La naranja mecánica',11,'La naranja mecánica'),('Los siete magníficos',12,'2016'),('Mars Attacks!',26,'1996'),('Matrix',27,'Lilly y Lana Wachowski'),('Moulin Rouge',13,'Moulin Rouge'),('Múltiple',14,'M. Night Shyamalan'),('Muñeco diabólico',15,'Tom Holland'),('Pesadillas Antes de Navidad',20,'Henry Selick'),('Regreso al futuro',23,'Robert Zemeckis'),('Shrek',29,'2001'),('Spider-Man',16,'Spider-Man'),('Star Wars: Episodio III - La venganza de los Sith',17,'Georges Lucas'),('Sweeney Todd',18,'Sweeney Todd'),('Vengadores: EndGame',19,'2800 millones');
+INSERT INTO `peliculaspreguntas` VALUES ('Batman Begins',30,'Legendary Pictures'),('Batman vs Superman: El amanecer de la justicia',1,'Zack Snyder'),('Big Fish',2,'Tim Burton'),('E.T., el extraterrestre',28,'Steven Spielberg'),('Eduardo Manostijeras',3,'20th Century Fox'),('El bosque',4,'2004'),('El caballero oscuro',31,'El caballero oscuro'),('El cid',5,'El cid'),('El hobbit: Un viaje Inesperado',6,'Peter Jackson'),('El laberinto del fauno',24,'Guillermo del Toro'),('El padrino 2',7,'Paramount Pictures'),('El planeta de los simios',25,'1968'),('El señor de los Anillos: Las dos torres',8,'925 millones'),('Harry Potter y el cáliz de fuego',9,'Warner Bros Pictures'),('La ballena',10,'La ballena'),('La familia addams',22,'La familia addams'),('La momia',21,'La momia'),('La naranja mecánica',11,'La naranja mecánica'),('Los siete magníficos',12,'2016'),('Mars Attacks!',26,'1996'),('Matrix',27,'Lilly y Lana Wachowski'),('Moulin Rouge!',13,'Moulin Rouge!'),('Múltiple',14,'M. Night Shyamalan'),('Muñeco diabólico',15,'Tom Holland'),('Pesadillas Antes de Navidad',20,'Henry Selick'),('Regreso al futuro',23,'Robert Zemeckis'),('Shrek',29,'2001'),('Spider-Man',16,'Spider-Man'),('Star Wars: Episodio III - La venganza de los Sith',17,'Georges Lucas'),('Sweeney Todd',18,'Sweeney Todd'),('Vengadores: EndGame',19,'2800 millones');
 /*!40000 ALTER TABLE `peliculaspreguntas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -207,4 +261,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-27 14:30:25
+-- Dump completed on 2023-03-31 16:31:59
