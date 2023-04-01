@@ -245,4 +245,21 @@
             return false;
         }
     }
+
+    function obtenerCanciones($numero){
+        global $conexion;
+        $sql = $conexion->prepare("SELECT nombre, compositor, mclave FROM canciones WHERE id=?");
+        $sql->execute([$numero]);
+
+        $canciones = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+        $html = "<table style='border: 1px solid #000000; border-collapse: collapse; margin: 0 auto; width: 100%;'>";
+        $html .= "<tr><th style='border: 1px solid #000000; padding: 8px; text-align: center;'>Nombre</th><th style='border: 1px solid #000000; padding: 8px; text-align: center;'>Compositor</th><th style='border: 1px solid #000000; padding: 8px; text-align: center;'>Momento Clave</th></tr>";
+        foreach ($canciones as $cancion) {
+            $html .= "<tr><td style='border: 1px solid #000000; padding: 8px; text-align: center;'>".$cancion['nombre']."</td><td style='border: 1px solid #000000; padding: 8px; text-align: center;'>".$cancion['compositor']."</td><td style='border: 1px solid #000000; padding: 8px; text-align: center;'>".$cancion['mclave']."</td></tr>";
+        }
+        $html .= "</table>";
+
+        return $html;
+    }
 ?>

@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="icono/claquetaicon.png">
     <title>juegoPreguntas</title>
-    <link rel="stylesheet" href="css/EstiloPregunta.css">
+    <link rel="stylesheet" href="css/EstiloPregunta2.css">
+    <script src="javascript/scripts.js"></script>
 </head>
 <?php
     session_start(); //Creamos la sesion
@@ -21,9 +22,13 @@
     <h1>
         <?php echo cogePregunta($numero); ?><!--Cogemos la pregunta de la base de datos-->
     </h1>
-    <h1>
-        Pista: <?php echo cogePista($numero); ?><!--Cogemos la pista de la base de datos-->
-    </h1>
+
+    <div id="pistaPregunta" style="display:none;">
+    <h1>Pista: <?php echo cogePista($numero); ?></h1><!--Cogemos la pista de la base de datos-->
+    </div>
+
+    <button onclick="mostrarPistaPregunta()">Pista</button> <!--Añadimos el boton para mostrar la pista al hacer click en el con javascript-->
+
     <form action="comprobarRespuesta2.php" method="post"><!--Creamos un formulario para comprobar la respuesta-->
     <input type="text" placeholder="Introduce la respuesta" name="respuesta">
     <input type="submit" id="comprobar"  name="comprobar" value="comprobar">

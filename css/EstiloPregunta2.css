@@ -41,3 +41,21 @@ input[type="submit"]{
 input[type="submit"]:hover{
     background-color: #2E86DE;
 }
+
+button {
+    padding: 10px;
+    background-color: #3F51B5;
+    color: #fff;
+    border: none;
+    font-size: 15px;
+    font-family: sans-serif;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    background-color: #5C6BC0;
+}

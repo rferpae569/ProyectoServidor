@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="icono/claquetaicon.png">
     <title>JuegoMusica</title>
     <link rel="stylesheet" href="css/EstiloCanciones.css">
+    <script src="javascript/scripts.js"></script>
 </head>
 <?php
     session_start(); //Creamos la sesion
@@ -19,10 +20,19 @@
 ?>
 <body>
     <h1>A que pelicula pertenece esta musica</h1>
+
     <audio controls>
     <source src="musica/<?php echo cogeMusica($numero);?>" type="audio/mp3"><!--Mostramos el audio de la cancion-->
         Tu navegador no soporta audio HTML5.
     </audio>
+
+    <div id="pistaCancion" style="display:none;">
+    <h1>Pista Musical:</h1>
+    <?php echo obtenerCanciones($numero) ?>
+    </div>
+
+    <button onclick="mostrarPistaMusica()">Pista</button> <!--Añadimos el boton para mostrar la pista al hacer click en el con javascript-->
+
     <form action="comprobarRespuesta3.php" method="post"><!--Creamos un formulario para que el usuario pueda responder-->
     <input type="text" placeholder="Introduce la respuesta" name="respuesta">
     <input type="submit" id="comprobar"  name="comprobar" value="comprobar">
