@@ -1,8 +1,8 @@
 <?php
     $conexion=conectar(); //Nos conectamos a la base de datos.
    
-    function validarNombre($nombre){ //Esta funcion sirve para validar el nombre del usuario
-        $expresion = "/^[a-zA-Z\s]+$/";
+    function validarNombre($nombre){ 
+        $expresion = "/^[a-zA-Z0-9\s]+$/";
         
         if(preg_match($expresion, $nombre)){
             return true;
