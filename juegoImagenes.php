@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="icono/claquetaicon.png">
     <title>JuegoImagenes</title>
     <link rel="stylesheet" href="css/EstiloImagen.css">
+    <script src="javascript/Script.js"></script>
 </head>
 <?php
     session_start(); //Creamos la sesion
@@ -43,5 +44,6 @@
     <input type="text" placeholder="Introduce la respuesta" name="respuesta">
     <input type="submit" id="comprobar"  name="comprobar" value="comprobar">
     </form>
+    <div id="resultado"></div>
 </body>
 </html>

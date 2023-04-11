@@ -6,13 +6,13 @@
     $intentos=$_SESSION["intentos"];
 
     if(respuestaPregunta($respuesta,$numero)==true){
-      //Si la respuesta esta bien, y la sesion de los puntos no es igual a 9, se incrementara, y nos llevara de nuevo a "JuegoPreguntas.php"
-      if($_SESSION["puntos"]!=9){
+      //Si la respuesta esta bien, y la sesion de los puntos no es igual a 30, se incrementara, y nos llevara de nuevo a "JuegoPreguntas.php"
+      if($_SESSION["puntos"]!=30){
 
            $_SESSION["puntos"]++;
            header("Location: juegoPreguntas.php");
 
-      }else{ //Si valiese mas de 9, nos llevaria a "Victoria.php"
+      }else{ //Si valiese mas de 30, nos llevaria a "Victoria.php"
 
            header("Location: Victoria.php");
       }

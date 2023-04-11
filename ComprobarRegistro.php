@@ -7,6 +7,7 @@
     
     if(validarNombre($nombre)==true && validarContraseña($password)==true && validarcorreo($correo)==true){
         //Si las validaciones son correctas, añadimos el usuario a la base de datos
+        // añadirRanking();
         añadirUsuario($nombre,$password);
 
         if(añadircorreo($correo,$nombre)==false){ //Si el correo se encuentra en la base de datos mostrara una alerta mediante javascript, volvera a registro.php, y borrara el usuario introducido

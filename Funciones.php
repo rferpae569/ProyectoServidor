@@ -69,12 +69,44 @@
         }
     }
 
-    function añadirUsuario($nombre,$password){ //Esta funcion sirve para añadir al usuario en la base de datos.
+    // function añadirUsuario($nombre,$password){ //Esta funcion sirve para añadir al usuario en la base de datos.
+    //     global $conexion;
+    //     try {
+    //         $codigoRanking = añadirRanking();
+    //         $resultado = $conexion->prepare("INSERT INTO usuarios VALUES (:Nombre, :Passwrd, :CodigoRanking)");
+    //         $resultado->bindParam(':Nombre', $nombre, PDO::PARAM_STR);
+    //         $resultado->bindParam(':Passwrd', $password,PDO::PARAM_STR);
+    //         $resultado->bindParam(':CodigoRanking', $codigoRanking,PDO::PARAM_INT);
+    //         $resultado->execute();
+    //         return true;
+    //     } catch (Exception $e) {
+    //         echo "Error al agregar registro: ". $e->getMessage();
+    //         die();
+    //     }
+    // }
+
+    function añadirUsuario($nombre,$password){ //Esta funcion añade el usuario en la base de datos, y a su vez, le crea su ranking para guardar sus puntuaciones en los distintos juegos
         global $conexion;
         try {
-            $resultado = $conexion->prepare("INSERT INTO usuarios VALUES (:Nombre, :Passwrd)");
+            $codigoRanking = $conexion->query("SELECT MAX(codigoRanking) FROM ranking")->fetchColumn() + 1;
+            // Comprueba si el codigo de ranking existe previamente en la tabla ranking
+            $existeCodigoRanking = $conexion->prepare("SELECT COUNT(*) FROM ranking WHERE CodigoRanking = :CodigoRanking");
+            $existeCodigoRanking->bindParam(':CodigoRanking', $codigoRanking, PDO::PARAM_INT);
+            $existeCodigoRanking->execute();
+            $numFilas = $existeCodigoRanking->fetchColumn(); 
+            if($numFilas == 0){ // Si el codigo de ranking no existe, se inserta en la tabla ranking
+                $resultadoRanking = $conexion->prepare("INSERT INTO ranking VALUES (:CodigoRanking, :PuntosImagen, :PuntosPreguntas, :PuntosMusica)");
+                $resultadoRanking->bindValue(':CodigoRanking', $codigoRanking, PDO::PARAM_INT);
+                $resultadoRanking->bindValue(':PuntosImagen', 0, PDO::PARAM_INT);
+                $resultadoRanking->bindValue(':PuntosPreguntas', 0, PDO::PARAM_INT);
+                $resultadoRanking->bindValue(':PuntosMusica', 0, PDO::PARAM_INT);
+                $resultadoRanking->execute();
+            }
+            // Se inserta el usuario en la tabla usuarios
+            $resultado = $conexion->prepare("INSERT INTO usuarios VALUES (:Nombre, :Passwrd, :CodigoRanking)");
             $resultado->bindParam(':Nombre', $nombre, PDO::PARAM_STR);
             $resultado->bindParam(':Passwrd', $password,PDO::PARAM_STR);
+            $resultado->bindParam(':CodigoRanking', $codigoRanking,PDO::PARAM_INT);
             $resultado->execute();
             return true;
         } catch (Exception $e) {
@@ -97,6 +129,23 @@
             die();
         }
     }
+
+    // function añadirRanking(){ 
+    //     global $conexion;
+    //     try {
+    //         $codigoRanking = $conexion->query("SELECT MAX(codigoRanking) FROM ranking")->fetchColumn() + 1;
+    //         $resultado = $conexion->prepare("INSERT INTO ranking VALUES (:CodigoRanking, :PuntosImagen, :PuntosPreguntas, :PuntosCanciones)");
+    //         $resultado->bindValue(':CodigoRanking', $codigoRanking, PDO::PARAM_INT);
+    //         $resultado->bindValue(':PuntosImagen', 0, PDO::PARAM_INT);
+    //         $resultado->bindValue(':PuntosPreguntas', 0, PDO::PARAM_INT);
+    //         $resultado->bindValue(':PuntosMusica', 0, PDO::PARAM_INT);
+    //         $resultado->execute();
+    //         return true;
+    //     } catch (Exception $e) {
+    //         echo "Error al agregar registro: ". $e->getMessage();
+    //         die();
+    //     }
+    // }
 
     function actualizarUsuario($nombre,$password){ //Esta funcion sirve para actualizar el usuario en la base de datos.
         global $conexion;
@@ -128,12 +177,34 @@
         return $query;
     }
 
-    function borrarUsuario($nombre){ //Esta funcion sirve para borrar al usuario de la base de datos.
+    // function borrarUsuario($nombre){ //Esta funcion sirve para borrar al usuario de la base de datos.
+    //     global $conexion;
+    //     $query = $conexion->prepare("DELETE FROM usuarios WHERE Nombre = :Nombre");
+    //     $query->bindParam(":Nombre", $nombre);
+    //     $query->execute();
+    //     return $query;
+    // }
+
+    function borrarUsuario($nombre){ //Esta funcion sirve para que cuando se borre el usuario de la base de datos, se borre tambien su ranking
         global $conexion;
-        $query = $conexion->prepare("DELETE FROM usuarios WHERE Nombre = :Nombre");
-        $query->bindParam(":Nombre", $nombre);
-        $query->execute();
-        return $query;
+        try {
+            $query = $conexion->prepare("SELECT CodigoRanking FROM usuarios WHERE Nombre = :Nombre");
+            $query->bindParam(":Nombre", $nombre);
+            $query->execute();
+            $codigoRanking = $query->fetchColumn();
+            // Borramos el usuario de la tabla usuarios
+            $query = $conexion->prepare("DELETE FROM usuarios WHERE Nombre = :Nombre");
+            $query->bindParam(":Nombre", $nombre);
+            $query->execute();
+            // Borramos el registro del ranking correspondiente
+            $query = $conexion->prepare("DELETE FROM ranking WHERE CodigoRanking = :CodigoRanking");
+            $query->bindParam(":CodigoRanking", $codigoRanking);
+            $query->execute();
+            return $query;
+        } catch (Exception $e) {
+            echo "Error al borrar registro: ". $e->getMessage();
+            die();
+        }
     }
 
 
@@ -153,6 +224,14 @@
         $_SESSION["numAleatorio"] = $numeros;
         return $numeroAleatorio;
     }
+
+    // function obtenerPeliculas(){ //Esta funcion recoge todos los datos de la tabla peliculas
+    //     $db = conectar();
+    //     $query = $db->prepare("SELECT * FROM peliculas");
+    //     $query->execute();
+    //     $resultado = $query->fetchAll();
+    //     return $resultado;
+    // }
 
    
 
