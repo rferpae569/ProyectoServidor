@@ -246,7 +246,7 @@
         }
     }
 
-    function obtenerCanciones($numero){
+    function obtenerCanciones($numero){ //Esta funcion sirve para obtener la informacion de la tabla canciones, y mostrarla en una tabla.
         global $conexion;
         $sql = $conexion->prepare("SELECT nombre, compositor, mclave FROM canciones WHERE id=?");
         $sql->execute([$numero]);

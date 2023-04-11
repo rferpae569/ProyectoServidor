@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="css/EstiloEleccion.css">
 </head>
 <body><!--Creamos los enlaces para que nos lleve a los juegos-->
-        <a href="juegoImagenes.php">Adivina la pelicula a traves de imagenes (Facil)</a>
-        <a href="juegoPreguntas.php">Adivina la pelicula a traves de preguntas (Normal)</a>
-        <a href="juegoMusica.php">Adivina la pelicula a traves de su música (Dificil)</a>
+        <a href="juegoImagenes.php">Adivina la película a traves de imágenes (Fácil)</a>
+        <a href="juegoPreguntas.php">Adivina la película a traves de preguntas (Normal)</a>
+        <a href="juegoMusica.php">Adivina la película a traves de su música (Difícil)</a>
 </body>
 </html>

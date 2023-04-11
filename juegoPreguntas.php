@@ -14,9 +14,9 @@
     include "Funciones.php"; //Requerimos las funciones del archivo "Funciones.php"
     $numero=numAleatorio(); //Almacenammos en la variable el numero aleatorio
     $_SESSION["Paleatorio"]=$numero; //Almacenamos en una sesion el numero aleatorio de la pregunta.
-    if(!isset($_SESSION["intentos"])){
+    if(!isset($_SESSION["intentos"])){ //Si no existe la sesion "intentos", la creamos, y le decimos que vale tres.
         $_SESSION["intentos"]=3;
-    }else if(isset($_SESSION["intentos"])){
+    }else if(isset($_SESSION["intentos"])){ //Si existe, comprobamos que vale tres, y si vale 0, le decimos que vuelva valer 3.
         if($_SESSION["intentos"]==3){
             $_SESSION["intentos"]=3;
         }else if($_SESSION["intentos"]==0){
@@ -26,13 +26,13 @@
 
     echo ("<h1>Usuario: " . $_SESSION["usuario"] . "<h1>"); //Mostramos el usuario iniciado con la sesion.
     echo ("<h1>Puntos: " . $_SESSION["puntos"]. "</h1>"); //Mostramos los puntos con la sesion.
-    if($_SESSION["intentos"]==3){
+    if($_SESSION["intentos"]==3){ //Si la sesion de intentos vale 3, mostramos tres imagenes.
         echo ("<h1>Intentos: " . "</h1>");
         echo '<div style="display: flex; justify-content: center;"> <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>';         
-    }else if ($_SESSION["intentos"]==2){
+    }else if ($_SESSION["intentos"]==2){ //Si la sesion de intentos vale 2, mostramos dos imagenes.
         echo ("<h1>Intentos: " . "</h1>");
         echo '<div style="display: flex; justify-content: center;"> <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>';         
-    }else if($_SESSION["intentos"]==1){
+    }else if($_SESSION["intentos"]==1){ //Si la sesion de intentos vale 1, mostramos una imagen.
         echo ("<h1>Intentos: " . "</h1>");
         echo '<div style="display: flex; justify-content: center;"> <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>'; 
     }
