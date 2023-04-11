@@ -210,8 +210,8 @@
 
     function respuestaPregunta($respuesta,$numero){ //Esta funcion sirve para saber si la respuesta introducida por el usuario es correcta (Compara su respuesta con la respuesta relacionada a dicha pregunta)
         global $conexion;
-        // $sql = $conexion->prepare("SELECT * FROM peliculasPreguntas WHERE BINARY LOWER(Respuesta) = LOWER(?) AND idPregunta = ?");
-        $sql = $conexion->prepare("SELECT * FROM peliculasPreguntas WHERE SOUNDEX(LOWER(Respuesta)) = SOUNDEX(LOWER(?)) AND idPregunta = ?"); //El soundex sirve para comparar el valor introducido con el mas cercano. Asi que, en un principio, nos serviria para las tildes.
+        $sql = $conexion->prepare("SELECT * FROM peliculasPreguntas WHERE BINARY LOWER(Respuesta) = LOWER(?) AND idPregunta = ?");
+        // $sql = $conexion->prepare("SELECT * FROM peliculasPreguntas WHERE SOUNDEX(LOWER(Respuesta)) = SOUNDEX(LOWER(?)) AND idPregunta = ?");
         $sql->execute(array($respuesta,$numero));
 
         if($sql->rowCount() > 0){

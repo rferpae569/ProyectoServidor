@@ -13,9 +13,28 @@
     include "Funciones.php"; //Requirimos las funciones del archivo "Funciones.php"
     $numero=numAleatorio(); //Almacenammos en la variable el numero aleatorio
     $_SESSION["aleatorio"]=$numero; //creamos la sesion aleatorio para almacenar el numero aleatorio para la imagen.
-    
+    if(!isset($_SESSION["intentos"])){
+        $_SESSION["intentos"]=3;
+    }else if(isset($_SESSION["intentos"])){
+        if($_SESSION["intentos"]==3){
+            $_SESSION["intentos"]=3;
+        }else if($_SESSION["intentos"]==0){
+            $_SESSION["intentos"]=3;
+        }
+    }
+
     echo ("<h1>Usuario: " . $_SESSION["usuario"] . "<h1>"); //Mostramos el usuario iniciado con la sesion.
     echo ("<h1>Puntos: " . $_SESSION["puntos"]. "</h1>"); //Mostramos los puntos con la sesion.
+    if($_SESSION["intentos"]==3){
+        echo ("<h1>Intentos: " . "</h1>");
+        echo '<div style="display: flex; justify-content: center;"> <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>';         
+    }else if ($_SESSION["intentos"]==2){
+        echo ("<h1>Intentos: " . "</h1>");
+        echo '<div style="display: flex; justify-content: center;"> <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>';         
+    }else if($_SESSION["intentos"]==1){
+        echo ("<h1>Intentos: " . "</h1>");
+        echo '<div style="display: flex; justify-content: center;"> <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>'; 
+    }
 ?>
 <body>
     <h1>A que pelicula pertenece esta imagen</h1>
