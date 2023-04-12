@@ -225,15 +225,13 @@
         return $numeroAleatorio;
     }
 
-    // function obtenerPeliculas(){ //Esta funcion recoge todos los datos de la tabla peliculas
-    //     $db = conectar();
-    //     $query = $db->prepare("SELECT * FROM peliculas");
-    //     $query->execute();
-    //     $resultado = $query->fetchAll();
-    //     return $resultado;
-    // }
-
-   
+    function obtenerPeliculas($letra){
+        $db = conectar();
+        $query = $db->prepare("SELECT * FROM peliculas WHERE nombre LIKE '%".$letra."%'");
+        $query->execute();
+        $resultado = $query->fetchAll();
+        return $resultado;
+    }
 
     function cogeImagen($numero) { //Esta funcion sirve para coger la imagen de la base de datos (La coge a raiz del numero aleatorio que haya salido).
         global $conexion;
@@ -340,5 +338,57 @@
         $html .= "</table>";
 
         return $html;
+    }
+
+    function cogeRankingUsuario(){
+        global $conexion;
+        $usuario = $_SESSION["usuario"];
+        $sql = "SELECT CodigoRanking FROM usuarios WHERE nombre = '$usuario'";
+        $resultado = $conexion->query($sql);
+        if($resultado->rowCount() > 0){
+            $rankingUsuario = $resultado->fetch(PDO::FETCH_ASSOC);
+            return $rankingUsuario;
+        }else{
+            return false;
+        }
+    }
+
+    function cogeRecordImagen($rankingUsuario){
+        global $conexion;
+        $idRanking = $rankingUsuario['CodigoRanking'];
+        $sql = "SELECT puntosImagen FROM ranking WHERE CodigoRanking = '$idRanking'";
+        $resultado = $conexion->query($sql);
+        if($resultado->rowCount() > 0){
+            $puntosImagen = $resultado->fetch(PDO::FETCH_ASSOC);
+            return $puntosImagen;
+        }else{
+            return false;
+        }
+    }
+
+    function CogeRecordPreguntas($rankingUsuario){
+        global $conexion;
+        $idRanking=$rankingUsuario['CodigoRanking'];
+        $sql="SELECT puntosPreguntas FROM ranking WHERE CodigoRanking ='$idRanking'";
+        $resultado=$conexion->query($sql);
+        if($resultado->rowCount() > 0){
+            $puntosPreguntas = $resultado->fetch(PDO::FETCH_ASSOC);
+            return $puntosPreguntas;
+        }else{
+            return false;
+        }
+    }
+
+    function CogeRecordMusica($rankingUsuario){
+        global $conexion;
+        $idRanking=$rankingUsuario['CodigoRanking'];
+        $sql="SELECT puntosMusica FROM ranking WHERE CodigoRanking ='$idRanking'";
+        $resultado=$conexion->query($sql);
+        if($resultado->rowCount() > 0){
+            $puntosPreguntas = $resultado->fetch(PDO::FETCH_ASSOC);
+            return $puntosPreguntas;
+        }else{
+            return false;
+        }
     }
 ?>

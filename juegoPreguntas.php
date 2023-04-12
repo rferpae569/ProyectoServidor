@@ -23,9 +23,12 @@
             $_SESSION["intentos"]=3;
         }
     }
+    $rankingUsuario=cogeRankingUsuario();
 
     echo ("<h1>Usuario: " . $_SESSION["usuario"] . "<h1>"); //Mostramos el usuario iniciado con la sesion.
     echo ("<h1>Puntos: " . $_SESSION["puntos"]. "</h1>"); //Mostramos los puntos con la sesion.
+    echo("<h1>Record: " . implode(cogeRecordPreguntas($rankingUsuario)) . "</h1>");
+
     if($_SESSION["intentos"]==3){ //Si la sesion de intentos vale 3, mostramos tres imagenes.
         echo ("<h1>Intentos: " . "</h1>");
         echo '<div style="display: flex; justify-content: center;"> <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>';         
@@ -48,7 +51,7 @@
 
     <button onclick="mostrarPistaPregunta()">Pista</button> <!--Añadimos el boton para mostrar la pista al hacer click en el con javascript-->
 
-    <form action="comprobarRespuesta2.php" method="post"><!--Creamos un formulario para comprobar la respuesta-->
+    <form action="comprobarRespuesta2.php" method="post" autocomplete="off"><!--Creamos un formulario para comprobar la respuesta-->
     <input type="text" placeholder="Introduce la respuesta" name="respuesta">
     <input type="submit" id="comprobar"  name="comprobar" value="comprobar">
     </form>

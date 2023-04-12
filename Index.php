@@ -25,7 +25,7 @@ if(!isset($_COOKIE['cookies'])){ //Si la cookie del mensaje no existe, la creamo
     ?>
 
     <h1>Bienvenido a "AdivinaLaPelícula"</h1>
-    <form action="ComprobarUsuario.php" method="post" class="formulariologin"><!--Creamos el formulario para iniciar sesion-->
+    <form action="ComprobarUsuario.php" method="post" class="formulariologin" autocomplete="off"><!--Creamos el formulario para iniciar sesion-->
         <label for="usuario">Usuario:</label>
         <input type="text" placeholder="Introduce tu nombre de usuario" name="usuario">
         <label for="contrasena">contraseña:</label>

@@ -15,11 +15,11 @@
             header("Location: Index.php");    
         }
     ?>
-<form action="Actualizar.php" method="post"><!--Creamos el formulario para actualizar el registro-->
+<form action="Actualizar.php" method="post" autocomplete="off"><!--Creamos el formulario para actualizar el registro-->
         <label for="nombre">Nombre de usuario:</label>
         <input type="text" placeholder="Ponga su nombre de usuario para registrar el correo y la contraseña" name="actnombre"><br>
         <label for="password">Contraseña:</label>
-        <input type="text" placeholder="Actualice la contraseña" name="actpassword"><br>
+        <input type="text" placeholder="Actualice la contraseña" name="actpassword" ><br>
         <label for="correo">Correo:</label>
         <input type="text" placeholder="Actualice el correo" name="actcorreo"><br>
         <input type="submit" id="actualizar" name="actualizar" value="Actualizar">

@@ -229,6 +229,32 @@ INSERT INTO `preguntas` VALUES (1,'¿Quién fue el director de \"Batman vs Super
 UNLOCK TABLES;
 
 --
+-- Table structure for table `ranking`
+--
+
+DROP TABLE IF EXISTS `ranking`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ranking` (
+  `CodigoRanking` int(40) NOT NULL,
+  `PuntosImagen` int(40) NOT NULL,
+  `PuntosPreguntas` int(40) NOT NULL,
+  `PuntosMusica` int(40) NOT NULL,
+  PRIMARY KEY (`CodigoRanking`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ranking`
+--
+
+LOCK TABLES `ranking` WRITE;
+/*!40000 ALTER TABLE `ranking` DISABLE KEYS */;
+INSERT INTO `ranking` VALUES (1,0,0,0);
+/*!40000 ALTER TABLE `ranking` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `usuarios`
 --
 
@@ -238,7 +264,10 @@ DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `Nombre` varchar(20) NOT NULL,
   `Passwrd` varchar(20) NOT NULL,
-  PRIMARY KEY (`Nombre`)
+  `CodigoRanking` int(40) NOT NULL,
+  PRIMARY KEY (`Nombre`),
+  KEY `fk_usuarioRanking` (`CodigoRanking`),
+  CONSTRAINT `fk_usuarioRanking` FOREIGN KEY (`CodigoRanking`) REFERENCES `ranking` (`CodigoRanking`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -248,7 +277,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES ('prueba','prueba*123');
+INSERT INTO `usuarios` VALUES ('prueba','prueba*123',1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -261,4 +290,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-11  9:04:09
+-- Dump completed on 2023-04-12 14:11:05

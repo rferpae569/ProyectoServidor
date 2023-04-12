@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="icono/claquetaicon.png">
     <title>JuegoImagenes</title>
     <link rel="stylesheet" href="css/EstiloImagen.css">
-    <script src="javascript/Script.js"></script>
+    <script src="javascript/Scripts.js"></script>
 </head>
 <?php
     session_start(); //Creamos la sesion
@@ -23,9 +23,12 @@
             $_SESSION["intentos"]=3;
         }
     }
+    $rankingUsuario=cogeRankingUsuario();
 
     echo ("<h1>Usuario: " . $_SESSION["usuario"] . "<h1>"); //Mostramos el usuario iniciado con la sesion.
     echo ("<h1>Puntos: " . $_SESSION["puntos"]. "</h1>"); //Mostramos los puntos con la sesion.
+    echo("<h1>Record: " . implode(cogeRecordImagen($rankingUsuario)) . "</h1>");
+
     if($_SESSION["intentos"]==3){ //Si la sesion de intentos vale 3, mostramos tres imagenes.
         echo ("<h1>Intentos: " . "</h1>");
         echo '<div style="display: flex; justify-content: center;"> <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>';         
@@ -40,8 +43,8 @@
 <body>
     <h1>A que película pertenece esta imagen</h1>
     <img src="img/<?php echo cogeImagen($numero); ?>"><!--Cogemos la imagen de la base de datos-->
-    <form action="comprobarRespuesta.php" method="post"><!--Creamos un formulario para que el usuario pueda responder-->
-    <input type="text" placeholder="Introduce la respuesta" name="respuesta">
+    <form action="comprobarRespuesta.php" method="post" autocomplete="off"><!--Creamos un formulario para que el usuario pueda responder-->
+    <input type="text" placeholder="Introduce la respuesta" name="respuesta" onkeyup="MostrarConsulta('Funciones.php?letra=' +this.value)">    
     <input type="submit" id="comprobar"  name="comprobar" value="comprobar">
     </form>
     <div id="resultado"></div>

@@ -17,7 +17,7 @@
         }
     ?>
     <h1>Lamentamos que quiera marcharse</h1>
-    <form action="borrar.php" method="post"><!--Creamos un formulario para borrar el registro de la base de datos-->
+    <form action="borrar.php" method="post" autocomplete="off"><!--Creamos un formulario para borrar el registro de la base de datos-->
         <label for="usuario">Usuario:</label>
         <input type="text" placeholder="Introduce tu usuario" name="borrusuario"><br>
         <label for="correo">Correo:</label>

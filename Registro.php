@@ -14,7 +14,7 @@
     }
 ?>
 <body>
-    <form action="ComprobarRegistro.php" method="post"><!--Creamos el formulario para registrarnos-->
+    <form action="ComprobarRegistro.php" method="post" autocomplete="off"><!--Creamos el formulario para registrarnos-->
         <label for="nombre">Nombre de usuario:</label>
         <input type="text" placeholder="Introduce el nombre" name="nombre"><br>
         <label for="password">Contraseña:</label>
