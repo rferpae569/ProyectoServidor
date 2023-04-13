@@ -12,11 +12,11 @@
 
 <?php
 if(!isset($_COOKIE['cookies'])){ //Si la cookie del mensaje no existe, la creamos con setcookie.
-    setcookie('cookies',true,time()+2500);
+    setcookie('cookies',true,time()+8500);
 }
 
         if(isset($_POST["aceptar"])){ //Si pulsamos el boton aceptar, la cookie pasara a valer aceptar, y hara que el mensaje desaparezca.
-            setcookie('cookies','aceptar',time()+2500);
+            setcookie('cookies','aceptar',time()+8500);
         }else if(isset($_POST["rechazar"])){ //Si pulsamos el boton rechazar, nos mostrara un mensaje por javascript
             echo'<script type="text/javascript">
             alert("Debe aceptar las cookies para continuar");

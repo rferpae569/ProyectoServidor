@@ -64,7 +64,7 @@ CREATE TABLE `correos` (
 
 LOCK TABLES `correos` WRITE;
 /*!40000 ALTER TABLE `correos` DISABLE KEYS */;
-INSERT INTO `correos` VALUES ('prueba@gmail.com','prueba');
+INSERT INTO `correos` VALUES ('carlos@gmail.com','carlos'),('juanmaEV@gmail.com','juanmaEV'),('manolo@gmail.com','manolo'),('prueba@gmail.com','prueba'),('rocio@gmail.com','rocio');
 /*!40000 ALTER TABLE `correos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,6 +90,32 @@ LOCK TABLES `imagenes` WRITE;
 /*!40000 ALTER TABLE `imagenes` DISABLE KEYS */;
 INSERT INTO `imagenes` VALUES (1,'7magnificos.PNG'),(2,'anillos.PNG'),(3,'ballena.PNG'),(4,'batmansuperman.PNG'),(5,'big fish.PNG'),(6,'chucky.PNG'),(7,'cid.PNG'),(8,'Eduardo.PNG'),(9,'elbosque.PNG'),(10,'endgame.PNG'),(11,'HarryPotter4.PNG'),(12,'hobbit.PNG'),(13,'mecanica.PNG'),(14,'multiple.PNG'),(15,'padrino2.PNG'),(16,'pesadillas.PNG'),(17,'rouge.PNG'),(18,'spiderman.PNG'),(19,'starwars3.PNG'),(20,'todd.PNG'),(21,'simios68.PNG'),(22,'addams.PNG'),(23,'regresofuturo.PNG'),(24,'fauno.PNG'),(25,'momia.PNG'),(26,'attack.PNG'),(27,'shrek.PNG'),(28,'matrix.PNG'),(29,'ET.PNG'),(30,'begins.PNG'),(31,'oscuro.PNG');
 /*!40000 ALTER TABLE `imagenes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `numjugadas`
+--
+
+DROP TABLE IF EXISTS `numjugadas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `numjugadas` (
+  `Codigojugadas` int(40) NOT NULL,
+  `JugadasImagen` int(40) NOT NULL,
+  `JugadasPreguntas` int(40) NOT NULL,
+  `JugadasMusica` int(40) NOT NULL,
+  PRIMARY KEY (`Codigojugadas`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `numjugadas`
+--
+
+LOCK TABLES `numjugadas` WRITE;
+/*!40000 ALTER TABLE `numjugadas` DISABLE KEYS */;
+INSERT INTO `numjugadas` VALUES (1,8,8,8),(2,3,2,1),(3,1,1,1),(4,4,1,2),(5,0,0,0);
+/*!40000 ALTER TABLE `numjugadas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -250,7 +276,7 @@ CREATE TABLE `ranking` (
 
 LOCK TABLES `ranking` WRITE;
 /*!40000 ALTER TABLE `ranking` DISABLE KEYS */;
-INSERT INTO `ranking` VALUES (1,0,0,0);
+INSERT INTO `ranking` VALUES (1,15,5,7),(2,12,6,7),(3,7,3,10),(4,15,7,7),(5,0,0,0);
 /*!40000 ALTER TABLE `ranking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,8 +291,11 @@ CREATE TABLE `usuarios` (
   `Nombre` varchar(20) NOT NULL,
   `Passwrd` varchar(20) NOT NULL,
   `CodigoRanking` int(40) NOT NULL,
+  `Codigojugadas` int(40) NOT NULL,
   PRIMARY KEY (`Nombre`),
   KEY `fk_usuarioRanking` (`CodigoRanking`),
+  KEY `FK_usuario_numjugadas` (`Codigojugadas`),
+  CONSTRAINT `FK_usuario_numjugadas` FOREIGN KEY (`Codigojugadas`) REFERENCES `numjugadas` (`Codigojugadas`),
   CONSTRAINT `fk_usuarioRanking` FOREIGN KEY (`CodigoRanking`) REFERENCES `ranking` (`CodigoRanking`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -277,7 +306,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES ('prueba','prueba*123',1);
+INSERT INTO `usuarios` VALUES ('carlos','carlos*123',2,2),('juanmaEV','juanmaEV*123',4,4),('manolo','manolo*123',5,5),('prueba','prueba*123',1,1),('rocio','rocio*123',3,3);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -290,4 +319,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-12 14:11:05
+-- Dump completed on 2023-04-13 15:37:22

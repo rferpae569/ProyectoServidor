@@ -4,15 +4,24 @@
    session_start(); //Creamos la sesion.
    $numero=$_SESSION["aleatorio"]; //creamos una variable con el valor de la sesion que contiene el numero aleatorio de las imagenes
    $intentos=$_SESSION["intentos"];
+   
+   $rankingUsuario=cogeRankingUsuario();
+   $record=cogeRecordImagen($rankingUsuario);
+
 
    if(respuestaImagen($respuesta,$numero)==true){
-     //Si la respuesta esta bien, y la sesion de los puntos no es igual a 30, se incrementara, y nos llevara de nuevo a "JuegoImagenes.php"
-     if($_SESSION["puntos"]!=30){
+     //Si la respuesta esta bien, y la sesion de los puntos no es igual a 15, se incrementara, y nos llevara de nuevo a "JuegoImagenes.php"
+     if($_SESSION["puntos"]!=14){
 
           $_SESSION["puntos"]++;
+
+          if ($_SESSION["puntos"] > $record['puntosImagen']) {
+               incrementaRecordImagen($rankingUsuario);
+           }
+
           header("Location: juegoImagenes.php");
 
-     }else{ //Si valiese mas de 30, nos llevaria a "Victoria.php"
+     }else if ($_SESSION["puntos"]==14 && $_SESSION["intentos"]==3 ||$_SESSION["intentos"]==2 || $_SESSION["intentos"]==1 ){
 
           header("Location: Victoria.php");
 

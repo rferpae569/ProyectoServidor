@@ -102,11 +102,28 @@
                 $resultadoRanking->bindValue(':PuntosMusica', 0, PDO::PARAM_INT);
                 $resultadoRanking->execute();
             }
+
+            $codigojugadas = $conexion->query("SELECT MAX(Codigojugadas) FROM numjugadas")->fetchColumn() + 1;
+            // Comprueba si el codigo de jugada existe previamente en la tabla numjugadas
+            $existeCodigojugada = $conexion->prepare("SELECT COUNT(*) FROM numjugadas WHERE Codigojugadas = :Codigojugadas");
+            $existeCodigojugada->bindParam(':Codigojugadas', $codigojugadas, PDO::PARAM_INT);
+            $existeCodigojugada->execute();
+            $numFilas = $existeCodigojugada->fetchColumn(); 
+            if($numFilas == 0){ // Si el codigo de ranking no existe, se inserta en la tabla ranking
+                $resultadojugadas = $conexion->prepare("INSERT INTO numjugadas VALUES (:Codigojugadas, :JugadasImagen, :JugadasPreguntas, :JugadasMusica)");
+                $resultadojugadas->bindValue(':Codigojugadas', $codigojugadas, PDO::PARAM_INT);
+                $resultadojugadas->bindValue(':JugadasImagen', 0, PDO::PARAM_INT);
+                $resultadojugadas->bindValue(':JugadasPreguntas', 0, PDO::PARAM_INT);
+                $resultadojugadas->bindValue(':JugadasMusica', 0, PDO::PARAM_INT);
+                $resultadojugadas->execute();
+            }
+
             // Se inserta el usuario en la tabla usuarios
-            $resultado = $conexion->prepare("INSERT INTO usuarios VALUES (:Nombre, :Passwrd, :CodigoRanking)");
+            $resultado = $conexion->prepare("INSERT INTO usuarios VALUES (:Nombre, :Passwrd, :CodigoRanking, :CodigoJugadas)");
             $resultado->bindParam(':Nombre', $nombre, PDO::PARAM_STR);
             $resultado->bindParam(':Passwrd', $password,PDO::PARAM_STR);
             $resultado->bindParam(':CodigoRanking', $codigoRanking,PDO::PARAM_INT);
+            $resultado->bindParam(':CodigoJugadas', $codigoRanking,PDO::PARAM_INT);
             $resultado->execute();
             return true;
         } catch (Exception $e) {
@@ -185,20 +202,24 @@
     //     return $query;
     // }
 
-    function borrarUsuario($nombre){ //Esta funcion sirve para que cuando se borre el usuario de la base de datos, se borre tambien su ranking
+    function borrarUsuario($nombre){
         global $conexion;
         try {
-            $query = $conexion->prepare("SELECT CodigoRanking FROM usuarios WHERE Nombre = :Nombre");
+            $query = $conexion->prepare("SELECT CodigoRanking, CodigoJugadas FROM usuarios WHERE Nombre = :Nombre");
             $query->bindParam(":Nombre", $nombre);
             $query->execute();
-            $codigoRanking = $query->fetchColumn();
+            $codigo = $query->fetch();
             // Borramos el usuario de la tabla usuarios
             $query = $conexion->prepare("DELETE FROM usuarios WHERE Nombre = :Nombre");
             $query->bindParam(":Nombre", $nombre);
             $query->execute();
             // Borramos el registro del ranking correspondiente
             $query = $conexion->prepare("DELETE FROM ranking WHERE CodigoRanking = :CodigoRanking");
-            $query->bindParam(":CodigoRanking", $codigoRanking);
+            $query->bindParam(":CodigoRanking", $codigo['CodigoRanking']);
+            $query->execute();
+            //borramos el numero de jugadas
+            $query = $conexion->prepare("DELETE FROM numjugadas WHERE CodigoJugadas = :CodigoJugadas");
+            $query->bindParam(":CodigoJugadas", $codigo['CodigoJugadas']);
             $query->execute();
             return $query;
         } catch (Exception $e) {
@@ -206,7 +227,6 @@
             die();
         }
     }
-
 
     function numAleatorio(){ //Esta funcion genera numeros aleatorios para que salgan distintas imagenes y distintas preguntas a la hora de jugar. Los numeros se almacenaran en una sesion para que asi no se puedan repetir los numeros
         if(!isset($_SESSION["numAleatorio"])){
@@ -353,6 +373,20 @@
         }
     }
 
+    function cogeJugadaUsuario(){
+        global $conexion;
+        $usuario = $_SESSION["usuario"];
+        $sql = "SELECT CodigoJugadas FROM usuarios WHERE nombre = '$usuario'";
+        $resultado = $conexion->query($sql);
+        if($resultado->rowCount() > 0){
+            $rankingUsuario = $resultado->fetch(PDO::FETCH_ASSOC);
+            return $rankingUsuario;
+        }else{
+            return false;
+        }
+    }
+
+
     function cogeRecordImagen($rankingUsuario){
         global $conexion;
         $idRanking = $rankingUsuario['CodigoRanking'];
@@ -361,6 +395,30 @@
         if($resultado->rowCount() > 0){
             $puntosImagen = $resultado->fetch(PDO::FETCH_ASSOC);
             return $puntosImagen;
+        }else{
+            return false;
+        }
+    }
+
+    function incrementaRecordImagen($rankingUsuario){
+        global $conexion;
+        $idRanking = $rankingUsuario['CodigoRanking'];
+        $sql = "UPDATE ranking SET PuntosImagen = PuntosImagen + 1 WHERE CodigoRanking = '$idRanking'";
+        $resultado = $conexion->query($sql);
+        if($resultado->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function incrementaJugadaImagen($jugadaUsuario){
+        global $conexion;
+        $idjugada = $jugadaUsuario['Codigojugadas'];
+        $sql = "UPDATE numjugadas SET JugadasImagen = JugadasImagen + 1 WHERE Codigojugadas = '$idjugada'";
+        $resultado = $conexion->query($sql);
+        if($resultado->rowCount() > 0){
+            return true;
         }else{
             return false;
         }
@@ -379,6 +437,31 @@
         }
     }
 
+    function incrementaRecordPregunta($rankingUsuario){
+        global $conexion;
+        $idRanking = $rankingUsuario['CodigoRanking'];
+        $sql = "UPDATE ranking SET PuntosPreguntas = PuntosPreguntas + 1 WHERE CodigoRanking = '$idRanking'";
+        $resultado = $conexion->query($sql);
+        if($resultado->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    function incrementaJugadaPregunta($jugadaUsuario){
+        global $conexion;
+        $idjugada = $jugadaUsuario['Codigojugadas'];
+        $sql = "UPDATE numjugadas SET JugadasPreguntas = JugadasPreguntas + 1 WHERE Codigojugadas = '$idjugada'";
+        $resultado = $conexion->query($sql);
+        if($resultado->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     function CogeRecordMusica($rankingUsuario){
         global $conexion;
         $idRanking=$rankingUsuario['CodigoRanking'];
@@ -387,6 +470,31 @@
         if($resultado->rowCount() > 0){
             $puntosPreguntas = $resultado->fetch(PDO::FETCH_ASSOC);
             return $puntosPreguntas;
+        }else{
+            return false;
+        }
+    }
+
+    function incrementaRecordMusica($rankingUsuario){
+        global $conexion;
+        $idRanking = $rankingUsuario['CodigoRanking'];
+        $sql = "UPDATE ranking SET PuntosMusica = PuntosMusica + 1 WHERE CodigoRanking = '$idRanking'";
+        $resultado = $conexion->query($sql);
+        if($resultado->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    function incrementaJugadaMusica($jugadaUsuario){
+        global $conexion;
+        $idjugada = $jugadaUsuario['Codigojugadas'];
+        $sql = "UPDATE numjugadas SET JugadasMusica = JugadasMusica + 1 WHERE Codigojugadas = '$idjugada'";
+        $resultado = $conexion->query($sql);
+        if($resultado->rowCount() > 0){
+            return true;
         }else{
             return false;
         }
