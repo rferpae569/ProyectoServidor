@@ -69,22 +69,6 @@
         }
     }
 
-    // function añadirUsuario($nombre,$password){ //Esta funcion sirve para añadir al usuario en la base de datos.
-    //     global $conexion;
-    //     try {
-    //         $codigoRanking = añadirRanking();
-    //         $resultado = $conexion->prepare("INSERT INTO usuarios VALUES (:Nombre, :Passwrd, :CodigoRanking)");
-    //         $resultado->bindParam(':Nombre', $nombre, PDO::PARAM_STR);
-    //         $resultado->bindParam(':Passwrd', $password,PDO::PARAM_STR);
-    //         $resultado->bindParam(':CodigoRanking', $codigoRanking,PDO::PARAM_INT);
-    //         $resultado->execute();
-    //         return true;
-    //     } catch (Exception $e) {
-    //         echo "Error al agregar registro: ". $e->getMessage();
-    //         die();
-    //     }
-    // }
-
     function añadirUsuario($nombre,$password){ //Esta funcion añade el usuario en la base de datos, y a su vez, le crea su ranking para guardar sus puntuaciones en los distintos juegos
         global $conexion;
         try {
@@ -147,23 +131,6 @@
         }
     }
 
-    // function añadirRanking(){ 
-    //     global $conexion;
-    //     try {
-    //         $codigoRanking = $conexion->query("SELECT MAX(codigoRanking) FROM ranking")->fetchColumn() + 1;
-    //         $resultado = $conexion->prepare("INSERT INTO ranking VALUES (:CodigoRanking, :PuntosImagen, :PuntosPreguntas, :PuntosCanciones)");
-    //         $resultado->bindValue(':CodigoRanking', $codigoRanking, PDO::PARAM_INT);
-    //         $resultado->bindValue(':PuntosImagen', 0, PDO::PARAM_INT);
-    //         $resultado->bindValue(':PuntosPreguntas', 0, PDO::PARAM_INT);
-    //         $resultado->bindValue(':PuntosMusica', 0, PDO::PARAM_INT);
-    //         $resultado->execute();
-    //         return true;
-    //     } catch (Exception $e) {
-    //         echo "Error al agregar registro: ". $e->getMessage();
-    //         die();
-    //     }
-    // }
-
     function actualizarUsuario($nombre,$password){ //Esta funcion sirve para actualizar el usuario en la base de datos.
         global $conexion;
     
@@ -194,15 +161,7 @@
         return $query;
     }
 
-    // function borrarUsuario($nombre){ //Esta funcion sirve para borrar al usuario de la base de datos.
-    //     global $conexion;
-    //     $query = $conexion->prepare("DELETE FROM usuarios WHERE Nombre = :Nombre");
-    //     $query->bindParam(":Nombre", $nombre);
-    //     $query->execute();
-    //     return $query;
-    // }
-
-    function borrarUsuario($nombre){
+    function borrarUsuario($nombre){ //Esta funcion sirve bpara borrar el usuario, su ranking, y su numero de jugadas
         global $conexion;
         try {
             $query = $conexion->prepare("SELECT CodigoRanking, CodigoJugadas FROM usuarios WHERE Nombre = :Nombre");
@@ -245,7 +204,7 @@
         return $numeroAleatorio;
     }
 
-    function obtenerPeliculas($letra){
+    function obtenerPeliculas($letra){ 
         $db = conectar();
         $query = $db->prepare("SELECT * FROM peliculas WHERE nombre LIKE '%".$letra."%'");
         $query->execute();
@@ -360,7 +319,7 @@
         return $html;
     }
 
-    function cogeRankingUsuario(){
+    function cogeRankingUsuario(){ //Esta funcion sirve para coger el ranking de un usuario en concreto
         global $conexion;
         $usuario = $_SESSION["usuario"];
         $sql = "SELECT CodigoRanking FROM usuarios WHERE nombre = '$usuario'";
@@ -373,21 +332,21 @@
         }
     }
 
-    function cogeJugadaUsuario(){
+    function cogeJugadaUsuario(){ //Esta funcion sirve para coger el codigo de jugadas de un usuario en concreto
         global $conexion;
         $usuario = $_SESSION["usuario"];
         $sql = "SELECT CodigoJugadas FROM usuarios WHERE nombre = '$usuario'";
         $resultado = $conexion->query($sql);
         if($resultado->rowCount() > 0){
-            $rankingUsuario = $resultado->fetch(PDO::FETCH_ASSOC);
-            return $rankingUsuario;
+            $jugadaUsuario = $resultado->fetch(PDO::FETCH_ASSOC);
+            return $jugadaUsuario;
         }else{
             return false;
         }
     }
 
 
-    function cogeRecordImagen($rankingUsuario){
+    function cogeRecordImagen($rankingUsuario){ //Esta funcion sirve para coger el ranking del juego de las imagenes del usuario que esta jugando
         global $conexion;
         $idRanking = $rankingUsuario['CodigoRanking'];
         $sql = "SELECT puntosImagen FROM ranking WHERE CodigoRanking = '$idRanking'";
@@ -400,7 +359,7 @@
         }
     }
 
-    function incrementaRecordImagen($rankingUsuario){
+    function incrementaRecordImagen($rankingUsuario){ //Esta funcion sirve para actualizar el record del jugador
         global $conexion;
         $idRanking = $rankingUsuario['CodigoRanking'];
         $sql = "UPDATE ranking SET PuntosImagen = PuntosImagen + 1 WHERE CodigoRanking = '$idRanking'";
@@ -412,10 +371,10 @@
         }
     }
 
-    function incrementaJugadaImagen($jugadaUsuario){
+    function incrementaJugadaImagen($jugadaUsuario){ //Esta funcion sirve para incrementar el numero de veces que juega al juego de las imagenes el usuario.
         global $conexion;
-        $idjugada = $jugadaUsuario['Codigojugadas'];
-        $sql = "UPDATE numjugadas SET JugadasImagen = JugadasImagen + 1 WHERE Codigojugadas = '$idjugada'";
+        $idjugada = $jugadaUsuario['CodigoJugadas'];
+        $sql = "UPDATE numjugadas SET JugadasImagen = JugadasImagen + 1 WHERE CodigoJugadas = '$idjugada'";
         $resultado = $conexion->query($sql);
         if($resultado->rowCount() > 0){
             return true;
@@ -424,7 +383,7 @@
         }
     }
 
-    function CogeRecordPreguntas($rankingUsuario){
+    function CogeRecordPreguntas($rankingUsuario){ //Esta funcion sirve para coger el record del juego de las preguntas del usuario que este jugando en ese momento.
         global $conexion;
         $idRanking=$rankingUsuario['CodigoRanking'];
         $sql="SELECT puntosPreguntas FROM ranking WHERE CodigoRanking ='$idRanking'";
@@ -437,7 +396,7 @@
         }
     }
 
-    function incrementaRecordPregunta($rankingUsuario){
+    function incrementaRecordPregunta($rankingUsuario){ //Esta funcion sirve para incrementar el record del usuario en el juego de las preguntas
         global $conexion;
         $idRanking = $rankingUsuario['CodigoRanking'];
         $sql = "UPDATE ranking SET PuntosPreguntas = PuntosPreguntas + 1 WHERE CodigoRanking = '$idRanking'";
@@ -450,10 +409,10 @@
 
     }
 
-    function incrementaJugadaPregunta($jugadaUsuario){
+    function incrementaJugadaPregunta($jugadaUsuario){ //Este juego sirve para incrementar el numero de jugadas que ha hecho el usuario en el juego de las preguntas
         global $conexion;
-        $idjugada = $jugadaUsuario['Codigojugadas'];
-        $sql = "UPDATE numjugadas SET JugadasPreguntas = JugadasPreguntas + 1 WHERE Codigojugadas = '$idjugada'";
+        $idjugada = $jugadaUsuario['CodigoJugadas'];
+        $sql = "UPDATE numjugadas SET JugadasPreguntas = JugadasPreguntas + 1 WHERE CodigoJugadas = '$idjugada'";
         $resultado = $conexion->query($sql);
         if($resultado->rowCount() > 0){
             return true;
@@ -462,7 +421,7 @@
         }
     }
 
-    function CogeRecordMusica($rankingUsuario){
+    function CogeRecordMusica($rankingUsuario){ //Esta fucion sirve para coger el record del usuario en el juego de musica
         global $conexion;
         $idRanking=$rankingUsuario['CodigoRanking'];
         $sql="SELECT puntosMusica FROM ranking WHERE CodigoRanking ='$idRanking'";
@@ -475,7 +434,7 @@
         }
     }
 
-    function incrementaRecordMusica($rankingUsuario){
+    function incrementaRecordMusica($rankingUsuario){ //Esta funcion sivre para incrementar el record del usuario en el juego de la musica
         global $conexion;
         $idRanking = $rankingUsuario['CodigoRanking'];
         $sql = "UPDATE ranking SET PuntosMusica = PuntosMusica + 1 WHERE CodigoRanking = '$idRanking'";
@@ -488,10 +447,10 @@
 
     }
 
-    function incrementaJugadaMusica($jugadaUsuario){
+    function incrementaJugadaMusica($jugadaUsuario){ //Esta funcion sirve para incrementar el numero de partidas del usuario en el juego de la musica.
         global $conexion;
-        $idjugada = $jugadaUsuario['Codigojugadas'];
-        $sql = "UPDATE numjugadas SET JugadasMusica = JugadasMusica + 1 WHERE Codigojugadas = '$idjugada'";
+        $idjugada = $jugadaUsuario['CodigoJugadas'];
+        $sql = "UPDATE numjugadas SET JugadasMusica = JugadasMusica + 1 WHERE CodigoJugadas = '$idjugada'";
         $resultado = $conexion->query($sql);
         if($resultado->rowCount() > 0){
             return true;

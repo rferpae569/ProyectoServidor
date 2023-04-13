@@ -23,11 +23,16 @@
             $_SESSION["intentos"]=3;
         }
     }
-    $rankingUsuario=cogeRankingUsuario();
+    $rankingUsuario=cogeRankingUsuario(); //Coge el raking del usuario correspondiente
 
     echo ("<h1>Usuario: " . $_SESSION["usuario"] . "<h1>"); //Mostramos el usuario iniciado con la sesion.
     echo ("<h1>Puntos: " . $_SESSION["puntos"]. "</h1>"); //Mostramos los puntos con la sesion.
-    echo("<h1>Record: " . implode(cogeRecordImagen($rankingUsuario)) . "</h1>");
+    echo("<h1>Record: " . implode(cogeRecordImagen($rankingUsuario)) . "</h1>"); //Mostramos su record
+
+    if($_SESSION["puntos"]==0 && $_SESSION["intentos"]==3){ //Este if sirve para saber cuantas veces ha jugado el usuario al juego.
+        $jugadaUsuario=cogeJugadaUsuario(); 
+        incrementaJugadaImagen($jugadaUsuario);
+    }
 
     if($_SESSION["intentos"]==3){ //Si la sesion de intentos vale 3, mostramos tres imagenes.
         echo ("<h1>Intentos: " . "</h1>");
