@@ -204,7 +204,7 @@
         return $numeroAleatorio;
     }
 
-    function obtenerPeliculas($letra){ 
+    function obtenerPeliculasAJAX($letra){ 
         $db = conectar();
         $query = $db->prepare("SELECT * FROM peliculas WHERE nombre LIKE '%".$letra."%'");
         $query->execute();
@@ -454,6 +454,51 @@
         $resultado = $conexion->query($sql);
         if($resultado->rowCount() > 0){
             return true;
+        }else{
+            return false;
+        }
+    }
+
+    function cogeDatosJugada(){
+        global $conexion;
+        $sql = "SELECT SUM(JugadasImagen), SUM(JugadasPreguntas), SUM(JugadasMusica) FROM numjugadas";
+        $resultado = $conexion->query($sql);
+        if($resultado->rowCount() > 0){
+            return $resultado->fetchAll(PDO::FETCH_ASSOC);
+        }else{
+            return false;
+        }
+    }
+
+    function calcularPorcentajeJugadas(){
+        $datosJugadas = cogeDatosJugada();
+        $porcentajes = array();
+        $totalJugadas = array_sum($datosJugadas[0]);
+        $porcentajes['imagen'] = round(($datosJugadas[0]['SUM(JugadasImagen)']/$totalJugadas)*100);
+        $porcentajes['preguntas'] = round(($datosJugadas[0]['SUM(JugadasPreguntas)']/$totalJugadas)*100);
+        $porcentajes['musica'] = round(($datosJugadas[0]['SUM(JugadasMusica)']/$totalJugadas)*100);
+        
+        return $porcentajes;
+    }
+
+    function cogeDatosRanking(){
+        global $conexion;
+        $sql = "SELECT PuntosImagen, PuntosPreguntas, PuntosMusica FROM ranking";
+        $resultado = $conexion->query($sql);
+        if($resultado->rowCount() > 0){
+            return $resultado->fetchAll(PDO::FETCH_ASSOC);
+        }else{
+            return false;
+        }
+    }
+    
+    function cogeNombreRanking($rankingUsuario){
+        global $conexion;
+        $idRanking=$rankingUsuario;
+        $sql = "SELECT nombre FROM usuarios WHERE CodigoRanking='$idRanking'";
+        $resultado = $conexion->query($sql);
+        if($resultado->rowCount() > 0){
+            return $resultado->fetchAll(PDO::FETCH_ASSOC);
         }else{
             return false;
         }

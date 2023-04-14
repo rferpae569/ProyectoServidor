@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/EstiloFormulario.css">
 </head>
 <?php
+    require "Funciones.php";
      session_start(); //Creamos la sesion
      if(isset($_POST["SI"]) || isset($_POST["NO"])){
          if($_POST["SI"]=="SI"){ //Si pulsamos "Si", nos llevara a "Eleccion.php" y la sesion de puntos valdra 0 de nuevo.
