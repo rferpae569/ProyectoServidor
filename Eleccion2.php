@@ -28,5 +28,9 @@
         <input type="submit" id="SI" name="SI" value="SI">
         <input type="submit" id="NO" name="NO" value="NO">
     </form>
+
+    <img src="grafico1.php" alt="Gráfico de Porcentajes de Jugadas">
+    <img src="grafico2.php" alt="Gráfico de Rankings">
+    
 </body>
 </html>

@@ -492,7 +492,7 @@
         }
     }
     
-    function cogeNombreRanking($rankingUsuario){
+    function cogeNombreRanking($rankingUsuario){ //Esta de momento no se usa
         global $conexion;
         $idRanking=$rankingUsuario;
         $sql = "SELECT nombre FROM usuarios WHERE CodigoRanking='$idRanking'";
