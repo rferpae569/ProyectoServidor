@@ -29,9 +29,6 @@
     //Creamos el titulo
     $grafico->title->Set("Puntos obtenidos:");
 
-    //Creamos el color del fondo
-    $grafico->SetBackgroundImage("../img/blanco.png",BGIMG_FILLFRAME);
-
     //Creamos los tres gráficos
     $p1 = new BarPlot($puntosImagen);
     $p2 = new BarPlot($puntosPreguntas);

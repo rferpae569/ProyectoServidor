@@ -193,10 +193,10 @@
         }
 
         $numeros = $_SESSION["numAleatorio"];
-        $numeroAleatorio = rand(1,31);
+        $numeroAleatorio = rand(1,36);
 
         while(in_array($numeroAleatorio, $numeros)){
-            $numeroAleatorio = rand(1,31);
+            $numeroAleatorio = rand(1,36);
         }
 
         array_push($numeros, $numeroAleatorio);

@@ -25,14 +25,8 @@
      //creamos el titulo
      $grafico->title->Set("Porcentaje de veces jugadas:");
  
-     //creamos el color del fondo
-     $grafico->SetBackgroundImage("../img/blanco.png",BGIMG_FILLFRAME);
- 
      //creamos el plot
      $p1 = new PiePlot3D($porcentajes);
- 
-     //especificamos el color de las barras
-    //  $p1->SetFillColor('#D0ECF2');
  
      //añadimos al grafico
      $grafico->Add($p1);
