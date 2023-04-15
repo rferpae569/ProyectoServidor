@@ -1,5 +1,5 @@
 <?php
-   include "Funciones.php"; //Requerimos las funciones del archivo "Funciones.php"
+   include "../funciones/Funciones.php"; //Requerimos las funciones del archivo "Funciones.php"
    $respuesta=$_POST["respuesta"]; //Almacenamos la respuesta en una variable
    session_start(); //Creamos la sesion.
    $numero=$_SESSION["aleatorio"]; //creamos una variable con el valor de la sesion que contiene el numero aleatorio de las imagenes
@@ -18,11 +18,11 @@
             incrementaRecordMusica($rankingUsuario);
           }
 
-          header("Location: juegoMusica.php");
+          header("Location: ../juegos/juegoMusica.php");
 
       }else if ($_SESSION["puntos"]==14 && $_SESSION["intentos"]==3 ||$_SESSION["intentos"]==2 || $_SESSION["intentos"]==1 ){
 
-        header("Location: Victoria.php");
+        header("Location: ../elecciones/Victoria.php");
 
      }
 
@@ -33,10 +33,10 @@
 
      if($_SESSION["intentos"]==0){
 
-     header("Location: Eleccion2.php");
+     header("Location: ../elecciones/Eleccion2.php");
 
      }else{
-       header("Location: juegoMusica.php");
+       header("Location: ../juegos/juegoMusica.php");
      }
         
    }

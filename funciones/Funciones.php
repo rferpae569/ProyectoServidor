@@ -204,7 +204,7 @@
         return $numeroAleatorio;
     }
 
-    function obtenerPeliculasAJAX($letra){ 
+    function obtenerPeliculasAJAX($letra){ //No se usa
         $db = conectar();
         $query = $db->prepare("SELECT * FROM peliculas WHERE nombre LIKE '%".$letra."%'");
         $query->execute();
@@ -492,7 +492,7 @@
         }
     }
     
-    function cogeNombreRanking($rankingUsuario){ //Esta de momento no se usa
+    function cogeNombreRanking($rankingUsuario){ //No se usa
         global $conexion;
         $idRanking=$rankingUsuario;
         $sql = "SELECT nombre FROM usuarios WHERE CodigoRanking='$idRanking'";

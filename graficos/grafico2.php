@@ -2,9 +2,9 @@
 
     //incluimos la libreria de jpgraph
     
-    include ("Funciones.php");
-    include ("jpgraph/jpgraph.php");
-    include ("jpgraph/jpgraph_bar.php");
+    include ("../funciones/Funciones.php");
+    include ("../jpgraph/jpgraph.php");
+    include ("../jpgraph/jpgraph_bar.php");
 
     //Creamos los datos
     $datos = cogeDatosRanking();
@@ -30,7 +30,7 @@
     $grafico->title->Set("Puntos obtenidos:");
 
     //Creamos el color del fondo
-    $grafico->SetBackgroundImage("img/blanco.png",BGIMG_FILLFRAME);
+    $grafico->SetBackgroundImage("../img/blanco.png",BGIMG_FILLFRAME);
 
     //Creamos los tres gráficos
     $p1 = new BarPlot($puntosImagen);

@@ -1,10 +1,10 @@
 <?php
     
     //incluimos la libreria de jpgraph
-    include ("Funciones.php");
-    include ("jpgraph/jpgraph.php");
-    include ("jpgraph/jpgraph_pie.php");
-    include ("jpgraph/jpgraph_pie3d.php");
+    include ("../funciones/Funciones.php");
+    include ("../jpgraph/jpgraph.php");
+    include ("../jpgraph/jpgraph_pie.php");
+    include ("../jpgraph/jpgraph_pie3d.php");
 
      // Creamos los datos
      $datos = array_map('intval', calcularPorcentajeJugadas());
@@ -26,7 +26,7 @@
      $grafico->title->Set("Porcentaje de veces jugadas:");
  
      //creamos el color del fondo
-     $grafico->SetBackgroundImage("img/blanco.png",BGIMG_FILLFRAME);
+     $grafico->SetBackgroundImage("../img/blanco.png",BGIMG_FILLFRAME);
  
      //creamos el plot
      $p1 = new PiePlot3D($porcentajes);

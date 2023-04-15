@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="icono/claquetaicon.png">
+    <link rel="shortcut icon" href="../icono/claquetaicon.png">
     <title>Victoria</title>
-    <link rel="stylesheet" href="css/EstiloFormulario.css">
+    <link rel="stylesheet" href="../css/EstiloFormulario.css">
 </head>
 <?php
-    require "Funciones.php";
+    require "../funciones/Funciones.php";
      session_start(); //Creamos la sesion
      if(isset($_POST["SI"]) || isset($_POST["NO"])){
          if($_POST["SI"]=="SI"){ //Si pulsamos "Si", nos llevara a "Eleccion.php" y la sesion de puntos valdra 0 de nuevo.
@@ -19,7 +19,7 @@
          
      }else if($_POST["NO"]=="NO"){ //Si pulsamos no, nos llevara al logoff
          
-         header("Location: logoff.php");
+         header("Location: ../logoff/logoff.php");
      }
  }
 ?>
@@ -31,8 +31,8 @@
         <input type="submit" id="NO" name="NO" value="NO">
     </form>
     
-    <img src="grafico1.php" alt="Gráfico de Porcentajes de Jugadas">
-    <img src="grafico2.php" alt="Gráfico de Rankings">
+    <img src="../graficos/grafico1.php" alt="Gráfico de Porcentajes de Jugadas">
+    <img src="../graficos/grafico2.php" alt="Gráfico de Rankings">
     
 </body>
 </html>

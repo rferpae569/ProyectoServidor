@@ -25,16 +25,16 @@ if(!isset($_COOKIE['cookies'])){ //Si la cookie del mensaje no existe, la creamo
     ?>
 
     <h1>Bienvenido a "AdivinaLaPelícula"</h1>
-    <form action="ComprobarUsuario.php" method="post" class="formulariologin" autocomplete="off"><!--Creamos el formulario para iniciar sesion-->
+    <form action="comprobacion/ComprobarUsuario.php" method="post" class="formulariologin" autocomplete="off"><!--Creamos el formulario para iniciar sesion-->
         <label for="usuario">Usuario:</label>
         <input type="text" placeholder="Introduce tu nombre de usuario" name="usuario">
         <label for="contrasena">contraseña:</label>
         <input type="text" placeholder="Introduce tu contraseña" name="contrasena">
         <input type="submit" id="iniciar" name="iniciar" value="IniciarSesion">
     </form>
-    <a href="Registro.php"><p>Aun no estoy registrado</p></a><!--Creamos un enlace para registrarnos-->
-    <a href="ActualizarRegistro.php"><p>Actualizar datos</p></a><!--Creamos un enlace para actualizar nuestros datos-->
-    <a href="BorrarCuenta.php"><p>Borrar Cuenta</p></a><!--Creamos un enlace para borrar nuestra cuenta-->
+    <a href="registro/Registro.php"><p>Aun no estoy registrado</p></a><!--Creamos un enlace para registrarnos-->
+    <a href="actualizar/ActualizarRegistro.php"><p>Actualizar datos</p></a><!--Creamos un enlace para actualizar nuestros datos-->
+    <a href="borrar/BorrarCuenta.php"><p>Borrar Cuenta</p></a><!--Creamos un enlace para borrar nuestra cuenta-->
 
     <footer style="<?php if(isset($_POST["aceptar"])){echo "display:none";}?>"> <!--Creamos el footer para el mensaje de las cookies-->
     <form action="Index.php" method="POST" > 

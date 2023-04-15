@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="icono/claquetaicon.png">
+    <link rel="shortcut icon" href="../icono/claquetaicon.png">
     <title>juegoPreguntas</title>
-    <link rel="stylesheet" href="css/EstiloPregunta2.css">
-    <script src="javascript/scripts.js"></script>
+    <link rel="stylesheet" href="../css/EstiloPregunta2.css">
+    <script src="../javascript/Scripts.js"></script>
 </head>
 <?php
     session_start(); //Creamos la sesion
-    include "Funciones.php"; //Requerimos las funciones del archivo "Funciones.php"
+    include "../funciones/Funciones.php"; //Requerimos las funciones del archivo "Funciones.php"
     $numero=numAleatorio(); //Almacenammos en la variable el numero aleatorio
     $_SESSION["Paleatorio"]=$numero; //Almacenamos en una sesion el numero aleatorio de la pregunta.
     if(!isset($_SESSION["intentos"])){ //Si no existe la sesion "intentos", la creamos, y le decimos que vale tres.
@@ -36,13 +36,13 @@
 
     if($_SESSION["intentos"]==3){ //Si la sesion de intentos vale 3, mostramos tres imagenes.
         echo ("<h1>Intentos: " . "</h1>");
-        echo '<div style="display: flex; justify-content: center;"> <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>';         
+        echo '<div style="display: flex; justify-content: center;"> <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>';         
     }else if ($_SESSION["intentos"]==2){ //Si la sesion de intentos vale 2, mostramos dos imagenes.
         echo ("<h1>Intentos: " . "</h1>");
-        echo '<div style="display: flex; justify-content: center;"> <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>';         
+        echo '<div style="display: flex; justify-content: center;"> <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>';         
     }else if($_SESSION["intentos"]==1){ //Si la sesion de intentos vale 1, mostramos una imagen.
         echo ("<h1>Intentos: " . "</h1>");
-        echo '<div style="display: flex; justify-content: center;"> <img src="icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>'; 
+        echo '<div style="display: flex; justify-content: center;"> <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>'; 
     }
     ?>
 <body>
@@ -56,7 +56,7 @@
 
     <button onclick="mostrarPistaPregunta()">Pista</button> <!--Añadimos el boton para mostrar la pista al hacer click en el con javascript-->
 
-    <form action="comprobarRespuesta2.php" method="post" autocomplete="off"><!--Creamos un formulario para comprobar la respuesta-->
+    <form action="../comprobacion/comprobarRespuesta2.php" method="post" autocomplete="off"><!--Creamos un formulario para comprobar la respuesta-->
     <input type="text" placeholder="Introduce la respuesta" name="respuesta">
     <input type="submit" id="comprobar"  name="comprobar" value="comprobar">
     </form>

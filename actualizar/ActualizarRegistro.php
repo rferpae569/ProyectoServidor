@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="icono/claquetaicon.png">
+    <link rel="shortcut icon" href="../icono/claquetaicon.png">
     <title>ActualizarRegistro</title>
-    <link rel="stylesheet" href="css/EstiloFormulario.css">
+    <link rel="stylesheet" href="../css/EstiloFormulario.css">
 </head>
 <body>
     <?php
         if($_COOKIE['cookies']!='aceptar'){ //Si las cookies no valen "Aceptar", nos quedaremos en el index
             
-            header("Location: Index.php");    
+            header("Location: ../Index.php");    
         }
     ?>
 <form action="Actualizar.php" method="post" autocomplete="off"><!--Creamos el formulario para actualizar el registro-->
