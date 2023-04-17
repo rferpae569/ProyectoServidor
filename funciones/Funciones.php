@@ -492,15 +492,35 @@
         }
     }
     
-    function cogeNombreRanking($rankingUsuario){ //No se usa
+    // function cogeNombreRanking($rankingUsuario){ 
+    //     global $conexion;
+    //     $idRanking=$rankingUsuario;
+    //     $sql = "SELECT nombre FROM usuarios WHERE CodigoRanking='$idRanking'";
+    //     $resultado = $conexion->query($sql);
+    //     if($resultado->rowCount() > 0){
+    //         return $resultado->fetchAll(PDO::FETCH_ASSOC);
+    //     }else{
+    //         return false;
+    //     }
+    // }
+
+    function cogeTituloAJAX($nombre){ //Esta funcion sivre para coger los titulos de la pelicula en la base de datos y mostrarlas con AJAX
         global $conexion;
-        $idRanking=$rankingUsuario;
-        $sql = "SELECT nombre FROM usuarios WHERE CodigoRanking='$idRanking'";
-        $resultado = $conexion->query($sql);
-        if($resultado->rowCount() > 0){
-            return $resultado->fetchAll(PDO::FETCH_ASSOC);
-        }else{
-            return false;
-        }
+        $sql= "SELECT nombre FROM peliculas WHERE nombre LIKE ?";
+        $stmt= $conexion->prepare($sql);
+        $stmt->execute([$nombre . '%']);
+        $peliculas = $stmt->fetchAll();
+    
+        return $peliculas;
+    }
+
+    function cogeRespuestaAJAX($respuesta){ //Esta funcion sivre para coger las respuestas de las preguntas en la base de datos y mostrarlas con AJAX
+        global $conexion; //El distinct sirve para que solo se muestre un dato en caso de que haya varios iguales.
+        $sql= "SELECT DISTINCT respuesta FROM peliculaspreguntas WHERE respuesta LIKE ? AND respuesta NOT LIKE ?";
+        $stmt= $conexion->prepare($sql);
+        $stmt->execute([$respuesta . '%', $respuesta]);
+        $respuestas = $stmt->fetchAll();
+    
+        return $respuestas;
     }
 ?>

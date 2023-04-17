@@ -16,32 +16,36 @@ function mostrarPistaMusica() { //Esta funcion sirve para mostrar u ocultar el c
     }
   }
 
-  // Esto es para el AJAX, aun no es seguro
-//   function objetoAjax(){
-//     var xmlhttp=false;
-//     try {
-//         xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-//     } catch (e) {
-//         try {
-//            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-//         } catch (E) {
-//             xmlhttp = false;
-//           }
-//     }
-//     if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
-//         xmlhttp = new XMLHttpRequest();
-//     }
-//     return xmlhttp;
-// }
+  function TituloPeliculaAJAX(nombre) { //Esta funcion sivre para mostrar los titulos de la pelicula con AJAX
+    if (nombre.length == 0) { 
+      document.getElementById("titulopelicula").innerHTML = "";
+      return;
+    } else {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("titulopelicula").innerHTML = this.responseText;
+        }
+      };
+      xmlhttp.open("POST", "../buscarAJAX/Buscar.php", true); 
+      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xmlhttp.send("nombre=" + encodeURIComponent(nombre));
+    }
+  }
 
-// function MostrarConsulta(datos){
-//   divResultado = document.getElementById('resultado');
-//   ajax=objetoAjax();
-//   ajax.open("POST", datos);
-//   ajax.onreadystatechange=function() {
-//       if (ajax.readyState==4) {
-//           divResultado.innerHTML = ajax.responseText
-//       }
-//   }
-//   ajax.send(null)
-// }
+  function RespuestaPreguntaAJAX(respuesta) { //Esta funcion sirve para mostrar las respuestas de las pregunta con AJAX
+    if (respuesta.length == 0) { 
+      document.getElementById("respuestapregunta").innerHTML = "";
+      return;
+    } else {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("respuestapregunta").innerHTML = this.responseText;
+        }
+      };
+      xmlhttp.open("POST", "../buscarAJAX/Buscar.php", true); 
+      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xmlhttp.send("respuesta=" + encodeURIComponent(respuesta));
+    }
+  }

@@ -49,7 +49,8 @@
     <h1>¿A que película pertenece esta imagen?</h1>
     <img src="../img/<?php echo cogeImagen($numero); ?>"><!--Cogemos la imagen de la base de datos-->
     <form action="../comprobacion/comprobarRespuesta.php" method="post" autocomplete="off"><!--Creamos un formulario para que el usuario pueda responder-->
-    <input type="text" placeholder="Introduce la respuesta" name="respuesta">    
+    <div id="titulopelicula"></div><!-- Creamos un div para mostrar los datos del AJAX-->
+    <input id="titulo" type="text" placeholder="Introduce la respuesta" name="respuesta" onkeyup="TituloPeliculaAJAX(this.value)">    
     <input type="submit" id="comprobar"  name="comprobar" value="comprobar">
     </form>
 </body>

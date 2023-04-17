@@ -57,7 +57,8 @@
     <button onclick="mostrarPistaPregunta()">Pista</button> <!--Añadimos el boton para mostrar la pista al hacer click en el con javascript-->
 
     <form action="../comprobacion/comprobarRespuesta2.php" method="post" autocomplete="off"><!--Creamos un formulario para comprobar la respuesta-->
-    <input type="text" placeholder="Introduce la respuesta" name="respuesta">
+    <div id="respuestapregunta"></div><!-- Creamos un div para mostrar los datos del AJAX-->
+    <input type="text" placeholder="Introduce la respuesta" name="respuesta" onkeyup="RespuestaPreguntaAJAX(this.value)">
     <input type="submit" id="comprobar"  name="comprobar" value="comprobar">
     </form>
 </body>

@@ -61,7 +61,8 @@
     <button onclick="mostrarPistaMusica()">Pista</button> <!--Añadimos el boton para mostrar la pista al hacer click en el con javascript-->
 
     <form action="../comprobacion/comprobarRespuesta3.php" method="post" autocomplete="off"><!--Creamos un formulario para que el usuario pueda responder-->
-    <input type="text" placeholder="Introduce la respuesta" name="respuesta">
+    <div id="titulopelicula"></div><!-- Creamos un div para mostrar los datos del AJAX-->
+    <input type="text" placeholder="Introduce la respuesta" name="respuesta" onkeyup="TituloPeliculaAJAX(this.value)">
     <input type="submit" id="comprobar"  name="comprobar" value="comprobar">
     </form>
 </body>
