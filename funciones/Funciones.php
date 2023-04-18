@@ -69,6 +69,32 @@
         }
     }
 
+    function compruebaUsuarioDOS($nombre1, $contrasena1, $nombre2, $contrasena2){ 
+    try {
+        global $conexion;
+        $stmt1 = $conexion->prepare("SELECT * FROM usuarios WHERE Nombre = :Nombre1 AND Passwrd = :Passwrd1");
+        $stmt1->bindParam(':Nombre1', $nombre1);
+        $stmt1->bindParam(':Passwrd1', $contrasena1);
+        $stmt1->execute();
+        $usuario1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+
+        $stmt2 = $conexion->prepare("SELECT * FROM usuarios WHERE Nombre = :Nombre2 AND Passwrd = :Passwrd2");
+        $stmt2->bindParam(':Nombre2', $nombre2);
+        $stmt2->bindParam(':Passwrd2', $contrasena2);
+        $stmt2->execute();
+        $usuario2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+        if ($usuario1 && $usuario2) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch(PDOException $e){
+        echo "Error al comprobar el usuario: " . $e->getMessage();
+        die();
+    }
+}
+
     function añadirUsuario($nombre,$password){ //Esta funcion añade el usuario en la base de datos, y a su vez, le crea su ranking para guardar sus puntuaciones en los distintos juegos
         global $conexion;
         try {
@@ -311,10 +337,9 @@
         return $html;
     }
 
-    function cogeRankingUsuario(){ //Esta funcion sirve para coger el ranking de un usuario en concreto
+    function cogeRankingUsuario($sesion){ //Esta funcion sirve para coger el ranking de un usuario en concreto
         global $conexion;
-        $usuario = $_SESSION["usuario"];
-        $sql = "SELECT CodigoRanking FROM usuarios WHERE nombre = '$usuario'";
+        $sql = "SELECT CodigoRanking FROM usuarios WHERE nombre = '$sesion'";
         $resultado = $conexion->query($sql);
         if($resultado->rowCount() > 0){
             $rankingUsuario = $resultado->fetch(PDO::FETCH_ASSOC);
@@ -337,6 +362,25 @@
         }
     }
 
+    function cogeJugadaUsuarios(){
+        global $conexion;
+        $usuario1 = $_SESSION["usuario1"];
+        $usuario2 = $_SESSION["usuario2"];
+        $sql = "SELECT CodigoJugadas FROM usuarios WHERE nombre = '$usuario1' OR nombre = '$usuario2'";
+        $resultado = $conexion->query($sql);
+        if($resultado->rowCount() > 0){
+            $jugadasUsuarios = array();
+            while($fila = $resultado->fetch(PDO::FETCH_ASSOC)){
+                if(isset($fila["CodigoJugadas"])){
+                    $jugadasUsuarios[] = $fila["CodigoJugadas"];
+                }
+            }
+            return $jugadasUsuarios;
+        }else{
+            return false;
+        }
+    }
+
 
     function cogeRecordImagen($rankingUsuario){ //Esta funcion sirve para coger el ranking del juego de las imagenes del usuario que esta jugando
         global $conexion;
@@ -349,6 +393,23 @@
         }else{
             return false;
         }
+    }
+
+    function cogeRecordImagenDOS($rankingUsuarios) {
+        global $conexion;
+        $puntosImagen = array(); // Cambiamos $puntosImagen a un array para almacenar los puntos de cada ranking
+        foreach ($rankingUsuarios as $ranking) { // Recorremos el array $rankingUsuarios
+            $idRanking = $ranking;
+            $sql = "SELECT puntosImagen FROM ranking WHERE CodigoRanking = '$idRanking'";
+            $resultado = $conexion->query($sql);
+            if($resultado->rowCount() > 0){
+                $fila = $resultado->fetch(PDO::FETCH_ASSOC);
+                $puntosImagen[] = $fila["puntosImagen"]; // Almacenamos los puntos del ranking en el array $puntosImagen
+            } else {
+                $puntosImagen[] = 0; // Si el ranking no tiene puntos, almacenamos un 0 en $puntosImagen
+            }
+        }
+        return $puntosImagen; // Retornamos el array $puntosImagen con los puntos de los rankings de los usuarios
     }
 
     function incrementaRecordImagen($rankingUsuario){ //Esta funcion sirve para actualizar el record del jugador
@@ -369,6 +430,26 @@
         $sql = "UPDATE numjugadas SET JugadasImagen = JugadasImagen + 1 WHERE CodigoJugadas = '$idjugada'";
         $resultado = $conexion->query($sql);
         if($resultado->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function incrementaJugadaImagenDOS($jugadaUsuario1, $jugadaUsuario2){
+        global $conexion;
+    
+        foreach ($jugadaUsuario1 as $idjugada1) {
+            $sql1 = "UPDATE numjugadas SET JugadasImagen = JugadasImagen + 1 WHERE CodigoJugadas = '$idjugada1'";
+            $resultado1 = $conexion->query($sql1);
+        }
+    
+        foreach ($jugadaUsuario2 as $idjugada2) {
+            $sql2 = "UPDATE numjugadas SET JugadasImagen = JugadasImagen + 1 WHERE CodigoJugadas = '$idjugada2'";
+            $resultado2 = $conexion->query($sql2);
+        }
+    
+        if($resultado1 && $resultado2){
             return true;
         }else{
             return false;

@@ -23,7 +23,7 @@
             $_SESSION["intentos"]=3;
         }
     }
-    $rankingUsuario=cogeRankingUsuario();
+    $rankingUsuario=cogeRankingUsuario($_SESSION["usuario"]);
 
     echo ("<h1>Usuario: " . $_SESSION["usuario"] . "<h1>"); //Mostramos el usuario iniciado con la sesion.
     echo ("<h1>Puntos: " . $_SESSION["puntos"]. "</h1>"); //Mostramos los puntos con la sesion.
