@@ -5,7 +5,7 @@
     $numero=$_SESSION["Paleatorio"];  //Se crea una variable con el valor de la sesion que contiene el numero aleatorio de las preguntas
     $intentos=$_SESSION["intentos"];
 
-    $rankingUsuario=cogeRankingUsuario();
+    $rankingUsuario=cogeRankingUsuario($_SESSION["usuario"]);
     $record=cogeRecordImagen($rankingUsuario);
 
     if(respuestaPregunta($respuesta,$numero)==true){
