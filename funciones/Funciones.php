@@ -204,14 +204,6 @@
         return $numeroAleatorio;
     }
 
-    function obtenerPeliculasAJAX($letra){ //No se usa
-        $db = conectar();
-        $query = $db->prepare("SELECT * FROM peliculas WHERE nombre LIKE '%".$letra."%'");
-        $query->execute();
-        $resultado = $query->fetchAll();
-        return $resultado;
-    }
-
     function cogeImagen($numero) { //Esta funcion sirve para coger la imagen de la base de datos (La coge a raiz del numero aleatorio que haya salido).
         global $conexion;
         $query = $conexion->prepare("SELECT imagen FROM imagenes WHERE id=?");
@@ -459,7 +451,7 @@
         }
     }
 
-    function cogeDatosJugada(){
+    function cogeDatosJugada(){ //Esta funcion se encarga de coger y sumar el numero de veces de cada jugada para la grafica
         global $conexion;
         $sql = "SELECT SUM(JugadasImagen), SUM(JugadasPreguntas), SUM(JugadasMusica) FROM numjugadas";
         $resultado = $conexion->query($sql);
@@ -470,7 +462,7 @@
         }
     }
 
-    function calcularPorcentajeJugadas(){
+    function calcularPorcentajeJugadas(){ //Esta funcion sirve para calcular el porcentaje de los datos que devueve la funcion anterior para asi mostrarlos en la grafica
         $datosJugadas = cogeDatosJugada();
         $porcentajes = array();
         $totalJugadas = array_sum($datosJugadas[0]);
@@ -481,7 +473,7 @@
         return $porcentajes;
     }
 
-    function cogeDatosRanking(){
+    function cogeDatosRanking(){ //Esta funcion coge los puntos de cada juego para poder mostrarlos con el grafico.
         global $conexion;
         $sql = "SELECT PuntosImagen, PuntosPreguntas, PuntosMusica FROM ranking";
         $resultado = $conexion->query($sql);
