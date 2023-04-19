@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../icono/claquetaicon.png">
     <title>logindosjugadores</title>
-    <link rel="stylesheet" href="../css/EstiloIndex.css">
+    <link rel="stylesheet" href="../css/EstiloFormulario.css">
 </head>
 <?php
     if($_COOKIE['cookies']!='aceptar'){ //Si la cookie no vale "Aceptar", nos llevara al index.
@@ -16,7 +16,7 @@
 <body>
     <h1>Modo dos jugadores</h1>
     <h1>Por favor, inicie sesion para jugar</h1>
-    <form action="../comprobacion/ComprobarDosJugadores.php" method="POST">
+    <form action="../comprobacion/ComprobarDosJugadores.php" method="POST" autocomplete="off">
             <label for="jugador1">Jugador 1:</label>
             <input type="text" id="usuario1" name="usuario1" placeholder="Introduce el nombre de usuario">
             <label for="">Contraseña Jugador 1:</label>

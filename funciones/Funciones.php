@@ -142,6 +142,22 @@
         }
     }
 
+    function insertarDosJugadores($nombreusuario1, $nombreusuario2){
+        global $conexion;
+        try {
+            $consulta = $conexion->prepare("INSERT INTO dosjugadores (nombreusuario1, nombreusuario2) VALUES (:nombreusuario1, :nombreusuario2)");
+            $consulta->bindParam(':nombreusuario1', $nombreusuario1);
+            $consulta->bindParam(':nombreusuario2', $nombreusuario2);
+    
+            $consulta->execute();
+            
+            return true;
+        } catch (PDOException $e) {
+            echo "Error al insertar en la tabla dosjugadores: " . $e->getMessage();
+            return false;
+        }
+    }
+
     function añadirCorreo($correo,$nombre){ //Esta funcion sirve para almacenar el correo del usuario en la base de datos
         global $conexion;
         try {
@@ -439,17 +455,29 @@
     function incrementaJugadaImagenDOS($jugadaUsuario1, $jugadaUsuario2){
         global $conexion;
     
+        $jugadas_actualizadas = array();
+    
         foreach ($jugadaUsuario1 as $idjugada1) {
-            $sql1 = "UPDATE numjugadas SET JugadasImagen = JugadasImagen + 1 WHERE CodigoJugadas = '$idjugada1'";
-            $resultado1 = $conexion->query($sql1);
+            if (!in_array($idjugada1, $jugadas_actualizadas)) {
+                $sql1 = "UPDATE numjugadas SET JugadasImagen = JugadasImagen + 1 WHERE CodigoJugadas = '$idjugada1'";
+                $resultado1 = $conexion->query($sql1);
+                if ($resultado1) {
+                    $jugadas_actualizadas[] = $idjugada1;
+                }
+            }
         }
     
         foreach ($jugadaUsuario2 as $idjugada2) {
-            $sql2 = "UPDATE numjugadas SET JugadasImagen = JugadasImagen + 1 WHERE CodigoJugadas = '$idjugada2'";
-            $resultado2 = $conexion->query($sql2);
+            if (!in_array($idjugada2, $jugadas_actualizadas)) {
+                $sql2 = "UPDATE numjugadas SET JugadasImagen = JugadasImagen + 1 WHERE CodigoJugadas = '$idjugada2'";
+                $resultado2 = $conexion->query($sql2);
+                if ($resultado2) {
+                    $jugadas_actualizadas[] = $idjugada2;
+                }
+            }
         }
     
-        if($resultado1 && $resultado2){
+        if(count($jugadas_actualizadas) == count($jugadaUsuario1) + count($jugadaUsuario2)){
             return true;
         }else{
             return false;

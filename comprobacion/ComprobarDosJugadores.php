@@ -21,6 +21,8 @@
             $_SESSION["usuario2"]=$usuario2;
             $_SESSION["passwd2"]=$contrasena2;
             $_SESSION["puntosusuario2"]=0;
+
+            insertarDosJugadores($usuario1, $usuario2);
     
             header("Location: ../juegos/juegoImagenesDos.php");
 
