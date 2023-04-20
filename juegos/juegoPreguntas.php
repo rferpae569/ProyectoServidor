@@ -36,13 +36,13 @@
 
     if($_SESSION["intentos"]==3){ //Si la sesion de intentos vale 3, mostramos tres imagenes.
         echo ("<h1>Intentos: " . "</h1>");
-        echo '<div style="display: flex; justify-content: center;"> <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>';         
+        echo "<div class='iconos'> <img src='../icono/claquetaicon.png' class='vidas' />   <img src='../icono/claquetaicon.png' class='vidas' />   <img src='../icono/claquetaicon.png' class='vidas' /> </div>";         
     }else if ($_SESSION["intentos"]==2){ //Si la sesion de intentos vale 2, mostramos dos imagenes.
         echo ("<h1>Intentos: " . "</h1>");
-        echo '<div style="display: flex; justify-content: center;"> <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>';         
+        echo "<div class='iconos'> <img src='../icono/claquetaicon.png' class='vidas' />   <img src='../icono/claquetaicon.png' class='vidas' /> </div>";         
     }else if($_SESSION["intentos"]==1){ //Si la sesion de intentos vale 1, mostramos una imagen.
         echo ("<h1>Intentos: " . "</h1>");
-        echo '<div style="display: flex; justify-content: center;"> <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>'; 
+        echo "<div class='iconos'> <img src='../icono/claquetaicon.png' class='vidas' /> </div>"; 
     }
     ?>
 <body>

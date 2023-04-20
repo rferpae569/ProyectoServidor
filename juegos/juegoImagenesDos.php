@@ -36,35 +36,35 @@
         incrementaJugadaImagenDOS($jugadaUsuario1,$jugadaUsuario2);
     }
 
-    echo ("<h1>Usuario1: " . $_SESSION["usuario1"] . "<h1>"); 
-    echo ("<h1>Puntos: " . $_SESSION["puntosusuario1"]. "</h1>");
-    echo("<h1>Record: " . implode(cogeRecordImagenDOS($rankingUsuario1)) . "</h1>"); //Mostramos su record
+    echo ("<h1 class='usuario1'>Usuario1: " . $_SESSION["usuario1"] . "<h1>"); 
+    echo ("<h1 class='puntos1'>Puntos: " . $_SESSION["puntosusuario1"]. "</h1>");
+    echo("<h1 class='record1'>Record: " . implode(cogeRecordImagenDOS($rankingUsuario1)) . "</h1>"); //Mostramos su record
 
     if($_SESSION["intentosusuario1"]==3){ //Si la sesion de intentosusuario1 vale 3, mostramos tres imagenes.
-        echo ("<h1>Intentos: " . "</h1>");
-        echo '<div style="display: flex; justify-content: center;"> <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>';         
+        echo ("<h1 class='intentos1'>Intentos: " . "</h1>");
+        echo "<div class='iconos1'> <img src='../icono/claquetaicon.png' class='vidas' />   <img src='../icono/claquetaicon.png' class='vidas' />   <img src='../icono/claquetaicon.png' class='vidas' /> </div>";         
     }else if ($_SESSION["intentosusuario1"]==2){ //Si la sesion de intentos vale 2, mostramos dos imagenes.
-        echo ("<h1>Intentos: " . "</h1>");
-        echo '<div style="display: flex; justify-content: center;"> <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>';         
+        echo ("<h1 class='intentos1'>Intentos: " . "</h1>");
+        echo "<div class='iconos1'> <img src='../icono/claquetaicon.png' class='vidas' />   <img src='../icono/claquetaicon.png' class='vidas' /> </div>";         
     }else if($_SESSION["intentosusuario1"]==1){
-        echo ("<h1>Intentos: " . "</h1>"); //Si la sesion de intentos vale 1, mostramos una imagen.
-        echo '<div style="display: flex; justify-content: center;"> <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>'; 
+        echo ("<h1 class='intentos1'>Intentos: " . "</h1>"); //Si la sesion de intentos vale 1, mostramos una imagen.
+        echo "<div class='iconos1'> <img src='../icono/claquetaicon.png' class='vidas' /> </div>"; 
     }
- 
-    echo ("<h1>Usuario2: " . $_SESSION["usuario2"] . "<h1>"); 
-    echo ("<h1>Puntos: " . $_SESSION["puntosusuario2"]. "</h1>"); 
-    echo("<h1>Record: " . implode(cogeRecordImagenDOS($rankingUsuario2)) . "</h1>"); //Mostramos su record
+
+    echo ("<h1 class='usuario2'>Usuario2: " . $_SESSION["usuario2"] . "<h1>"); 
+    echo ("<h1 class='puntos2'>Puntos: " . $_SESSION["puntosusuario2"]. "</h1>"); 
+    echo("<h1 class='record2'>Record: " . implode(cogeRecordImagenDOS($rankingUsuario2)) . "</h1>"); //Mostramos su record
     
 
     if($_SESSION["intentosusuario2"]==3){ //Si la sesion de intentosusuario2 vale 3, mostramos tres imagenes.
-        echo ("<h1>Intentos: " . "</h1>");
-        echo '<div style="display: flex; justify-content: center;"> <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>';         
+        echo ("<h1 class='intentos2'>Intentos: " . "</h1>");
+        echo "<div class='iconos2'> <img src='../icono/claquetaicon.png' class='vidas'/>   <img src='../icono/claquetaicon.png' class='vidas' />   <img src='../icono/claquetaicon.png' class='vidas' /> </div>";         
     }else if ($_SESSION["intentosusuario2"]==2){ //Si la sesion de intentos vale 2, mostramos dos imagenes.
-        echo ("<h1>Intentos: " . "</h1>");
-        echo '<div style="display: flex; justify-content: center;"> <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" />   <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>';         
+        echo ("<h1 class='intentos2'>Intentos: " . "</h1>");
+        echo "<div class='iconos2'> <img src='../icono/claquetaicon.png' class='vidas' />   <img src='../icono/claquetaicon.png' class='vidas' /> </div>";         
     }else if($_SESSION["intentosusuario2"]==1){
-        echo ("<h1>Intentos: " . "</h1>"); //Si la sesion de intentos vale 1, mostramos una imagen.
-        echo '<div style="display: flex; justify-content: center;"> <img src="../icono/claquetaicon.png" style="width:30px;height:30px;margin: 0px 2px" /> </div>'; 
+        echo ("<h1 class='intentos2'>Intentos: " . "</h1>"); //Si la sesion de intentos vale 1, mostramos una imagen.
+        echo "<div class='iconos2'> <img src='../icono/claquetaicon.png' class='vidas' /> </div>"; 
     }
 ?>
 <body>

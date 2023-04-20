@@ -6,7 +6,7 @@
    $intentos=$_SESSION["intentos"];
 
    $rankingUsuario=cogeRankingUsuario($_SESSION["usuario"]);
-   $record=cogeRecordImagen($rankingUsuario);
+   $record=CogeRecordMusica($rankingUsuario);
 
    if(respuestaMusica($respuesta,$numero)==true){
      //Si la respuesta esta bien, y la sesion de los puntos no es igual a 15, se incrementara, y nos llevara de nuevo a "JuegoMusica.php"

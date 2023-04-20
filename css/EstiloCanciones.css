@@ -66,3 +66,14 @@ button {
 button:hover {
     background-color: #5C6BC0;
 }
+
+div{
+    display: flex;
+    justify-content: center;
+}
+
+.vidas{
+    width:30px;
+    height:30px;
+    margin: 0px 2px
+}
