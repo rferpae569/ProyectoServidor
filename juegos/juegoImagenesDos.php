@@ -14,17 +14,12 @@
     include "../funciones/Funciones.php"; //Requirimos las funciones del archivo "Funciones.php"
     $numero=numAleatorio(); //Almacenammos en la variable el numero aleatorio
     $_SESSION["aleatorio"]=$numero; //creamos la sesion aleatorio para almacenar el numero aleatorio para la imagen.
-    if(!isset($_SESSION["intentosusuario1"]) && !isset($_SESSION["intentosusuario2"])){ //Si no existe la sesion "intentosusuario1" y "intentosusuario2", la creamos, y le decimos que vale tres.
+    if(!isset($_SESSION["intentosusuario1"])){ //Si no existe la sesion "intentosusuario1", la creamos, y le decimos que vale tres.
         $_SESSION["intentosusuario1"]=3;
+    }
+    
+    if(!isset($_SESSION["intentosusuario2"])){ //Si no existe la sesion "intentosusuario2", la creamos, y le decimos que vale tres.
         $_SESSION["intentosusuario2"]=3;
-    }else if(isset($_SESSION["intentosusuario1"]) && isset($_SESSION["intentosusuario2"])){ //Si existen, comprobamos que vale tres, y si no vale 3, le decimos que vuelva valer 3.
-        if($_SESSION["intentosusuario1"]==3 && $_SESSION["intentosusuario2"]==3){
-            $_SESSION["intentosusuario1"]=3;
-            $_SESSION["intentosusuario2"]=3;
-        }else if($_SESSION["intentosusuario1"]!=3 || $_SESSION["intentosusuario2"]!=3){
-            $_SESSION["intentosusuario1"]=3;
-            $_SESSION["intentosusuario2"]=3;
-        }
     }
 
     $rankingUsuario1=cogeRankingUsuario($_SESSION["usuario1"]);
@@ -66,6 +61,8 @@
         echo ("<h1 class='intentos2'>Intentos: " . "</h1>"); //Si la sesion de intentos vale 1, mostramos una imagen.
         echo "<div class='iconos2'> <img src='../icono/claquetaicon.png' class='vidas' /> </div>"; 
     }
+
+    // turno($_SESSION["usuario1"], $_SESSION["usuario2"]);
 ?>
 <body>
     <h1>¿A que película pertenece esta imagen?</h1>

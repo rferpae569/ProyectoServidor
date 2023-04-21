@@ -624,4 +624,23 @@
     
         return $respuestas;
     }
+
+    function turno($jugador1, $jugador2) {
+        if (!isset($_SESSION['turno'])) { 
+            $_SESSION['turno'] = $jugador1; 
+        }
+        
+        echo "<h1>Es el turno de " . $_SESSION['turno'] . "</h1>";
+        
+        // Cambiamos el turno
+        if ($_SESSION['turno'] == $jugador1) {
+            $_SESSION['turno'] = $jugador2;
+            return false; // Es el turno del jugador 1
+        } else {
+            $_SESSION['turno'] = $jugador1;
+            return true; // Es el turno del jugador 2
+        }
+    }
+
+   
 ?>
