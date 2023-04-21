@@ -61,10 +61,10 @@
         echo ("<h1 class='intentos2'>Intentos: " . "</h1>"); //Si la sesion de intentos vale 1, mostramos una imagen.
         echo "<div class='iconos2'> <img src='../icono/claquetaicon.png' class='vidas' /> </div>"; 
     }
-
-    // turno($_SESSION["usuario1"], $_SESSION["usuario2"]);
+    
 ?>
 <body>
+    <h1>Es el turno de: <?php mostrarturno($_SESSION["usuario1"], $_SESSION["usuario2"]);?></h1>
     <h1>¿A que película pertenece esta imagen?</h1>
     <img src="../img/<?php echo cogeImagen($numero); ?>"><!--Cogemos la imagen de la base de datos-->
     <form action="../comprobacion/comprobarRespuestaDOS.php" method="post" autocomplete="off"><!--Creamos un formulario para que el usuario pueda responder-->

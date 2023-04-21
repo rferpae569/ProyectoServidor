@@ -18,11 +18,11 @@
     <h1>Por favor, inicie sesion para jugar</h1>
     <form action="../comprobacion/ComprobarDosJugadores.php" method="POST" autocomplete="off">
             <label for="jugador1">Jugador 1:</label>
-            <input type="text" id="usuario1" name="usuario1" placeholder="Introduce el nombre de usuario">
+            <input type="text" id="usuario1" name="usuario1" placeholder="Introduce el nombre del jugador1">
             <label for="">Contraseña Jugador 1:</label>
             <input type="text" id="contrasena1" name="contrasena1" placeholder="Introduce la contraseña del jugador1">
             <label for="jugador2">Jugador 2:</label>
-            <input type="text" id="usuario2" name="usuario2" placeholder="Introduce el nombre de usuario">
+            <input type="text" id="usuario2" name="usuario2" placeholder="Introduce el nombre del jugador2">
             <label for="">Contraseña Jugador 2:</label>
             <input type="text" id="contrasena2" name="contrasena2" placeholder="Introduce la contraseña del jugador2">
             <input type="submit" id="iniciar" name="iniciar" value="IniciarSesion">

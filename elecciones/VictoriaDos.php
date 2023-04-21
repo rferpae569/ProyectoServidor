@@ -19,7 +19,7 @@
  
 ?>
 <body>
-    <h1>¡Enhorabuena, ha ganado</h1>
+    <h1>¡Enhorabuena, ha ganado <?php mostrarturno($_SESSION["usuario1"], $_SESSION["usuario2"]);?></h1>
     <form action="victoriaDos.php" method="post"><!--Creamos un formulario para cerrar la sesion.-->
         <input type="submit" id="cerrar" name="cerrar" value="cerrar Sesion">
     </form>

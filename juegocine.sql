@@ -64,7 +64,7 @@ CREATE TABLE `correos` (
 
 LOCK TABLES `correos` WRITE;
 /*!40000 ALTER TABLE `correos` DISABLE KEYS */;
-INSERT INTO `correos` VALUES ('carlos@gmail.com','carlos'),('juanmaEV@gmail.com','juanmaEV'),('manolo@gmail.com','manolo'),('prueba@gmail.com','prueba'),('rocio@gmail.com','rocio'),('ruben@gmail.com','ruben');
+INSERT INTO `correos` VALUES ('carlos@gmail.com','carlos'),('juanmaEV@gmail.com','juanmaEV'),('manolo@gmail.com','manolo'),('rocio@gmail.com','rocio'),('ruben@gmail.com','ruben');
 /*!40000 ALTER TABLE `correos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,6 +91,7 @@ CREATE TABLE `dosjugadores` (
 
 LOCK TABLES `dosjugadores` WRITE;
 /*!40000 ALTER TABLE `dosjugadores` DISABLE KEYS */;
+INSERT INTO `dosjugadores` VALUES ('ruben','carlos'),('ruben','juanmaEV'),('ruben','manolo');
 /*!40000 ALTER TABLE `dosjugadores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,7 +141,7 @@ CREATE TABLE `numjugadas` (
 
 LOCK TABLES `numjugadas` WRITE;
 /*!40000 ALTER TABLE `numjugadas` DISABLE KEYS */;
-INSERT INTO `numjugadas` VALUES (1,5,4,10),(2,4,2,1),(3,1,2,1),(4,4,2,2),(5,3,2,2),(6,3,0,1);
+INSERT INTO `numjugadas` VALUES (2,3,2,1),(3,1,2,1),(4,4,2,2),(5,4,3,2),(6,4,5,4);
 /*!40000 ALTER TABLE `numjugadas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -302,7 +303,7 @@ CREATE TABLE `ranking` (
 
 LOCK TABLES `ranking` WRITE;
 /*!40000 ALTER TABLE `ranking` DISABLE KEYS */;
-INSERT INTO `ranking` VALUES (1,10,8,6),(2,12,6,7),(3,7,3,0),(4,15,7,7),(5,7,6,8),(6,7,6,2);
+INSERT INTO `ranking` VALUES (2,10,6,7),(3,7,3,0),(4,15,7,7),(5,7,6,8),(6,14,6,3);
 /*!40000 ALTER TABLE `ranking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -332,7 +333,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES ('carlos','carlos*123',2,2),('juanmaEV','juanmaEV*123',4,4),('manolo','manolo*123',5,5),('prueba','prueba*123',1,1),('rocio','rocio*123',3,3),('ruben','ruben*123',6,6);
+INSERT INTO `usuarios` VALUES ('carlos','carlos*123',2,2),('juanmaEV','juanmaEV*123',4,4),('manolo','manolo*123',5,5),('rocio','rocio*123',3,3),('ruben','ruben*123',6,6);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -345,4 +346,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-19 12:01:02
+-- Dump completed on 2023-04-21 21:25:14

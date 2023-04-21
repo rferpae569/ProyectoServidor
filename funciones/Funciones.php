@@ -69,7 +69,7 @@
         }
     }
 
-    function compruebaUsuarioDOS($nombre1, $contrasena1, $nombre2, $contrasena2){ 
+    function compruebaUsuarioDOS($nombre1, $contrasena1, $nombre2, $contrasena2){  //Esta funcion comprueba si los dos usuarios introducidos son validos para jugar al de dos jugadores
     try {
         global $conexion;
         $stmt1 = $conexion->prepare("SELECT * FROM usuarios WHERE Nombre = :Nombre1 AND Passwrd = :Passwrd1");
@@ -142,7 +142,7 @@
         }
     }
 
-    function insertarDosJugadores($nombreusuario1, $nombreusuario2){
+    function insertarDosJugadores($nombreusuario1, $nombreusuario2){ //Esta funcion te inserta los usuarios en la tabla de dos jugadores para tener un registro de quien se ha enfretado a quien.
         global $conexion;
         try {
             $consulta = $conexion->prepare("INSERT INTO dosjugadores (nombreusuario1, nombreusuario2) VALUES (:nombreusuario1, :nombreusuario2)");
@@ -167,7 +167,6 @@
             $resultado->execute();
             return true;
         } catch (Exception $e) {
-            // echo "Error al agregar el correo: ". $e->getMessage();
             return false;
             die();
         }
@@ -210,6 +209,10 @@
             $query->bindParam(":Nombre", $nombre);
             $query->execute();
             $codigo = $query->fetch();
+            // Borramos cualquier registro de dosjugadores que haga referencia al usuario
+            $query = $conexion->prepare("DELETE FROM dosjugadores WHERE NombreUsuario1 = :NombreUsuario OR NombreUsuario2 = :NombreUsuario");
+            $query->bindParam(":NombreUsuario", $nombre);
+            $query->execute();
             // Borramos el usuario de la tabla usuarios
             $query = $conexion->prepare("DELETE FROM usuarios WHERE Nombre = :Nombre");
             $query->bindParam(":Nombre", $nombre);
@@ -378,7 +381,7 @@
         }
     }
 
-    function cogeJugadaUsuarios(){
+    function cogeJugadaUsuarios(){ //Esta funcion sirve para coger el codigo de jugadas de los dos jugadores
         global $conexion;
         $usuario1 = $_SESSION["usuario1"];
         $usuario2 = $_SESSION["usuario2"];
@@ -411,7 +414,7 @@
         }
     }
 
-    function cogeRecordImagenDOS($rankingUsuarios) {
+    function cogeRecordImagenDOS($rankingUsuarios) { //Esta funcion sirve para coger el record de los dos jugadores
         global $conexion;
         $puntosImagen = array(); // Cambiamos $puntosImagen a un array para almacenar los puntos de cada ranking
         foreach ($rankingUsuarios as $ranking) { // Recorremos el array $rankingUsuarios
@@ -452,7 +455,7 @@
         }
     }
 
-    function incrementaJugadaImagenDOS($jugadaUsuario1, $jugadaUsuario2){
+    function incrementaJugadaImagenDOS($jugadaUsuario1, $jugadaUsuario2){ //Esta funcion sirve para incrementar la puntuacion de los dos jugadores
         global $conexion;
     
         $jugadas_actualizadas = array();
@@ -592,18 +595,6 @@
             return false;
         }
     }
-    
-    // function cogeNombreRanking($rankingUsuario){ 
-    //     global $conexion;
-    //     $idRanking=$rankingUsuario;
-    //     $sql = "SELECT nombre FROM usuarios WHERE CodigoRanking='$idRanking'";
-    //     $resultado = $conexion->query($sql);
-    //     if($resultado->rowCount() > 0){
-    //         return $resultado->fetchAll(PDO::FETCH_ASSOC);
-    //     }else{
-    //         return false;
-    //     }
-    // }
 
     function cogeTituloAJAX($nombre){ //Esta funcion sivre para coger los titulos de la pelicula en la base de datos y mostrarlas con AJAX
         global $conexion;
@@ -625,20 +616,32 @@
         return $respuestas;
     }
 
-    function turno($jugador1, $jugador2) {
+    function turno($jugador1, $jugador2) { //ESta funcion sirve para almacenar el turno de cada jugador en el juego de doss jugadores
         if (!isset($_SESSION['turno'])) { 
             $_SESSION['turno'] = $jugador1; 
         }
         
-        echo "<h1>Es el turno de " . $_SESSION['turno'] . "</h1>";
-        
         // Cambiamos el turno
-        if ($_SESSION['turno'] == $jugador1) {
+        $turnojugador1 = ($_SESSION['turno'] == $jugador1);
+        if ($turnojugador1) {
             $_SESSION['turno'] = $jugador2;
-            return false; // Es el turno del jugador 1
         } else {
             $_SESSION['turno'] = $jugador1;
-            return true; // Es el turno del jugador 2
+        }
+        
+        return $turnojugador1;
+    }
+    
+    function mostrarturno($jugador1, $jugador2) { //Esta funcion mostrara el turno del jugador correspondiente
+        if (!isset($_SESSION['turno'])) { 
+            $_SESSION['turno'] = $jugador1; 
+        }
+        $turnojugador1 = ($_SESSION['turno'] == $jugador1);
+    
+        if ($turnojugador1) {
+            echo "<h1>" . $jugador1 . "</h1>";
+        } else {
+            echo "<h1>" . $jugador2 . "</h1>";
         }
     }
 
