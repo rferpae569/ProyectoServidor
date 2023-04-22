@@ -19,12 +19,18 @@
     <form action="../comprobacion/ComprobarDosJugadores.php" method="POST" autocomplete="off">
             <label for="jugador1">Jugador 1:</label>
             <input type="text" id="usuario1" name="usuario1" placeholder="Introduce el nombre del jugador1">
-            <label for="">Contraseña Jugador 1:</label>
-            <input type="text" id="contrasena1" name="contrasena1" placeholder="Introduce la contraseña del jugador1">
+            <label for="contrasena1">Contraseña Jugador 1:</label>
+            <div class="contenidocontraseña1">
+            <input type="password" placeholder="Introduce tu contraseña" name="contrasena1" id="contrasena1">
+            <button type="button" id="botoncontrasena1">Mostrar</button>
+            </div> 
             <label for="jugador2">Jugador 2:</label>
             <input type="text" id="usuario2" name="usuario2" placeholder="Introduce el nombre del jugador2">
-            <label for="">Contraseña Jugador 2:</label>
-            <input type="text" id="contrasena2" name="contrasena2" placeholder="Introduce la contraseña del jugador2">
+            <label for="contrasena2">Contraseña Jugador 2:</label>
+            <div class="contenidocontraseña2">
+            <input type="password" placeholder="Introduce tu contraseña" name="contrasena2" id="contrasena2">
+            <button type="button" id="botoncontrasena2">Mostrar</button>
+            </div>             
             <input type="submit" id="iniciar" name="iniciar" value="IniciarSesion">
     </form>
 </body>

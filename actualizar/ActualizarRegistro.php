@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="../icono/claquetaicon.png">
     <title>ActualizarRegistro</title>
     <link rel="stylesheet" href="../css/EstiloFormulario.css">
+    <script src="javascript/Scripts.js"></script>
 </head>
 <body>
     <?php
@@ -15,14 +16,18 @@
             header("Location: ../Index.php");    
         }
     ?>
-<form action="Actualizar.php" method="post" autocomplete="off"><!--Creamos el formulario para actualizar el registro-->
+    <h1>Por favor, actualicé sus datos</h1>
+    <form action="Actualizar.php" method="post" autocomplete="off"><!--Creamos el formulario para actualizar el registro-->
         <label for="nombre">Nombre de usuario:</label>
         <input type="text" placeholder="Ponga su nombre de usuario para registrar el correo y la contraseña" name="actnombre"><br>
         <label for="password">Contraseña:</label>
-        <input type="text" placeholder="Actualice la contraseña" name="actpassword" ><br>
+        <div class="contenidocontraseña">
+        <input type="password" placeholder="Introduce tu contraseña" name="contrasena" id="contrasena">
+        <button type="button" id="botoncontrasena">Mostrar</button>
+        </div>          
         <label for="correo">Correo:</label>
         <input type="text" placeholder="Actualice el correo" name="actcorreo"><br>
         <input type="submit" id="actualizar" name="actualizar" value="Actualizar">
-</form>
+    </form>
 </body>
 </html>

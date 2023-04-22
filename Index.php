@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="icono/claquetaicon.png">
     <title>Index</title>
     <link rel="stylesheet" href="css/EstiloIndex.css">
+    <script src="javascript/Scripts.js"></script>
 </head>
 <body style="<?php if(isset($_POST["aceptar"])){echo "background-color:white";}?>">
 
@@ -29,7 +30,10 @@ if(!isset($_COOKIE['cookies'])){ //Si la cookie del mensaje no existe, la creamo
         <label for="usuario">Usuario:</label>
         <input type="text" placeholder="Introduce tu nombre de usuario" name="usuario">
         <label for="contrasena">contraseña:</label>
-        <input type="text" placeholder="Introduce tu contraseña" name="contrasena">
+        <div class="contenidocontraseña">
+        <input type="password" placeholder="Introduce tu contraseña" name="contrasena" id="contrasena">
+        <button type="button" id="botoncontrasena">Mostrar</button>
+        </div>
         <input type="submit" id="iniciar" name="iniciar" value="IniciarSesion">
     </form>
     <a href="registro/Registro.php"><p>Aun no estoy registrado</p></a><!--Creamos un enlace para registrarnos-->

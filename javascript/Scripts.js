@@ -49,3 +49,14 @@ function mostrarPistaMusica() { //Esta funcion sirve para mostrar u ocultar el c
       xmlhttp.send("respuesta=" + encodeURIComponent(respuesta));
     }
   }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const togglePasswordButton = document.getElementById('botoncontrasena');
+    const passwordInput = document.getElementById('contrasena');
+  
+    togglePasswordButton.addEventListener('click', function () {
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      togglePasswordButton.textContent = type === 'password' ? 'Mostrar' : 'Ocultar';
+    });
+  });
