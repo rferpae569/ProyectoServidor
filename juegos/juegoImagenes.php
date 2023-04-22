@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../icono/claquetaicon.png">
     <title>JuegoImagenes</title>
-    <link rel="stylesheet" href="../css/EstiloImagen.css">
+    <link rel="stylesheet" href="../css/EstiloJuegos.css">
     <script src="../javascript/Scripts.js"></script>
 </head>
 <?php
