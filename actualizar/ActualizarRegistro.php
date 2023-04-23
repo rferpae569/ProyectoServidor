@@ -19,7 +19,7 @@
     <h1>Por favor, actualicé sus datos</h1>
     <form action="Actualizar.php" method="post" autocomplete="off"><!--Creamos el formulario para actualizar el registro-->
         <label for="nombre">Nombre de usuario:</label>
-        <input type="text" placeholder="Ponga su nombre de usuario para registrar el correo y la contraseña" name="actnombre"><br>
+        <input type="text" placeholder="Ponga su nombre de usuario para actualizar el correo y la contraseña" name="actnombre"><br>
         <label for="password">Contraseña:</label>
         <div class="contenidocontraseña">
         <input type="password" placeholder="Introduce tu contraseña" name="contrasena" id="contrasena">

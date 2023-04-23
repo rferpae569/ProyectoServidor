@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 body {
     display: flex;
     justify-content: center;
@@ -5,16 +7,15 @@ body {
 
 a {
     color: #0000FF;
-    font-size: 20px;
-    font-family: sans-serif;
+    font-size: 24px;
+    font-family: 'Press Start 2P', cursive;
     text-decoration: none;
     text-align: center;
-    padding: 0 10px;
+    transition: all 0.3s ease-in-out;
 }
 
 a:hover {
-    color: #00FF00;
-    font-size: 24px;
-    font-family: sans-serif;
-    text-decoration: underline;
+    color: #FF0000;
+    font-size: 28px;
+    text-decoration: none;
 }

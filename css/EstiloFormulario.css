@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 form {
     width: 60%;
     padding: 2em;
@@ -23,7 +24,7 @@ form input {
     width: 100%;
     padding: 0.5em;
     font-family: 'Press Start 2P', cursive;
-    font-size: 14px;
+    font-size: 10px;
     margin-bottom: 1em;
     border: 0;
     border-bottom: 2px solid #ffdd00;
@@ -31,7 +32,7 @@ form input {
     color: #ffffff;
 }
 
-#registrar,#actualizar,#borrar, #iniciar {
+#registrar,#actualizar,#borrar, #iniciar, #SI, #NO, #cerrar {
     padding: 0.5em;
     background-color: #ffdd00;
     font-family: 'Press Start 2P', cursive;
@@ -43,7 +44,7 @@ form input {
     cursor: pointer;
 }
 
-#registrar:hover, #actualizar:hover, #borrar:hover, #iniciar:hover{
+#registrar:hover, #actualizar:hover, #borrar:hover, #iniciar:hover, #SI:hover, #NO:hover, #cerrar:hover{
     background-color: #000000;
     border: 2px solid #000000;
     color: #FFD700;
@@ -75,7 +76,7 @@ div{
     width: 100%;
     padding: 0.5em;
     font-family: 'Press Start 2P', cursive;
-    font-size: 16px;
+    font-size: 10px;
     margin-right: 1em;
     border: 0;
     border-bottom: 2px solid #FFD700;
