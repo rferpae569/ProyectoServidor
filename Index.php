@@ -23,7 +23,7 @@ if(!isset($_COOKIE['cookies'])){ //Si la cookie del mensaje no existe, la creamo
             alert("Debe aceptar las cookies para continuar");
             </script>';
         }
-    ?>
+?>
 
     <h1>Bienvenido a "AdivinaLaPelícula"</h1>
     <form action="comprobacion/ComprobarUsuario.php" method="post" class="formulariologin" autocomplete="off"><!--Creamos el formulario para iniciar sesion-->

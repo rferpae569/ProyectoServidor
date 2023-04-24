@@ -2,7 +2,7 @@
     require ("../funciones/Funciones.php"); //Requerimos las funciones del archivo "Funciones.php"
 
     $nombre=$_POST["actnombre"]; //Almacenamos el nombre pasado por formulario en una variable
-    $password=$_POST["actpassword"]; //Almacenamos el password pasado por formulario en una variable
+    $password=$_POST["actcontrasena"]; //Almacenamos el password pasado por formulario en una variable
     $correo=$_POST["actcorreo"]; //Almacenamos el password pasado por formulario en una variable
 
     if(validarNombre($nombre)==true && validarContraseña($password)==true && validarcorreo($correo)==true){

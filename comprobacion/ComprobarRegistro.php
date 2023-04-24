@@ -2,7 +2,7 @@
     include "../funciones/Funciones.php"; //Requerimos las funciones del archivo "Funciones.php"
 
     $nombre=$_POST['nombre']; //Almacenamos el nombre pasado por formulario en una variable
-    $password=$_POST['password']; //Almacenamos el password pasado por formulario en una variable
+    $password=$_POST['contrasena']; //Almacenamos el password pasado por formulario en una variable
     $correo=$_POST['correo']; //Almacenamos el coreo pasado por formulario en una variable
     
     if(validarNombre($nombre)==true && validarContraseña($password)==true && validarcorreo($correo)==true){

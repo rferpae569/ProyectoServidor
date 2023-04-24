@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="../icono/claquetaicon.png">
     <title>Registro</title>
     <link rel="stylesheet" href="../css/EstiloFormulario.css">
-    <script src="javascript/Scripts.js"></script>
+    <script src="../javascript/Scripts.js"></script>
 </head>
 <?php
     if($_COOKIE['cookies']!='aceptar'){ //Si la cookie no vale "Aceptar", nos llevara al index.

@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="../icono/claquetaicon.png">
     <title>ActualizarRegistro</title>
     <link rel="stylesheet" href="../css/EstiloFormulario.css">
-    <script src="javascript/Scripts.js"></script>
+    <script src="../javascript/Scripts.js"></script>
 </head>
 <body>
     <?php
@@ -22,7 +22,7 @@
         <input type="text" placeholder="Ponga su nombre de usuario para actualizar el correo y la contraseña" name="actnombre"><br>
         <label for="password">Contraseña:</label>
         <div class="contenidocontraseña">
-        <input type="password" placeholder="Introduce tu contraseña" name="contrasena" id="contrasena">
+        <input type="password" placeholder="Introduce tu contraseña" name="actcontrasena" id="actcontrasena">
         <button type="button" id="botoncontrasena">Mostrar</button>
         </div>          
         <label for="correo">Correo:</label>

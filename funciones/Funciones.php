@@ -1,7 +1,7 @@
 <?php
     $conexion=conectar(); //Nos conectamos a la base de datos.
    
-    function validarNombre($nombre){ 
+    function validarNombre($nombre){  //Esta funcion sirve para validar la contraseña del usuario
         $expresion = "/^[a-zA-Z0-9\s]+$/";
         
         if(preg_match($expresion, $nombre)){
@@ -95,7 +95,7 @@
     }
 }
 
-    function añadirUsuario($nombre,$password){ //Esta funcion añade el usuario en la base de datos, y a su vez, le crea su ranking para guardar sus puntuaciones en los distintos juegos
+    function añadirUsuario($nombre,$password){ //Esta funcion añade el usuario en la base de datos, y a su vez, le crea su ranking para guardar sus puntuaciones en los distintos juegos y su numero de jugadas
         global $conexion;
         try {
             $codigoRanking = $conexion->query("SELECT MAX(codigoRanking) FROM ranking")->fetchColumn() + 1;
