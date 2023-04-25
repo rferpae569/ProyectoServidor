@@ -26,7 +26,7 @@
   
     }
       
-    }else if(respuestaImagen($respuesta,$numero)==false){ //Si la respuesta no fuera correcta, nos llevaria a "Eleccion2.php"
+    }else if(respuestaPregunta($respuesta,$numero)==false){ //Si la respuesta no fuera correcta, nos llevaria a "Eleccion2.php"
 
      $intentos--;
      $_SESSION["intentos"]=$intentos;
