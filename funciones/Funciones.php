@@ -531,8 +531,8 @@
         $sql="SELECT puntosMusica FROM ranking WHERE CodigoRanking ='$idRanking'";
         $resultado=$conexion->query($sql);
         if($resultado->rowCount() > 0){
-            $puntosPreguntas = $resultado->fetch(PDO::FETCH_ASSOC);
-            return $puntosPreguntas;
+            $puntosMusica = $resultado->fetch(PDO::FETCH_ASSOC);
+            return $puntosMusica;
         }else{
             return false;
         }

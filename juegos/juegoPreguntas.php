@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../icono/claquetaicon.png">
     <title>juegoPreguntas</title>
+    <!-- <link rel="stylesheet" href="../bootstrap-5.2.3-dist/css/bootstrap.min.css">
+    <script src="bootstrap-5.2.3-dist/js/bootstrap.min.js"></script> -->
     <link rel="stylesheet" href="../css/EstiloJuegos.css">
     <script src="../javascript/Scripts.js"></script>
 </head>
@@ -13,7 +15,7 @@
     session_start(); //Creamos la sesion
     include "../funciones/Funciones.php"; //Requerimos las funciones del archivo "Funciones.php"
     $numero=numAleatorio(); //Almacenammos en la variable el numero aleatorio
-    $_SESSION["Paleatorio"]=$numero; //Almacenamos en una sesion el numero aleatorio de la pregunta.
+    $_SESSION["aleatorio"]=$numero; //Almacenamos en una sesion el numero aleatorio de la pregunta.
     if(!isset($_SESSION["intentos"])){ //Si no existe la sesion "intentos", la creamos, y le decimos que vale tres.
         $_SESSION["intentos"]=3;
     }else if(isset($_SESSION["intentos"])){ //Si existe, comprobamos que vale tres, y si vale 0, le decimos que vuelva valer 3.

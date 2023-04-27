@@ -2,7 +2,7 @@
     include "../funciones/Funciones.php"; //Requerimos las funciones del archivo "Funciones.php"
     $respuesta=$_POST["respuesta"]; //Almacenamos la respuesta en una variable
     session_start(); //Creamos la sesion.
-    $numero=$_SESSION["Paleatorio"];  //Se crea una variable con el valor de la sesion que contiene el numero aleatorio de las preguntas
+    $numero=$_SESSION["aleatorio"];  //Se crea una variable con el valor de la sesion que contiene el numero aleatorio de las preguntas
     $intentos=$_SESSION["intentos"];
 
     $rankingUsuario=cogeRankingUsuario($_SESSION["usuario"]);
