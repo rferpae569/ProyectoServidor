@@ -616,7 +616,7 @@
         return $respuestas;
     }
 
-    function turno($jugador1, $jugador2) { //ESta funcion sirve para almacenar el turno de cada jugador en el juego de doss jugadores
+    function turno($jugador1, $jugador2) { //ESta funcion sirve para almacenar el turno de cada jugador en el juego de dos jugadores
         if (!isset($_SESSION['turno'])) { 
             $_SESSION['turno'] = $jugador1; 
         }

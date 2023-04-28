@@ -8,7 +8,7 @@
 
      $esTurnoJugador1 = turno($_SESSION["usuario1"], $_SESSION["usuario2"]); //Ejecutamos la funcion turno y la almacenamos en una variable
   
-     if($esTurnoJugador1){  //Si es el turno del jugaodo1, coge su ranking
+     if($esTurnoJugador1){  //Si es el turno del jugador1, coge su ranking
          $rankingUsuario1=cogeRankingUsuario($_SESSION["usuario1"]);
          $record=cogeRecordImagen($rankingUsuario1);
   
@@ -50,7 +50,7 @@
      }else{ //En caso contrario, si es el jugador 2 quien juega, hacemos lo mismo, pero aplicandolo al jugador 2
         //Cogemos el record del jugador2. 
         $rankingUsuario2=cogeRankingUsuario($_SESSION["usuario2"]);
-         $record=cogeRecordImagen($rankingUsuario2); 
+        $record=cogeRecordImagen($rankingUsuario2); 
 
          if(respuestaImagen($respuesta,$numero)==true){ //Si la respuesta es correcta, incrementamos su puntuacion
   
