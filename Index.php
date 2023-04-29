@@ -6,57 +6,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="icono/claquetaicon.png">
     <title>Index</title>
-    <!-- <link rel="stylesheet" href="bootstrap-5.2.3-dist/css/bootstrap.min.css">
-    <script src="bootstrap-5.2.3-dist/js/bootstrap.min.js"></script> -->
-    <link rel="stylesheet" href="css/EstiloIndex.css">
+    <link rel="stylesheet" href="bootstrap-5.2.3-dist/css/bootstrap.min.css">
+    <script src="bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
     <script src="javascript/Scripts.js"></script>
 </head>
-<body style="<?php if(isset($_POST["aceptar"])){echo "background-color:white";}?>">
+<body style="<?php if (isset($_POST["aceptar"])) {
+    echo "background-color:white";
+} ?>">
 
-<?php
-if(!isset($_COOKIE['cookies'])){ //Si la cookie del mensaje no existe, la creamos con setcookie.
-    setcookie('cookies',true,time()+8500);
-}
+    <?php
+    if (!isset($_COOKIE['cookies'])) { //Si la cookie del mensaje no existe, la creamos con setcookie.
+        setcookie('cookies', true, time() + 8500);
+    }
 
-        if(isset($_POST["aceptar"])){ //Si pulsamos el boton aceptar, la cookie pasara a valer aceptar, y hara que el mensaje desaparezca.
-            setcookie('cookies','aceptar',time()+8500);
-        }else if(isset($_POST["rechazar"])){ //Si pulsamos el boton rechazar, nos mostrara un mensaje por javascript
-            echo'<script type="text/javascript">
+    if (isset($_POST["aceptar"])) { //Si pulsamos el boton aceptar, la cookie pasara a valer aceptar, y hara que el mensaje desaparezca.
+        setcookie('cookies', 'aceptar', time() + 8500);
+    } else if (isset($_POST["rechazar"])) { //Si pulsamos el boton rechazar, nos mostrara un mensaje por javascript
+        echo '<script type="text/javascript">
             alert("Debe aceptar las cookies para continuar");
             </script>';
-        }
-?>
+    }
+    ?>
 
-    <h1>Bienvenido a "AdivinaLaPelícula"</h1>
-    <form action="comprobacion/ComprobarUsuario.php" method="post" class="formulariologin" autocomplete="off"><!--Creamos el formulario para iniciar sesion-->
-        <label for="usuario">Usuario:</label>
-        <input type="text" placeholder="Introduce tu nombre de usuario" name="usuario">
-        <label for="contrasena">contraseña:</label>
-        <div class="contenidocontraseña">
-        <input type="password" placeholder="Introduce tu contraseña" name="contrasena" id="contrasena">
-        <button type="button" id="botoncontrasena">Mostrar</button>
+    <h1 class="text-center">Bienvenido a "AdivinaLaPelícula"</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form action="comprobacion/ComprobarUsuario.php" method="post" class="formulariologin"
+                    autocomplete="off"><!--Creamos el formulario-->
+                    <div class="form-group">
+                        <label for="usuario">Usuario:</label>
+                        <input type="text" class="form-control" placeholder="Introduce tu nombre de usuario"
+                            name="usuario" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contrasena">Contraseña:</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" placeholder="Introduce tu contraseña"
+                                name="contrasena" id="contrasena" required>
+                            <div class="input-group-append">
+                                <button type="button" class="mostrar-contrasena btn btn-primary rounded"
+                                    data-id-contrasena="contrasena">Mostrar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <br><input type="submit" class="btn btn-primary btn-block" id="iniciar" name="iniciar"
+                            value="Iniciar Sesión">
+                    </div>
+                </form>
+            </div>
         </div>
-        <input type="submit" id="iniciar" name="iniciar" value="IniciarSesion">
-    </form>
-    <a href="registro/Registro.php"><p>Aun no estoy registrado</p></a><!--Creamos un enlace para registrarnos-->
-    <a href="actualizar/ActualizarRegistro.php"><p>Actualizar datos</p></a><!--Creamos un enlace para actualizar nuestros datos-->
-    <a href="borrar/BorrarCuenta.php"><p>Borrar Cuenta</p></a><!--Creamos un enlace para borrar nuestra cuenta-->
-    <a href="logindosjugadores/logindosjugadores.php"><p>Modo dos jugadores</p></a><!--Creamos un enlace para acceder al modo dos jugadores-->
+    </div> <br>
+    <div class="text-center">
+        <a href="registro/Registro.php">Aún no estoy registrado</a> |
+        <a href="actualizar/ActualizarRegistro.php">Actualizar datos</a> |
+        <a href="borrar/BorrarCuenta.php">Borrar cuenta</a> |
+        <a href="logindosjugadores/logindosjugadores.php">Modo dos jugadores</a>
+    </div>
 
-
-    <footer style="<?php if(isset($_POST["aceptar"])){echo "display:none";}?>"> <!--Creamos el footer para el mensaje de las cookies-->
-    <form action="Index.php" method="POST" > 
-        <p>Utilizamos cookies propias y de terceros para obtener datos estadísticos de la navegación de nuestros usuarios y mejorar nuestros servicios. Si acepta o continúa navegando, consideramos que acepta su uso. Puede cambiar la configuración u obtener más información <a href="https://ayudaleyprotecciondatos.es/cookies/"> aquí (enlace a página de cookies).</a></p>
-        <input type="submit" id="aceptar"  name="aceptar" value="aceptar">
-        <input type="submit" id="rechazar" name="rechazar" value="rechazar">
-    </form>
+    <footer class="footer mt-auto py-3" style="<?php if (isset($_POST["aceptar"])) {
+        echo "display:none";
+    } ?>">
+        <div class="container">
+            <form action="Index.php" method="POST">
+                <p>Utilizamos cookies propias y de terceros para obtener datos estadísticos de la navegación de nuestros
+                    usuarios y mejorar nuestros servicios. Si acepta o continúa navegando, consideramos que acepta su
+                    uso. Puede cambiar la configuración u obtener más información <a
+                        href="https://ayudaleyprotecciondatos.es/cookies/"> aquí (enlace a página de cookies).</a></p>
+                <div class="text-center">
+                    <input type="submit" class="btn btn-primary" id="aceptar" name="aceptar" value="Aceptar">
+                    <input type="submit" class="btn btn-danger" id="rechazar" name="rechazar" value="Rechazar">
+                </div>
+            </form>
+        </div>
     </footer>
 
     <?php
     if (isset($_COOKIE['cookies'])) { //Si las cookies valen aceptar, el mensaje no se mostrara.
         if ($_COOKIE['cookies'] == 'aceptar') {
-        echo '<style type="text/css">footer {display: none;}</style>';
-        echo '<style type="text/css">body {background-color: white;}</style>';
+            echo '<style type="text/css">footer {display: none;}</style>';
+            echo '<style type="text/css">body {background-color: white;}</style>';
         }
     }
     ?>

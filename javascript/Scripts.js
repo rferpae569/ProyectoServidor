@@ -51,12 +51,19 @@ function mostrarPistaMusica() { //Esta funcion sirve para mostrar u ocultar el c
   }
 
   document.addEventListener('DOMContentLoaded', function() { //Esta funcion sirve para mostrar o no la contraseña
-    const botoncontrasena = document.getElementById('botoncontrasena');
-    const contrasena = document.getElementById('contrasena');
+
+  const botonesMostrar = document.querySelectorAll('.mostrar-contrasena');
+
+  botonesMostrar.forEach((boton) => {
+
+  const idContrasena = boton.getAttribute('data-id-contrasena');
+  const contrasena = document.getElementById(idContrasena);
   
-    botoncontrasena.addEventListener('click', function () {
-      const type = contrasena.getAttribute('type') === 'password' ? 'text' : 'password';
-      contrasena.setAttribute('type', type);
-      botoncontrasena.textContent = type === 'password' ? 'Mostrar' : 'Ocultar';
-    });
+
+  boton.addEventListener('click', function () {
+    const type = contrasena.getAttribute('type') === 'password' ? 'text' : 'password';
+    contrasena.setAttribute('type', type);
+    boton.textContent = type === 'password' ? 'Mostrar' : 'Ocultar';
+  });
+});
   });
