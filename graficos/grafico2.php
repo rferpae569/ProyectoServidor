@@ -1,61 +1,56 @@
 <?php
-
-//incluimos la libreria de jpgraph
 include("../funciones/Funciones.php");
 include("../jpgraph/jpgraph.php");
 include("../jpgraph/jpgraph_bar.php");
 
-//Creamos los datos
-$datos = cogeDatosRanking();
+// Obtener los datos de puntos y nombres de usuario
+$datos = cogenombreRanking();
 
-//Creamos el array con los puntos
+// Crear los arrays con los puntos y nombres de usuario
 $puntosImagen = array();
 $puntosPreguntas = array();
 $puntosMusica = array();
+$nombresUsuario = array();
 
 foreach ($datos as $dato) {
     $puntosImagen[] = $dato["PuntosImagen"];
     $puntosPreguntas[] = $dato["PuntosPreguntas"];
     $puntosMusica[] = $dato["PuntosMusica"];
+    $nombresUsuario[] = $dato["Nombre"];
 }
 
-//Creamos la imagen
+// Crear la imagen
 $grafico = new Graph(500, 600);
 
-//Especificamos el tipo de grafico
+// Especificar el tipo de gráfico
 $grafico->SetScale("textint");
 
-//Creamos el titulo
+// Crear el título
 $grafico->title->Set("Puntos obtenidos:");
 
-//Creamos los tres gráficos
+// Crear los tres gráficos
 $p1 = new BarPlot($puntosImagen);
 $p2 = new BarPlot($puntosPreguntas);
 $p3 = new BarPlot($puntosMusica);
 
-//Especificamos el color de las barras
+// Especificar el color de las barras
 $p1->SetFillColor('blue');
 $p2->SetFillColor('red');
 $p3->SetFillColor('green');
 
-//Añadimos los gráficos al gráfico principal
+// Añadir los gráficos al gráfico principal
 $barraGrupo = new GroupBarPlot(array($p1, $p2, $p3));
 $grafico->Add($barraGrupo);
 
-//Añadimos leyenda
+// Especificar los nombres de usuario en el eje X
+$grafico->xaxis->SetTickLabels($nombresUsuario);
+
+// Añadir leyenda
 $p1->SetLegend('Puntos Imagen');
 $p2->SetLegend('Puntos Preguntas');
 $p3->SetLegend('Puntos Musica');
 $grafico->legend->SetPos(0.1, 0.95, 'right', 'top');
 
-//Añadimos etiquetas
-// $nombresUsuarios = cogeNombreRanking($datos);
-// $nombres = array();
-// foreach($nombresUsuarios as $nombreUsuario){
-//     $nombres[] = $nombreUsuario['Nombre'];
-// }
-// $grafico->xaxis->SetTickLabels($nombres);
-
-//Mostramos el gráfico
+// Mostrar el gráfico
 $grafico->Stroke();
 ?>

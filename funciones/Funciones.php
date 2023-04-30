@@ -627,10 +627,11 @@ function calcularPorcentajeJugadas()
     return $porcentajes;
 }
 
-function cogeDatosRanking()
-{ //Esta funcion coge los puntos de cada juego para poder mostrarlos con el grafico.
+function cogenombreRanking()
+{
     global $conexion;
-    $sql = "SELECT PuntosImagen, PuntosPreguntas, PuntosMusica FROM ranking";
+    $sql = "SELECT u.Nombre, r.PuntosImagen, r.PuntosPreguntas, r.PuntosMusica 
+    FROM ranking r JOIN usuarios u ON r.CodigoRanking = u.CodigoRanking";
     $resultado = $conexion->query($sql);
     if ($resultado->rowCount() > 0) {
         return $resultado->fetchAll(PDO::FETCH_ASSOC);
