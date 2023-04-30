@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="../icono/claquetaicon.png">
     <title>JuegoImagenesDos</title>
     <link rel="stylesheet" href="../bootstrap-5.2.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="../bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
     <script src="../javascript/Scripts.js"></script>
 </head>
@@ -47,20 +48,20 @@ if ($_SESSION["intentosusuario1"] == 3) { //Si la sesion de intentosusuario1 val
     echo "<div> <img src='../icono/claquetaicon.png'/> </div>";
 }
 
-echo ("<h1 style='float: right; position: absolute; top: 0; right: 0;'>Usuario2: " . $_SESSION["usuario2"] . "</h1>");
-echo ("<h1 style='float: right; clear: both; position: absolute; top: 1.5em; right: 0;'>Puntos: " . $_SESSION["puntosusuario2"] . "</h1><br>");
-echo ("<h1 style='float: right; clear: both; position: absolute; top: 3em; right: 0;'>Record: " . implode(cogeRecordImagenDOS($rankingUsuario2)) . "</h1><br>"); //Mostramos su record
+echo ("<h1 class='h1usuariodos'>Usuario2: " . $_SESSION["usuario2"] . "</h1>");
+echo ("<h1 class='h1puntosdos'>Puntos: " . $_SESSION["puntosusuario2"] . "</h1><br>");
+echo ("<h1 class='h1recorddos'>Record: " . implode(cogeRecordImagenDOS($rankingUsuario2)) . "</h1><br>"); //Mostramos su record
 
 
 if ($_SESSION["intentosusuario2"] == 3) { //Si la sesion de intentosusuario2 vale 3, mostramos tres imagenes.
-    echo ("<h1 style='float: right; clear: both; position: absolute; top: 4.5em; right: 0;'>Intentos: " . "</h1>");
-    echo "<div style='float: right; clear: both; position: absolute; top: 14.5em; right: 0;'> <img src='../icono/claquetaicon.png'/>   <img src='../icono/claquetaicon.png' />   <img src='../icono/claquetaicon.png' /> </div>";
+    echo ("<h1 class='h1intentosdos'>Intentos: " . "</h1>");
+    echo "<div class='divintentos'> <img src='../icono/claquetaicon.png'/>   <img src='../icono/claquetaicon.png' />   <img src='../icono/claquetaicon.png' /> </div>";
 } else if ($_SESSION["intentosusuario2"] == 2) { //Si la sesion de intentos vale 2, mostramos dos imagenes.
-    echo ("<h1 style='float: right; clear: both; position: absolute; top: 4.5em; right: 0;'>Intentos: " . "</h1>");
-    echo "<div style='float: right; clear: both; position: absolute; top: 14.5em; right: 0;'> <img src='../icono/claquetaicon.png' />   <img src='../icono/claquetaicon.png' /> </div>";
+    echo ("<h1 class='h1intentosdos'>Intentos: " . "</h1>");
+    echo "<div class='divintentos'> <img src='../icono/claquetaicon.png' />   <img src='../icono/claquetaicon.png' /> </div>";
 } else if ($_SESSION["intentosusuario2"] == 1) {
-    echo ("<h1 style='float: right; clear: both; position: absolute; top: 4.5em; right: 0;'>Intentos: " . "</h1>"); //Si la sesion de intentos vale 1, mostramos una imagen.
-    echo "<div style='float: right; clear: both; position: absolute; top: 14.5em; right: 0;'> <img src='../icono/claquetaicon.png'/> </div>";
+    echo ("<h1 class='h1intentosdos'>Intentos: " . "</h1>"); //Si la sesion de intentos vale 1, mostramos una imagen.
+    echo "<div class='divintentos'> <img src='../icono/claquetaicon.png'/> </div>";
 }
 
 ?>
@@ -91,5 +92,4 @@ if ($_SESSION["intentosusuario2"] == 3) { //Si la sesion de intentosusuario2 val
         </div>
     </div>
 </body>
-
 </html>

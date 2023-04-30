@@ -1,0 +1,38 @@
+.h1usuariodos{
+    float: right; 
+    position: absolute; 
+    top: 0; 
+    right: 0;
+}
+
+.h1puntosdos{
+    float: right; 
+    clear: both; 
+    position: absolute; 
+    top: 1.5em; 
+    right: 0;
+}
+
+.h1recorddos{
+    float: right; 
+    clear: both; 
+    position: absolute; 
+    top: 3em;
+    right: 0;
+}
+
+.h1intentosdos{
+    float: right; 
+    clear: both; 
+    position: absolute; 
+    top: 4.5em; 
+    right: 0;
+}
+
+.divintentos{
+    float: right; 
+    clear: both; 
+    position: absolute; 
+    top: 14.5em; 
+    right: 0;
+}
