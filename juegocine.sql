@@ -91,7 +91,7 @@ CREATE TABLE `dosjugadores` (
 
 LOCK TABLES `dosjugadores` WRITE;
 /*!40000 ALTER TABLE `dosjugadores` DISABLE KEYS */;
-INSERT INTO `dosjugadores` VALUES ('ruben','carlos'),('ruben','juanmaEV'),('ruben','manolo');
+INSERT INTO `dosjugadores` VALUES ('carlos','manolo'),('juanmaEV','manolo'),('manolo','carlos'),('manolo','ruben'),('rocio','carlos'),('ruben','carlos'),('ruben','juanmaEV'),('ruben','manolo');
 /*!40000 ALTER TABLE `dosjugadores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,7 +141,7 @@ CREATE TABLE `numjugadas` (
 
 LOCK TABLES `numjugadas` WRITE;
 /*!40000 ALTER TABLE `numjugadas` DISABLE KEYS */;
-INSERT INTO `numjugadas` VALUES (2,3,2,1),(3,1,2,1),(4,4,2,2),(5,4,3,2),(6,4,5,4);
+INSERT INTO `numjugadas` VALUES (2,9,2,5),(3,3,5,3),(4,8,5,4),(5,7,8,7),(6,8,8,7);
 /*!40000 ALTER TABLE `numjugadas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -303,7 +303,7 @@ CREATE TABLE `ranking` (
 
 LOCK TABLES `ranking` WRITE;
 /*!40000 ALTER TABLE `ranking` DISABLE KEYS */;
-INSERT INTO `ranking` VALUES (2,10,6,7),(3,7,3,0),(4,15,7,7),(5,7,6,8),(6,14,6,3);
+INSERT INTO `ranking` VALUES (2,10,6,7),(3,7,3,1),(4,15,7,7),(5,7,6,9),(6,14,7,5);
 /*!40000 ALTER TABLE `ranking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -346,4 +346,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-21 21:25:14
+-- Dump completed on 2023-05-01 16:52:55
