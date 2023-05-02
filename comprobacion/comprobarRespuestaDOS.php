@@ -25,9 +25,13 @@ if ($esTurnoJugador1) { //Si es el turno del jugador1, coge su ranking
                header("Location: ../juegos/juegoImagenesDos.php"); //Lo mandamos de nuevo al juego de las imagenes
 
           } else if ($_SESSION["puntosusuario1"] == 15 && $_SESSION["intentosusuario1"] == 3 || $_SESSION["intentosusuario1"] == 2 || $_SESSION["intentosusuario1"] == 1) {
-               //Si gana, lo mandamos a VictoriaDos.php
+               
+               if ($_SESSION["puntosusuario2"] == 15) { //Si ambos jugadores tienen 15 puntos, vamos a empateDos.php
+                    header("Location: ../elecciones/empateDos.php");
+               }else{
+                    //Si gana, lo mandamos a VictoriaDos.php
                header("Location: ../elecciones/VictoriaDos.php");
-
+               }
           }
 
           if ($_SESSION["intentosusuario2"] == 0) { //Si el jugador 2 pierde sus tres vidas, vamos a victoriaDos.php para declarar al jugador 1 como vencedor
@@ -54,7 +58,7 @@ if ($esTurnoJugador1) { //Si es el turno del jugador1, coge su ranking
 
      if (respuestaImagen($respuesta, $numero) == true) { //Si la respuesta es correcta, incrementamos su puntuacion
 
-          if ($_SESSION["puntosusuario2"] != 14) {
+          if ($_SESSION["puntosusuario2"] < 15) {
 
                $_SESSION["puntosusuario2"]++;
 
@@ -64,9 +68,15 @@ if ($esTurnoJugador1) { //Si es el turno del jugador1, coge su ranking
 
                header("Location: ../juegos/juegoImagenesDos.php");
 
-          } else if ($_SESSION["puntosusuario2"] == 14 && $_SESSION["intentosusuario2"] == 3 || $_SESSION["intentosusuario2"] == 2 || $_SESSION["intentosusuario2"] == 1) {
-               //Si gana, lo mandamos a VictoriaDos.php
+          } else if ($_SESSION["puntosusuario2"] == 15 && $_SESSION["intentosusuario2"] == 3 || $_SESSION["intentosusuario2"] == 2 || $_SESSION["intentosusuario2"] == 1) {
+               
+               if ($_SESSION["puntosusuario1"] == 15) { //Si ambos jugadores tienen 15 puntos, vamos a empatesDOS.php
+                    //Si empatan, los mandamos a empate
+                    header("Location: ../elecciones/empateDos.php");
+               }else{
+                      //Si gana, lo mandamos a VictoriaDos.php
                header("Location: ../elecciones/VictoriaDos.php");
+               }
 
           }
 
