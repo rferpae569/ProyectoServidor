@@ -17,6 +17,7 @@ if (isset($_POST["SI"]) || isset($_POST["NO"])) {
 
         header("Location: Eleccion.php");
         $_SESSION["puntos"] = 0;
+        $_SESSION["intentos"]=3;
 
     } else if ($_POST["NO"] == "NO") { //Si pulsamos no, nos llevara al logoff
 

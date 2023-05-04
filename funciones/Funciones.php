@@ -256,10 +256,10 @@ function numAleatorio()
     }
 
     $numeros = $_SESSION["numAleatorio"];
-    $numeroAleatorio = rand(1, 45);
+    $numeroAleatorio = rand(1, 52);
 
     while (in_array($numeroAleatorio, $numeros)) {
-        $numeroAleatorio = rand(1, 45);
+        $numeroAleatorio = rand(1, 52);
     }
 
     array_push($numeros, $numeroAleatorio);
