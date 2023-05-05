@@ -36,3 +36,30 @@
     top: 14.5em; 
     right: 0;
 }
+
+body{
+    background: url('../img/fondo.jpg');
+    background-size: 100% 100%;
+}
+
+.preguntamusica{
+    height: 120vh;
+    background: url('../img/fondo.jpg');
+    background-size: 100% 100%
+}
+
+.altoimagen{
+    margin-bottom: 10%;
+}
+
+h1, label{
+    color:white
+}
+
+.colorajax{
+    color: white;
+}
+
+.claqueta{
+    filter: invert(1);
+}

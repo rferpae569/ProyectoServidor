@@ -1,8 +1,7 @@
 <?php
 $conexion = conectar(); //Nos conectamos a la base de datos.
 
-function validarNombre($nombre)
-{ //Esta funcion sirve para validar la contraseña del usuario
+function validarNombre($nombre){ //Esta funcion sirve para validar la contraseña del usuario
     $expresion = "/^[a-zA-Z0-9\s]+$/";
 
     if (preg_match($expresion, $nombre)) {
@@ -12,8 +11,7 @@ function validarNombre($nombre)
     }
 }
 
-function validarContraseña($password)
-{ //Esta funcion sirve para validar la contraseña del usuario.
+function validarContraseña($password){ //Esta funcion sirve para validar la contraseña del usuario.
     if (preg_match('/^(?=.*[\d])(?=.*[\*]).{8,}$/', $password)) {
         return true;
     } else {
@@ -21,8 +19,7 @@ function validarContraseña($password)
     }
 }
 
-function validarcorreo($correo)
-{ //Esta funcion sirve para validar el correo del usuario
+function validarcorreo($correo){ //Esta funcion sirve para validar el correo del usuario
     if (preg_match('/^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$/', $correo)) {
         return true;
     } else {
@@ -30,8 +27,7 @@ function validarcorreo($correo)
     }
 }
 
-function conectar()
-{ //Esta funcion sirve para conectarnos a la base de datos mediante PDO de forma persistente
+function conectar(){ //Esta funcion sirve para conectarnos a la base de datos mediante PDO de forma persistente
     $host = "localhost";
     $dbname = "juegocine";
     $username = "root";
@@ -52,14 +48,12 @@ function conectar()
     }
 }
 
-function desconectar($conexion)
-{ //Esta funcion sirve para desconectarnos de la base de datos (No se utiliza)
+function desconectar($conexion){ //Esta funcion sirve para desconectarnos de la base de datos (No se utiliza)
     $conexion = null;
     return $conexion;
 }
 
-function compruebaUsuario($nombre, $contrasena)
-{ //Esta funcion sirve para comprobar si el usuario se encuentra en la base de datos.
+function compruebaUsuario($nombre, $contrasena){ //Esta funcion sirve para comprobar si el usuario se encuentra en la base de datos.
     try {
         global $conexion;
         $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE Nombre = :Nombre AND Passwrd = :Passwrd");
@@ -79,8 +73,7 @@ function compruebaUsuario($nombre, $contrasena)
     }
 }
 
-function compruebaUsuarioDOS($nombre1, $contrasena1, $nombre2, $contrasena2)
-{ //Esta funcion comprueba si los dos usuarios introducidos son validos para jugar al de dos jugadores
+function compruebaUsuarioDOS($nombre1, $contrasena1, $nombre2, $contrasena2){ //Esta funcion comprueba si los dos usuarios introducidos son validos para jugar al de dos jugadores
     try {
         global $conexion;
         $stmt1 = $conexion->prepare("SELECT * FROM usuarios WHERE Nombre = :Nombre1 AND Passwrd = :Passwrd1");
@@ -106,8 +99,7 @@ function compruebaUsuarioDOS($nombre1, $contrasena1, $nombre2, $contrasena2)
     }
 }
 
-function añadirUsuario($nombre, $password)
-{ //Esta funcion añade el usuario en la base de datos, y a su vez, le crea su ranking para guardar sus puntuaciones en los distintos juegos y su numero de jugadas
+function añadirUsuario($nombre, $password){ //Esta funcion añade el usuario en la base de datos, y a su vez, le crea su ranking para guardar sus puntuaciones en los distintos juegos y su numero de jugadas
     global $conexion;
     try {
         $codigoRanking = $conexion->query("SELECT MAX(codigoRanking) FROM ranking")->fetchColumn() + 1;
@@ -154,8 +146,7 @@ function añadirUsuario($nombre, $password)
     }
 }
 
-function insertarDosJugadores($nombreusuario1, $nombreusuario2)
-{ //Esta funcion te inserta los usuarios en la tabla de dos jugadores para tener un registro de quien se ha enfretado a quien.
+function insertarDosJugadores($nombreusuario1, $nombreusuario2){ //Esta funcion te inserta los usuarios en la tabla de dos jugadores para tener un registro de quien se ha enfretado a quien.
     global $conexion;
     try {
         $consulta = $conexion->prepare("INSERT INTO dosjugadores (nombreusuario1, nombreusuario2) VALUES (:nombreusuario1, :nombreusuario2)");
@@ -171,8 +162,7 @@ function insertarDosJugadores($nombreusuario1, $nombreusuario2)
     }
 }
 
-function añadirCorreo($correo, $nombre)
-{ //Esta funcion sirve para almacenar el correo del usuario en la base de datos
+function añadirCorreo($correo, $nombre){ //Esta funcion sirve para almacenar el correo del usuario en la base de datos
     global $conexion;
     try {
         $resultado = $conexion->prepare("INSERT INTO correos VALUES (:correo, :nombreusuario)");
@@ -185,8 +175,7 @@ function añadirCorreo($correo, $nombre)
     }
 }
 
-function actualizarUsuario($nombre, $password)
-{ //Esta funcion sirve para actualizar el usuario en la base de datos.
+function actualizarUsuario($nombre, $password){ //Esta funcion sirve para actualizar el usuario en la base de datos.
     global $conexion;
 
     $sql = "UPDATE usuarios SET Nombre=:Nombre, Passwrd=:Passwrd WHERE Nombre=:Nombre";
@@ -197,8 +186,7 @@ function actualizarUsuario($nombre, $password)
     return ($stmt->execute()) ? true : false;
 }
 
-function actualizarCorreo($correo, $nombre)
-{ //Esta funcion sirve para actualizar el correo del usuario en la base de datos.
+function actualizarCorreo($correo, $nombre){ //Esta funcion sirve para actualizar el correo del usuario en la base de datos.
     global $conexion;
 
     $sql = "UPDATE correos SET correo=:correo, NombreUsuario=:NombreUsuario WHERE NombreUsuario=:NombreUsuario"; //Falla porque hay que añadir el nombre
@@ -209,8 +197,7 @@ function actualizarCorreo($correo, $nombre)
     return ($stmt->execute()) ? true : false;
 }
 
-function borrarCorreo($correo)
-{ //Esta funcion sirve para borrar el correo del usuario de la base de datos
+function borrarCorreo($correo){ //Esta funcion sirve para borrar el correo del usuario de la base de datos
     global $conexion;
     $query = $conexion->prepare("DELETE FROM correos WHERE Correo = :Correo");
     $query->bindParam(":Correo", $correo);
@@ -218,8 +205,7 @@ function borrarCorreo($correo)
     return $query;
 }
 
-function borrarUsuario($nombre)
-{ //Esta funcion sirve bpara borrar el usuario, su ranking, y su numero de jugadas
+function borrarUsuario($nombre){ //Esta funcion sirve bpara borrar el usuario, su ranking, y su numero de jugadas
     global $conexion;
     try {
         $query = $conexion->prepare("SELECT CodigoRanking, CodigoJugadas FROM usuarios WHERE Nombre = :Nombre");
@@ -249,8 +235,7 @@ function borrarUsuario($nombre)
     }
 }
 
-function numAleatorio()
-{ //Esta funcion genera numeros aleatorios para que salgan distintas imagenes y distintas preguntas a la hora de jugar. Los numeros se almacenaran en una sesion para que asi no se puedan repetir los numeros
+function numAleatorio(){ //Esta funcion genera numeros aleatorios para que salgan distintas imagenes y distintas preguntas a la hora de jugar. Los numeros se almacenaran en una sesion para que asi no se puedan repetir los numeros
     if (!isset($_SESSION["numAleatorio"])) {
         $_SESSION["numAleatorio"] = array();
     }
@@ -267,8 +252,7 @@ function numAleatorio()
     return $numeroAleatorio;
 }
 
-function cogeImagen($numero)
-{ //Esta funcion sirve para coger la imagen de la base de datos (La coge a raiz del numero aleatorio que haya salido).
+function cogeImagen($numero){ //Esta funcion sirve para coger la imagen de la base de datos (La coge a raiz del numero aleatorio que haya salido).
     global $conexion;
     $query = $conexion->prepare("SELECT imagen FROM imagenes WHERE id=?");
     $query->execute([$numero]);
@@ -281,8 +265,7 @@ function cogeImagen($numero)
     }
 }
 
-function respuestaImagen($respuesta, $numero)
-{ //Esta funcion sirve para saber si la respuesta introducida por el usuario es correcta (Compara su respuesta con el titulo relacionado con la imagen)
+function respuestaImagen($respuesta, $numero){ //Esta funcion sirve para saber si la respuesta introducida por el usuario es correcta (Compara su respuesta con el titulo relacionado con la imagen)
     global $conexion;
     // $sql = $conexion->prepare("SELECT * FROM peliculasImagenes WHERE BINARY LOWER(NombrePelicula) = LOWER(?) AND idImagen = ?");
     $sql = $conexion->prepare("SELECT * FROM peliculasImagenes WHERE SOUNDEX(LOWER(NombrePelicula)) = SOUNDEX(LOWER(?)) AND idImagen = ?"); //El soundex sirve para comparar el valor introducido con el mas cercano. Asi que, en un principio, nos serviria para las tildes.
@@ -295,8 +278,7 @@ function respuestaImagen($respuesta, $numero)
     }
 }
 
-function cogePregunta($numero)
-{ //Esta funcion sirve para coger la pregunta de la base de datos (La coge a raiz del numero aleatorio que haya salido).
+function cogePregunta($numero){ //Esta funcion sirve para coger la pregunta de la base de datos (La coge a raiz del numero aleatorio que haya salido).
     global $conexion;
     $query = $conexion->prepare("SELECT pregunta FROM preguntas WHERE id=?");
     $query->execute([$numero]);
@@ -309,8 +291,7 @@ function cogePregunta($numero)
     }
 }
 
-function cogePista($numero)
-{ //Esta funcion sirve para coger la pista de la base de datos (La coge a raiz del numero aleatorio que haya salido).
+function cogePista($numero){ //Esta funcion sirve para coger la pista de la base de datos (La coge a raiz del numero aleatorio que haya salido).
     global $conexion;
     $query = $conexion->prepare("SELECT pista FROM preguntas WHERE id=?");
     $query->execute([$numero]);
@@ -323,8 +304,7 @@ function cogePista($numero)
     }
 }
 
-function respuestaPregunta($respuesta, $numero)
-{ //Esta funcion sirve para saber si la respuesta introducida por el usuario es correcta (Compara su respuesta con la respuesta relacionada a dicha pregunta)
+function respuestaPregunta($respuesta, $numero){ //Esta funcion sirve para saber si la respuesta introducida por el usuario es correcta (Compara su respuesta con la respuesta relacionada a dicha pregunta)
     global $conexion;
     $sql = $conexion->prepare("SELECT * FROM peliculasPreguntas WHERE BINARY LOWER(Respuesta) = LOWER(?) AND idPregunta = ?");
     // $sql = $conexion->prepare("SELECT * FROM peliculasPreguntas WHERE SOUNDEX(LOWER(Respuesta)) = SOUNDEX(LOWER(?)) AND idPregunta = ?");
@@ -337,8 +317,7 @@ function respuestaPregunta($respuesta, $numero)
     }
 }
 
-function cogeMusica($numero)
-{ //Esta funcion sirve para coger la musica de la base de datos (La coge a raiz del numero aleatorio que haya salido).
+function cogeMusica($numero){ //Esta funcion sirve para coger la musica de la base de datos (La coge a raiz del numero aleatorio que haya salido).
     global $conexion;
     $query = $conexion->prepare("SELECT musica FROM canciones WHERE id=?");
     $query->execute([$numero]);
@@ -351,8 +330,7 @@ function cogeMusica($numero)
     }
 }
 
-function respuestaMusica($respuesta, $numero)
-{ //Esta funcion sirve para saber si la respuesta introducida por el usuario es correcta (Compara su respuesta con el titulo relacionado a la cancion)
+function respuestaMusica($respuesta, $numero){ //Esta funcion sirve para saber si la respuesta introducida por el usuario es correcta (Compara su respuesta con el titulo relacionado a la cancion)
     global $conexion;
     $sql = $conexion->prepare("SELECT * FROM peliculascanciones WHERE SOUNDEX(LOWER(NombrePelicula)) = SOUNDEX(LOWER(?)) AND idmusica = ?"); //El soundex sirve para comparar el valor introducido con el mas cercano. Asi que, en un principio, nos serviria para las tildes.
     $sql->execute(array($respuesta, $numero));
@@ -364,15 +342,14 @@ function respuestaMusica($respuesta, $numero)
     }
 }
 
-function obtenerCanciones($numero)
-{ //Esta funcion sirve para obtener la informacion de la tabla canciones, y mostrarla en una tabla.
+function obtenerCanciones($numero){ //Esta funcion sirve para obtener la informacion de la tabla canciones, y mostrarla en una tabla.
     global $conexion;
     $sql = $conexion->prepare("SELECT nombre, compositor, mclave FROM canciones WHERE id=?");
     $sql->execute([$numero]);
 
     $canciones = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-    $html = "<table style='border: 1px solid #000000; border-collapse: collapse; margin: 0 auto; width: 100%;'>";
+    $html = "<table style=' background-color: white; border: 1px solid #000000; border-collapse: collapse; margin: 0 auto; width: 100%;'>";
     $html .= "<tr><th style='border: 1px solid #000000; padding: 8px; text-align: center;'>Nombre</th><th style='border: 1px solid #000000; padding: 8px; text-align: center;'>Compositor</th><th style='border: 1px solid #000000; padding: 8px; text-align: center;'>Momento Clave</th></tr>";
     foreach ($canciones as $cancion) {
         $html .= "<tr><td style='border: 1px solid #000000; padding: 8px; text-align: center;'>" . $cancion['nombre'] . "</td><td style='border: 1px solid #000000; padding: 8px; text-align: center;'>" . $cancion['compositor'] . "</td><td style='border: 1px solid #000000; padding: 8px; text-align: center;'>" . $cancion['mclave'] . "</td></tr>";
@@ -382,8 +359,7 @@ function obtenerCanciones($numero)
     return $html;
 }
 
-function cogeRankingUsuario($sesion)
-{ //Esta funcion sirve para coger el ranking de un usuario en concreto
+function cogeRankingUsuario($sesion){ //Esta funcion sirve para coger el ranking de un usuario en concreto
     global $conexion;
     $sql = "SELECT CodigoRanking FROM usuarios WHERE nombre = '$sesion'";
     $resultado = $conexion->query($sql);
@@ -395,8 +371,7 @@ function cogeRankingUsuario($sesion)
     }
 }
 
-function cogeJugadaUsuario()
-{ //Esta funcion sirve para coger el codigo de jugadas de un usuario en concreto
+function cogeJugadaUsuario(){ //Esta funcion sirve para coger el codigo de jugadas de un usuario en concreto
     global $conexion;
     $usuario = $_SESSION["usuario"];
     $sql = "SELECT CodigoJugadas FROM usuarios WHERE nombre = '$usuario'";
@@ -409,8 +384,7 @@ function cogeJugadaUsuario()
     }
 }
 
-function cogeJugadaUsuarios()
-{ //Esta funcion sirve para coger el codigo de jugadas de los dos jugadores
+function cogeJugadaUsuarios(){ //Esta funcion sirve para coger el codigo de jugadas de los dos jugadores
     global $conexion;
     $usuario1 = $_SESSION["usuario1"];
     $usuario2 = $_SESSION["usuario2"];
@@ -430,8 +404,7 @@ function cogeJugadaUsuarios()
 }
 
 
-function cogeRecordImagen($rankingUsuario)
-{ //Esta funcion sirve para coger el ranking del juego de las imagenes del usuario que esta jugando
+function cogeRecordImagen($rankingUsuario){ //Esta funcion sirve para coger el ranking del juego de las imagenes del usuario que esta jugando
     global $conexion;
     $idRanking = $rankingUsuario['CodigoRanking'];
     $sql = "SELECT puntosImagen FROM ranking WHERE CodigoRanking = '$idRanking'";
@@ -444,8 +417,7 @@ function cogeRecordImagen($rankingUsuario)
     }
 }
 
-function cogeRecordImagenDOS($rankingUsuarios)
-{ //Esta funcion sirve para coger el record de los dos jugadores
+function cogeRecordImagenDOS($rankingUsuarios){ //Esta funcion sirve para coger el record de los dos jugadores
     global $conexion;
     $puntosImagen = array(); // Cambiamos $puntosImagen a un array para almacenar los puntos de cada ranking
     foreach ($rankingUsuarios as $ranking) { // Recorremos el array $rankingUsuarios
@@ -462,8 +434,7 @@ function cogeRecordImagenDOS($rankingUsuarios)
     return $puntosImagen; // Retornamos el array $puntosImagen con los puntos de los rankings de los usuarios
 }
 
-function incrementaRecordImagen($rankingUsuario)
-{ //Esta funcion sirve para actualizar el record del jugador
+function incrementaRecordImagen($rankingUsuario){ //Esta funcion sirve para actualizar el record del jugador
     global $conexion;
     $idRanking = $rankingUsuario['CodigoRanking'];
     $sql = "UPDATE ranking SET PuntosImagen = PuntosImagen + 1 WHERE CodigoRanking = '$idRanking'";
@@ -475,8 +446,7 @@ function incrementaRecordImagen($rankingUsuario)
     }
 }
 
-function incrementaJugadaImagen($jugadaUsuario)
-{ //Esta funcion sirve para incrementar el numero de veces que juega al juego de las imagenes el usuario.
+function incrementaJugadaImagen($jugadaUsuario){ //Esta funcion sirve para incrementar el numero de veces que juega al juego de las imagenes el usuario.
     global $conexion;
     $idjugada = $jugadaUsuario['CodigoJugadas'];
     $sql = "UPDATE numjugadas SET JugadasImagen = JugadasImagen + 1 WHERE CodigoJugadas = '$idjugada'";
@@ -488,8 +458,7 @@ function incrementaJugadaImagen($jugadaUsuario)
     }
 }
 
-function incrementaJugadaImagenDOS($jugadaUsuario1, $jugadaUsuario2)
-{ //Esta funcion sirve para incrementar la puntuacion de los dos jugadores
+function incrementaJugadaImagenDOS($jugadaUsuario1, $jugadaUsuario2){ //Esta funcion sirve para incrementar la puntuacion de los dos jugadores
     global $conexion;
 
     $jugadas_actualizadas = array();
@@ -521,8 +490,7 @@ function incrementaJugadaImagenDOS($jugadaUsuario1, $jugadaUsuario2)
     }
 }
 
-function CogeRecordPreguntas($rankingUsuario)
-{ //Esta funcion sirve para coger el record del juego de las preguntas del usuario que este jugando en ese momento.
+function CogeRecordPreguntas($rankingUsuario){ //Esta funcion sirve para coger el record del juego de las preguntas del usuario que este jugando en ese momento.
     global $conexion;
     $idRanking = $rankingUsuario['CodigoRanking'];
     $sql = "SELECT puntosPreguntas FROM ranking WHERE CodigoRanking ='$idRanking'";
@@ -535,8 +503,7 @@ function CogeRecordPreguntas($rankingUsuario)
     }
 }
 
-function incrementaRecordPregunta($rankingUsuario)
-{ //Esta funcion sirve para incrementar el record del usuario en el juego de las preguntas
+function incrementaRecordPregunta($rankingUsuario){ //Esta funcion sirve para incrementar el record del usuario en el juego de las preguntas
     global $conexion;
     $idRanking = $rankingUsuario['CodigoRanking'];
     $sql = "UPDATE ranking SET PuntosPreguntas = PuntosPreguntas + 1 WHERE CodigoRanking = '$idRanking'";
@@ -549,8 +516,7 @@ function incrementaRecordPregunta($rankingUsuario)
 
 }
 
-function incrementaJugadaPregunta($jugadaUsuario)
-{ //Este juego sirve para incrementar el numero de jugadas que ha hecho el usuario en el juego de las preguntas
+function incrementaJugadaPregunta($jugadaUsuario){ //Este juego sirve para incrementar el numero de jugadas que ha hecho el usuario en el juego de las preguntas
     global $conexion;
     $idjugada = $jugadaUsuario['CodigoJugadas'];
     $sql = "UPDATE numjugadas SET JugadasPreguntas = JugadasPreguntas + 1 WHERE CodigoJugadas = '$idjugada'";
@@ -562,8 +528,7 @@ function incrementaJugadaPregunta($jugadaUsuario)
     }
 }
 
-function CogeRecordMusica($rankingUsuario)
-{ //Esta fucion sirve para coger el record del usuario en el juego de musica
+function CogeRecordMusica($rankingUsuario){ //Esta fucion sirve para coger el record del usuario en el juego de musica
     global $conexion;
     $idRanking = $rankingUsuario['CodigoRanking'];
     $sql = "SELECT puntosMusica FROM ranking WHERE CodigoRanking ='$idRanking'";
@@ -576,8 +541,7 @@ function CogeRecordMusica($rankingUsuario)
     }
 }
 
-function incrementaRecordMusica($rankingUsuario)
-{ //Esta funcion sivre para incrementar el record del usuario en el juego de la musica
+function incrementaRecordMusica($rankingUsuario){ //Esta funcion sivre para incrementar el record del usuario en el juego de la musica
     global $conexion;
     $idRanking = $rankingUsuario['CodigoRanking'];
     $sql = "UPDATE ranking SET PuntosMusica = PuntosMusica + 1 WHERE CodigoRanking = '$idRanking'";
@@ -590,8 +554,7 @@ function incrementaRecordMusica($rankingUsuario)
 
 }
 
-function incrementaJugadaMusica($jugadaUsuario)
-{ //Esta funcion sirve para incrementar el numero de partidas del usuario en el juego de la musica.
+function incrementaJugadaMusica($jugadaUsuario){ //Esta funcion sirve para incrementar el numero de partidas del usuario en el juego de la musica.
     global $conexion;
     $idjugada = $jugadaUsuario['CodigoJugadas'];
     $sql = "UPDATE numjugadas SET JugadasMusica = JugadasMusica + 1 WHERE CodigoJugadas = '$idjugada'";
@@ -603,8 +566,7 @@ function incrementaJugadaMusica($jugadaUsuario)
     }
 }
 
-function cogeDatosJugada()
-{ //Esta funcion se encarga de coger y sumar el numero de veces de cada jugada para la grafica
+function cogeDatosJugada(){ //Esta funcion se encarga de coger y sumar el numero de veces de cada jugada para la grafica
     global $conexion;
     $sql = "SELECT SUM(JugadasImagen), SUM(JugadasPreguntas), SUM(JugadasMusica) FROM numjugadas";
     $resultado = $conexion->query($sql);
@@ -615,8 +577,7 @@ function cogeDatosJugada()
     }
 }
 
-function calcularPorcentajeJugadas()
-{ //Esta funcion sirve para calcular el porcentaje de los datos que devueve la funcion anterior para asi mostrarlos en la grafica
+function calcularPorcentajeJugadas(){ //Esta funcion sirve para calcular el porcentaje de los datos que devueve la funcion anterior para asi mostrarlos en la grafica
     $datosJugadas = cogeDatosJugada();
     $porcentajes = array();
     $totalJugadas = array_sum($datosJugadas[0]);
@@ -627,8 +588,7 @@ function calcularPorcentajeJugadas()
     return $porcentajes;
 }
 
-function cogenombreRanking()
-{
+function cogenombreRanking(){
     global $conexion;
     $sql = "SELECT u.Nombre, r.PuntosImagen, r.PuntosPreguntas, r.PuntosMusica 
     FROM ranking r JOIN usuarios u ON r.CodigoRanking = u.CodigoRanking";
@@ -640,8 +600,7 @@ function cogenombreRanking()
     }
 }
 
-function cogeTituloAJAX($nombre)
-{ //Esta funcion sirve para coger los titulos de la pelicula en la base de datos y mostrarlas con AJAX
+function cogeTituloAJAX($nombre){ //Esta funcion sirve para coger los titulos de la pelicula en la base de datos y mostrarlas con AJAX
     global $conexion;
     $sql = "SELECT nombre FROM peliculas WHERE nombre LIKE ?";
     $stmt = $conexion->prepare($sql);
@@ -651,8 +610,7 @@ function cogeTituloAJAX($nombre)
     return $peliculas;
 }
 
-function cogeRespuestaAJAX($respuesta)
-{ //Esta funcion sirve para coger las respuestas de las preguntas en la base de datos y mostrarlas con AJAX
+function cogeRespuestaAJAX($respuesta){ //Esta funcion sirve para coger las respuestas de las preguntas en la base de datos y mostrarlas con AJAX
     global $conexion; //El distinct sirve para que solo se muestre un dato en caso de que haya varios iguales.
     $sql = "SELECT DISTINCT respuesta FROM peliculaspreguntas WHERE respuesta LIKE ? AND respuesta NOT LIKE ?";
     $stmt = $conexion->prepare($sql);
@@ -662,8 +620,7 @@ function cogeRespuestaAJAX($respuesta)
     return $respuestas;
 }
 
-function turno($jugador1, $jugador2)
-{ //ESta funcion sirve para almacenar el turno de cada jugador en el juego de dos jugadores
+function turno($jugador1, $jugador2){ //ESta funcion sirve para almacenar el turno de cada jugador en el juego de dos jugadores
     if (!isset($_SESSION['turno'])) {
         $_SESSION['turno'] = $jugador1;
     }
@@ -679,8 +636,7 @@ function turno($jugador1, $jugador2)
     return $turnojugador1;
 }
 
-function mostrarturno($jugador1, $jugador2)
-{ //Esta funcion mostrara el turno del jugador correspondiente
+function mostrarturno($jugador1, $jugador2){ //Esta funcion mostrara el turno del jugador correspondiente
     if (!isset($_SESSION['turno'])) {
         $_SESSION['turno'] = $jugador1;
     }

@@ -31,7 +31,7 @@ if (respuestaImagen($respuesta, $numero) == true) {
      $intentos--;
      $_SESSION["intentos"] = $intentos;
 
-     if ($_SESSION["intentos"] == 0) {
+     if ($_SESSION["intentos"] == -1) {
 
           header("Location: ../elecciones/Eleccion2.php");
 

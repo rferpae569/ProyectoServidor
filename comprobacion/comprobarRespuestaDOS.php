@@ -34,7 +34,7 @@ if ($esTurnoJugador1) { //Si es el turno del jugador1, coge su ranking
                }
           }
 
-          if ($_SESSION["intentosusuario2"] == 0) { //Si el jugador 2 pierde sus tres vidas, vamos a victoriaDos.php para declarar al jugador 1 como vencedor
+          if ($_SESSION["intentosusuario2"] == -1) { //Si el jugador 2 pierde todos los intentos, vamos a victoriaDos.php para declarar al jugador 1 como vencedor
                header("Location: ../elecciones/VictoriaDos.php");
           }
 
@@ -42,7 +42,7 @@ if ($esTurnoJugador1) { //Si es el turno del jugador1, coge su ranking
           $intentos1--;
           $_SESSION["intentosusuario1"] = $intentos1;
 
-          if ($_SESSION["intentosusuario1"] == 0) { //Si pierde todos los intentos, se va a VictoriaDos.php para declarar la victoria al jugador 2
+          if ($_SESSION["intentosusuario1"] == -1) { //Si pierde todos los intentos, se va a VictoriaDos.php para declarar la victoria al jugador 2
 
                header("Location: ../elecciones/VictoriaDos.php");
 
@@ -80,7 +80,7 @@ if ($esTurnoJugador1) { //Si es el turno del jugador1, coge su ranking
 
           }
 
-          if ($_SESSION["intentosusuario1"] == 0) { //Si el jugador 1 pierde sus tres vidas, vamos a victoriaDos.php para declarar al jugador 2 como vencedor
+          if ($_SESSION["intentosusuario1"] == -1) { //Si el jugador 1 pierde todos los intentos, vamos a victoriaDos.php para declarar al jugador 2 como vencedor
                header("Location: ../elecciones/VictoriaDos.php");
           }
 
@@ -88,7 +88,7 @@ if ($esTurnoJugador1) { //Si es el turno del jugador1, coge su ranking
           $intentos2--;
           $_SESSION["intentosusuario2"] = $intentos2;
 
-          if ($_SESSION["intentosusuario2"] == 0) { //Si pierde todos los intentos, se va a VictoriaDos.php para declarar vencedor a jugador1
+          if ($_SESSION["intentosusuario2"] == -1) { //Si pierde todos los intentos, se va a VictoriaDos.php para declarar vencedor a jugador1
 
                header("Location: ../elecciones/VictoriaDos.php");
 
