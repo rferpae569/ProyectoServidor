@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="../icono/claquetaicon.png">
     <title>Victoria</title>
     <link rel="stylesheet" href="../bootstrap-5.2.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="../bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
 </head>
 <?php
@@ -25,7 +26,7 @@ if (isset($_POST["SI"]) || isset($_POST["NO"])) {
     }
 }
 ?>
-<body>
+<body class="fondovictoria">
     <h1 class="text-center my-4">¡Enhorabuena, has ganado!</h1>
     <h1 class="text-center my-4">¿Quiere volver a jugar?</h1>
     <div class="d-flex justify-content-center">

@@ -7,10 +7,11 @@
     <link rel="shortcut icon" href="../icono/claquetaicon.png">
     <title>ActualizarRegistro</title>
     <link rel="stylesheet" href="../bootstrap-5.2.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="../bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
     <script src="../javascript/Scripts.js"></script>
 </head>
-<body>
+<body class="fondoformulario">
     <?php
     if ($_COOKIE['cookies'] != 'aceptar') { //Si las cookies no valen "Aceptar", nos quedaremos en el index
     

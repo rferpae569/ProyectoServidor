@@ -24,7 +24,7 @@ if ($esTurnoJugador1) { //Si es el turno del jugador1, coge su ranking
 
                header("Location: ../juegos/juegoImagenesDos.php"); //Lo mandamos de nuevo al juego de las imagenes
 
-          } else if ($_SESSION["puntosusuario1"] == 15 && $_SESSION["intentosusuario1"] == 3 || $_SESSION["intentosusuario1"] == 2 || $_SESSION["intentosusuario1"] == 1) {
+          } else if ($_SESSION["puntosusuario1"] == 15 && $_SESSION["intentosusuario1"] == 3 || $_SESSION["intentosusuario1"] == 2 || $_SESSION["intentosusuario1"] == 1 || $_SESSION["intentosusuario1"] == 0) {
                
                if ($_SESSION["puntosusuario2"] == 15) { //Si ambos jugadores tienen 15 puntos, vamos a empateDos.php
                     header("Location: ../elecciones/empateDos.php");
@@ -68,7 +68,7 @@ if ($esTurnoJugador1) { //Si es el turno del jugador1, coge su ranking
 
                header("Location: ../juegos/juegoImagenesDos.php");
 
-          } else if ($_SESSION["puntosusuario2"] == 15 && $_SESSION["intentosusuario2"] == 3 || $_SESSION["intentosusuario2"] == 2 || $_SESSION["intentosusuario2"] == 1) {
+          } else if ($_SESSION["puntosusuario2"] == 15 && $_SESSION["intentosusuario2"] == 3 || $_SESSION["intentosusuario2"] == 2 || $_SESSION["intentosusuario2"] == 1 || $_SESSION["intentosusuario2"] == 0) {
                
                if ($_SESSION["puntosusuario1"] == 15) { //Si ambos jugadores tienen 15 puntos, vamos a empatesDOS.php
                     //Si empatan, los mandamos a empate

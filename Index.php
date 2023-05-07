@@ -7,12 +7,11 @@
     <link rel="shortcut icon" href="icono/claquetaicon.png">
     <title>Index</title>
     <link rel="stylesheet" href="bootstrap-5.2.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
     <script src="javascript/Scripts.js"></script>
 </head>
-<body style="<?php if (isset($_POST["aceptar"])) {
-    echo "background-color:white";
-} ?>">
+<body class="fondologin">
 
     <?php
     if (!isset($_COOKIE['cookies'])) { //Si la cookie del mensaje no existe, la creamos con setcookie.
@@ -65,15 +64,15 @@
         <a href="logindosjugadores/logindosjugadores.php">Modo dos jugadores</a>
     </div>
 
-    <footer class="footer mt-auto py-3" style="<?php if (isset($_POST["aceptar"])) {
+    <footer class="footer fixed-bottom bg-white" style="<?php if (isset($_POST["aceptar"])) {
         echo "display:none";
     } ?>">
-        <div class="container">
+        <div class="container bg-white">
             <form action="Index.php" method="POST">
                 <p>Utilizamos cookies propias y de terceros para obtener datos estadísticos de la navegación de nuestros
                     usuarios y mejorar nuestros servicios. Si acepta o continúa navegando, consideramos que acepta su
                     uso. Puede cambiar la configuración u obtener más información <a
-                        href="https://ayudaleyprotecciondatos.es/cookies/"> aquí (enlace a página de cookies).</a></p>
+                        href="https://ayudaleyprotecciondatos.es/cookies/" class="azul"> aquí (enlace a página de cookies).</a></p>
                 <div class="text-center">
                     <input type="submit" class="btn btn-primary" id="aceptar" name="aceptar" value="Aceptar">
                     <input type="submit" class="btn btn-danger" id="rechazar" name="rechazar" value="Rechazar">
@@ -86,7 +85,6 @@
     if (isset($_COOKIE['cookies'])) { //Si las cookies valen aceptar, el mensaje no se mostrara.
         if ($_COOKIE['cookies'] == 'aceptar') {
             echo '<style type="text/css">footer {display: none;}</style>';
-            echo '<style type="text/css">body {background-color: white;}</style>';
         }
     }
     ?>

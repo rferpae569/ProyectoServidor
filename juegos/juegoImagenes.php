@@ -18,7 +18,7 @@ $numero = numAleatorio(); //Almacenammos en la variable el numero aleatorio
 $_SESSION["aleatorio"] = $numero; //creamos la sesion aleatorio para almacenar el numero aleatorio para la imagen.
 if (!isset($_SESSION["intentos"])) { //Si no existe la sesion "intentos", la creamos, y le decimos que vale tres.
     $_SESSION["intentos"] = 3;
-} else if (isset($_SESSION["intentos"])) { //Si existe, comprobamos que vale tres, y si vale 0, le decimos que vuelva valer 3.
+} else if (isset($_SESSION["intentos"])) { //Si existe, comprobamos que vale tres, y si vale -1, le decimos que vuelva valer 3.
     if ($_SESSION["intentos"] == 3) {
         $_SESSION["intentos"] = 3;
     } else if ($_SESSION["intentos"] == -1) {

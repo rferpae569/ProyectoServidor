@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="../icono/claquetaicon.png">
     <title>logindosjugadores</title>
     <link rel="stylesheet" href="../bootstrap-5.2.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="../bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
     <script src="../javascript/Scripts.js"></script>
 </head>
@@ -17,7 +18,7 @@ if ($_COOKIE['cookies'] != 'aceptar') { //Si la cookie no vale "Aceptar", nos ll
 }
 ?>
 
-<body>
+<body class="fondologin">
     <div class="container">
         <h1 class="text-center mt-5">Modo dos jugadores</h1>
         <h2 class="text-center mt-3">Por favor, inicie sesión para jugar</h2>

@@ -20,7 +20,7 @@ if (respuestaMusica($respuesta, $numero) == true) {
 
     header("Location: ../juegos/juegoMusica.php");
 
-  } else if ($_SESSION["puntos"] == 15 && $_SESSION["intentos"] == 3 || $_SESSION["intentos"] == 2 || $_SESSION["intentos"] == 1) {
+  } else if ($_SESSION["puntos"] == 15 && $_SESSION["intentos"] == 3 || $_SESSION["intentos"] == 2 || $_SESSION["intentos"] == 1 || $_SESSION["intentos"] == 0) {
 
     header("Location: ../elecciones/Victoria.php");
 

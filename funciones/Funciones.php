@@ -241,10 +241,10 @@ function numAleatorio(){ //Esta funcion genera numeros aleatorios para que salga
     }
 
     $numeros = $_SESSION["numAleatorio"];
-    $numeroAleatorio = rand(1, 52);
+    $numeroAleatorio = rand(1, 56);
 
     while (in_array($numeroAleatorio, $numeros)) {
-        $numeroAleatorio = rand(1, 52);
+        $numeroAleatorio = rand(1, 56);
     }
 
     array_push($numeros, $numeroAleatorio);
@@ -588,7 +588,7 @@ function calcularPorcentajeJugadas(){ //Esta funcion sirve para calcular el porc
     return $porcentajes;
 }
 
-function cogenombreRanking(){
+function cogenombreRanking(){ //Esta funcion se encarga de coger el nombre de los usuarios para ponerlos en la grafica del ranking.
     global $conexion;
     $sql = "SELECT u.Nombre, r.PuntosImagen, r.PuntosPreguntas, r.PuntosMusica 
     FROM ranking r JOIN usuarios u ON r.CodigoRanking = u.CodigoRanking";

@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="../icono/claquetaicon.png">
     <title>Victoria</title>
     <link rel="stylesheet" href="../bootstrap-5.2.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="../bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
 </head>
 <?php
@@ -19,7 +20,7 @@ if (isset($_POST["cerrar"])) {
 }
 
 ?>
-<body>
+<body class="fondovictoriados">
     <div class="container">
         <div class="row">
             <div class="col-md-12">

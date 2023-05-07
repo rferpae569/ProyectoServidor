@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="../icono/claquetaicon.png">
     <title>Registro</title>
     <link rel="stylesheet" href="../bootstrap-5.2.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="../bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
     <script src="../javascript/Scripts.js"></script>
 </head>
@@ -16,7 +17,7 @@ if ($_COOKIE['cookies'] != 'aceptar') { //Si la cookie no vale "Aceptar", nos ll
     header("Location: ../Index.php");
 }
 ?>
-<body>
+<body class="fondoformulario">
     <h1 class="text-center mt-5">Por favor, registrese para jugar</h1>
     <div class="container">
         <div class="row">

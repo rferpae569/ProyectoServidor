@@ -38,13 +38,61 @@
 }
 
 body{
-    background: url('../img/fondo.jpg');
+    background: url('../img/fondojuegos.jpg');
     background-size: 100% 100%;
+}
+
+.fondologin{
+    background-image: url('../img/fondologin.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 90vh;
+}
+
+.fondoeleccion {
+    background-image: url('../img/fondoeleccion.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh;
+}
+
+.fondoformulario {
+    background-image: url('../img/fondoformularios.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 90vh;
+}
+
+.fondovictoria{
+    background-image: url('../img/fondovictoria.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+}
+
+.fondovictoriados{
+    background-image: url('../img/fondovictoria.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh;
+}
+
+.fondoderrotaempatedos{
+    background-image: url('../img/derrotaempate.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh;
 }
 
 .preguntamusica{
     height: 120vh;
-    background: url('../img/fondo.jpg');
+    background: url('../img/fondojuegos.jpg');
     background-size: 100% 100%
 }
 
@@ -52,7 +100,7 @@ body{
     margin-bottom: 10%;
 }
 
-h1, label{
+h1, h2, label{
     color:white
 }
 
@@ -62,4 +110,16 @@ h1, label{
 
 .claqueta{
     filter: invert(1);
+}
+
+a{
+    color: white;
+}
+
+a:hover{
+    color:red;
+}
+
+.azul{
+    color: blue;
 }

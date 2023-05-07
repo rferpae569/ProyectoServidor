@@ -7,9 +7,10 @@
     <link rel="shortcut icon" href="../icono/claquetaicon.png">
     <title>Eleccion</title>
     <link rel="stylesheet" href="../bootstrap-5.2.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="../bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
 </head>
-<body><!--Creamos los enlaces para que nos lleve a los juegos-->
+<body class="fondoeleccion"><!--Creamos los enlaces para que nos lleve a los juegos-->
     <div class="container">
         <div class="btn-group" role="group" aria-label="Enlaces a juegos">
             <a href="../juegos/juegoImagenes.php" class="btn btn-secondary">Adivina la película a través de imágenes

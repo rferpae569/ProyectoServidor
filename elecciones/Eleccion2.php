@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="../icono/claquetaicon.png">
     <title>Eleccion2</title>
     <link rel="stylesheet" href="../bootstrap-5.2.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="../bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
 </head>
 <?php
@@ -24,8 +25,9 @@ if (isset($_POST["SI"]) || isset($_POST["NO"])) {
     }
 }
 ?>
-<body>
-    <h1 class="text-center my-4">Lo siento, ha fallado, ¿Desea volverlo a intentar?</h1>
+<body class="fondoderrotaempatedos">
+    <h1 class="text-center my-4">Lo siento, ha fallado</h1> 
+    <h1 class="text-center my-4">¿Desea volverlo a intentar?</h1>
     <div class="d-flex justify-content-center">
         <form action="Eleccion2.php" method="post" class="d-flex flex-column">
             <!--Creamos el formulario para saber si queremos volver a jugar o no-->
