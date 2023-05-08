@@ -40,6 +40,7 @@
 body{
     background: url('../img/fondojuegos.jpg');
     background-size: 100% 100%;
+    /* background-attachment: fixed; */
 }
 
 .fondologin{
@@ -82,6 +83,14 @@ body{
     height: 100vh;
 }
 
+.fondoderrota{
+    background-image: url('../img/derrotaempate.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%
+}
+
 .fondoderrotaempatedos{
     background-image: url('../img/derrotaempate.jpg');
     background-size: cover;
@@ -93,7 +102,8 @@ body{
 .preguntamusica{
     height: 120vh;
     background: url('../img/fondojuegos.jpg');
-    background-size: 100% 100%
+    background-size: 100% 100%;
+    background-attachment: scroll;
 }
 
 .altoimagen{

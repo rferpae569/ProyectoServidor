@@ -25,7 +25,7 @@ if (isset($_POST["SI"]) || isset($_POST["NO"])) {
     }
 }
 ?>
-<body class="fondoderrotaempatedos">
+<body class="fondoderrota">
     <h1 class="text-center my-4">Lo siento, ha fallado</h1> 
     <h1 class="text-center my-4">¿Desea volverlo a intentar?</h1>
     <div class="d-flex justify-content-center">
