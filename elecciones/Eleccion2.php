@@ -35,6 +35,9 @@ if (isset($_POST["SI"]) || isset($_POST["NO"])) {
             <input type="submit" class="btn btn-secondary" id="NO" name="NO" value="NO"></input>
         </form>
     </div>
+    <div class="text-center"><br>
+    <a href="../generadorPDF/generador2.php">Descargar pdf de los resultados</a>
+    </div>
     <div class="d-flex justify-content-center my-5"> <!--Mostramos los graficos-->
         <img src="../graficos/grafico1.php" alt="Gráfico de Porcentajes de Jugadas" class="mx-3">
         <img src="../graficos/grafico2.php" alt="Gráfico de Rankings" class="mx-3">

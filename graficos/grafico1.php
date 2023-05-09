@@ -35,4 +35,5 @@ $p1->SetLegends(array("JuegoPeliculas", "JuegoPreguntas", "JuegoMusica"));
 
 //mostramos el grafico
 $grafico->Stroke();
+$grafico->Stroke('grafico1.png');
 ?>

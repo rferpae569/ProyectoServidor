@@ -241,10 +241,10 @@ function numAleatorio(){ //Esta funcion genera numeros aleatorios para que salga
     }
 
     $numeros = $_SESSION["numAleatorio"];
-    $numeroAleatorio = rand(1, 56);
+    $numeroAleatorio = rand(1, 58);
 
     while (in_array($numeroAleatorio, $numeros)) {
-        $numeroAleatorio = rand(1, 56);
+        $numeroAleatorio = rand(1, 58);
     }
 
     array_push($numeros, $numeroAleatorio);
@@ -646,6 +646,23 @@ function mostrarturno($jugador1, $jugador2){ //Esta funcion mostrara el turno de
         echo "<h1>" . $jugador1 . "</h1>";
     } else {
         echo "<h1>" . $jugador2 . "</h1>";
+    }
+}
+
+function BuscarRepe($nombre){ //Esta funcion sirve para sbaer si hay un usuario en la base de datos
+    global $conexion;
+    $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE Nombre = :Nombre");
+    $stmt->bindParam(':Nombre', $nombre);
+
+    $stmt->execute();
+    $repetido = $stmt->rowCount();
+
+    if ($repetido > 0) {
+        // Si existe un usuario con el mismo nombre en la base de datos, devuelve true
+        return true;
+    } else {
+        // Si no existe ningún usuario con el mismo nombre en la base de datos, devuelve false
+        return false;
     }
 }
 ?>

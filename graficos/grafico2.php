@@ -53,4 +53,5 @@ $grafico->legend->SetPos(0.1, 0.95, 'right', 'top');
 
 // Mostrar el gráfico
 $grafico->Stroke();
+$grafico->Stroke('grafico2.png');
 ?>

@@ -6,6 +6,12 @@ $password = $_POST['contrasena']; //Almacenamos el password pasado por formulari
 $correo = $_POST['correo']; //Almacenamos el coreo pasado por formulario en una variable
 
 if (validarNombre($nombre) == true && validarContraseña($password) == true && validarcorreo($correo) == true) {
+    
+    if(BuscarRepe($nombre)==true){
+        echo "<script>alert('Lo siento, ya existe este usuario en la base de datos');
+            window.location.href = '../registro/Registro.php';
+            </script>";
+    }else{
     //Si las validaciones son correctas, añadimos el usuario a la base de datos
     añadirUsuario($nombre, $password);
 
@@ -18,6 +24,8 @@ if (validarNombre($nombre) == true && validarContraseña($password) == true && v
         añadirCorreo($correo, $nombre);
         header("Location: ../Index.php");
     }
+    }   
+
 } else if (validarNombre($nombre) == false) { //Es caso contrario, si el nombre no es correcto, nos mostrara el siguiente mensaje, y nos llevar de nuevo a registro.php
     echo "<script>alert('Lo siento, el nombre que ha introducido no es correcto o ya se encuentra en la base de datos. Por favor, introduzca otro');
             window.location.href = '../registro/Registro.php';
