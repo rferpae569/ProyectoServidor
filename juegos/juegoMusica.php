@@ -36,7 +36,7 @@ echo ("<h1 class='ms-auto mt-5'>Record: " . implode(CogeRecordMusica($rankingUsu
 echo '</div>';
 
 if ($_SESSION["puntos"] == 0 && $_SESSION["intentos"] == 3) { //Este if sirve para saber cuantas veces ha jugado el usuario al juego.
-    $jugadaUsuario = cogeJugadaUsuario();
+    $jugadaUsuario = cogeJugadaUsuario($_SESSION["usuario"]);
     incrementaJugadaMusica($jugadaUsuario);
 }
 

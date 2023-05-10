@@ -205,7 +205,7 @@ function borrarCorreo($correo){ //Esta funcion sirve para borrar el correo del u
     return $query;
 }
 
-function borrarUsuario($nombre){ //Esta funcion sirve bpara borrar el usuario, su ranking, y su numero de jugadas
+function borrarUsuario($nombre){ //Esta funcion sirve para borrar el usuario, su ranking, y su numero de jugadas
     global $conexion;
     try {
         $query = $conexion->prepare("SELECT CodigoRanking, CodigoJugadas FROM usuarios WHERE Nombre = :Nombre");
@@ -371,10 +371,9 @@ function cogeRankingUsuario($sesion){ //Esta funcion sirve para coger el ranking
     }
 }
 
-function cogeJugadaUsuario(){ //Esta funcion sirve para coger el codigo de jugadas de un usuario en concreto
+function cogeJugadaUsuario($sesion){ //Esta funcion sirve para coger el codigo de jugadas de un usuario en concreto
     global $conexion;
-    $usuario = $_SESSION["usuario"];
-    $sql = "SELECT CodigoJugadas FROM usuarios WHERE nombre = '$usuario'";
+    $sql = "SELECT CodigoJugadas FROM usuarios WHERE nombre = '$sesion'";
     $resultado = $conexion->query($sql);
     if ($resultado->rowCount() > 0) {
         $jugadaUsuario = $resultado->fetch(PDO::FETCH_ASSOC);
@@ -649,7 +648,7 @@ function mostrarturno($jugador1, $jugador2){ //Esta funcion mostrara el turno de
     }
 }
 
-function BuscarRepe($nombre){ //Esta funcion sirve para sbaer si hay un usuario en la base de datos
+function BuscarRepe($nombre){ //Esta funcion sirve para saber si hay un usuario en la base de datos
     global $conexion;
     $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE Nombre = :Nombre");
     $stmt->bindParam(':Nombre', $nombre);
