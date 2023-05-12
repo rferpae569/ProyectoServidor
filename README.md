@@ -7,7 +7,7 @@ y luego, debera de iniciar sesion para poder acceder a los distintos juegos. En 
 
 Cuando inicie sesion, el usuario podra elegir entre estos tres juegos:
 
-##Lista de juegos
+## Lista de juegos
 
 - Juego de las Imagenes (Facil)
 - Juego de las Preguntas (Normal)
